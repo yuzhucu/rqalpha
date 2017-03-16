@@ -1,1557 +1,338 @@
+
+
 <!DOCTYPE html>
-<html>
-
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Rqalpha : RQalpha: A Python Algorithmic Trading Engine with BackTest, Portfolio Calculation and Free Day Data">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Rqalpha</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/ricequant/rqalpha">View on GitHub</a>
-
-          <h1 id="project_title">Rqalpha</h1>
-          <h2 id="project_tagline">RQalpha: A Python Algorithmic Trading Engine with BackTest, Portfolio Calculation and Free Day Data</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/ricequant/rqalpha/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/ricequant/rqalpha/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <p><img src="https://raw.githubusercontent.com/ricequant/rqalpha/master/docs/rqalpha4.jpg" alt="rqalpha"></p>
-
-<h1>
-<a id="rqalpha" class="anchor" href="#rqalpha" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>RQAlpha</h1>
-
-<h2>
-<a id="简介" class="anchor" href="#%E7%AE%80%E4%BB%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>简介</h2>
-
-<p>RQAlpha是一个开源的Python算法交易和回测引擎，适合A股市场，是事件驱动的设计。自带日线数据, 目前暂时仅支持日线回测。</p>
-
-<p>RQAlpha的逻辑也将会在<a href="https://www.ricequant.com">Ricequant</a>的一些回测部分使用，<a href="https://www.ricequant.com">Ricequant</a>  - 是一个开放的量化算法交易社区，有免费的服务器资源给大家测试、实盘模拟您的交易算法，并且可以将交易信号通过微信和邮件实时推送给大家, 如果您想要更好的回测报告体验和实盘模拟交易功能可以把本地写好的策略复制黏贴到我们的网站上运行。</p>
-
-<p>如果您想参与和贡献进来这个项目，可以发邮件给 <a href="mailto:public@ricequant.com">public@ricequant.com</a> 联系，如果您有功能需求或者bug报告的话，都可以开一个issue：<a href="https://github.com/ricequant/rqalpha/issues">https://github.com/ricequant/rqalpha/issues</a></p>
-
-<h2>
-<a id="特色" class="anchor" href="#%E7%89%B9%E8%89%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>特色</h2>
-
-<ul>
-<li>容易使用：RQAlpha可以让你集中精力在策略的开发上。可以参考./examples 下的范例</li>
-<li>需要传入历史数据，计算的结果是pandas的DataFrame, 和PyData的生态系统很好的结合在一起</li>
-<li>可以使用Python的统计、机器学习等科学计算库如matplotlib, scipy, statsmodels和sklearn等</li>
-<li>免费提供了Ricequant的日级别数据，可以通过互联网自己更新data bundle</li>
-<li>同时支持Python2.7和Python3</li>
-<li>目前仅支持A股股票，暂时不支持ETF、分级等数据</li>
-</ul>
-
-<h2>
-<a id="安装" class="anchor" href="#%E5%AE%89%E8%A3%85" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>安装</h2>
-
-<pre><code># 为了避免一些安装问题，请先升级您的pip和setuptools
-pip install -U pip setuptools
-
-# 安装rqalpha
-pip install rqalpha
-
-# 升级rqalpha
-pip install -U rqalpha
-
-# 国内的用户们可以使用镜像
-pip install -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com -U rqalpha
-</code></pre>
-
-<h3>
-<a id="for-windows用户" class="anchor" href="#for-windows%E7%94%A8%E6%88%B7" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>For Windows用户</h3>
-
-<p>如果出现缺失<code>cl.exe</code>，请访问<a href="https://wiki.python.org/moin/WindowsCompilers">https://wiki.python.org/moin/WindowsCompilers</a>下载VC并且安装。</p>
-
-<p>如果在安装<code>bcolz</code>出现编译困难，可以从<a href="http://www.lfd.uci.edu/%7Egohlke/pythonlibs/#bcolz">http://www.lfd.uci.edu/~gohlke/pythonlibs/#bcolz</a>下载<code>bcolz</code>安装，安装<code>bcolz</code>后，再安装<code>rqalpha</code>。</p>
-
-<h2>
-<a id="安装依赖" class="anchor" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>安装依赖</h2>
-
-<h3>
-<a id="安装ta-lib" class="anchor" href="#%E5%AE%89%E8%A3%85ta-lib" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>安装TA-Lib</h3>
-
-<p>你可以通过PyPI安装：</p>
-
-<pre><code>$ pip install TA-Lib
-</code></pre>
-
-<p>如果发现无法通过 pip 安装，请访问 <a href="https://mrjbq7.github.io/ta-lib/install.html">https://mrjbq7.github.io/ta-lib/install.html</a> 解决。</p>
-
-<p>对于Windows用户，如果编译困难，可以根据您本地的Python版本下载指定版本的whl包，然后<code>pip install TA_Lib-0.4.9-cp27-none-win_amd64.whl</code>。</p>
-
-<ul>
-<li><a href="http://www.lfd.uci.edu/%7Egohlke/pythonlibs/6kbpejrn/TA_Lib-0.4.9-cp27-none-win32.whl">TA_Lib-0.4.9-cp27-none-win32.whl</a></li>
-<li><a href="http://www.lfd.uci.edu/%7Egohlke/pythonlibs/6kbpejrn/TA_Lib-0.4.9-cp27-none-win_amd64.whl">TA_Lib-0.4.9-cp27-none-win_amd64.whl</a></li>
-<li><a href="http://www.lfd.uci.edu/%7Egohlke/pythonlibs/6kbpejrn/TA_Lib-0.4.9-cp34-none-win32.whl">TA_Lib-0.4.9-cp34-none-win32.whl</a></li>
-<li><a href="http://www.lfd.uci.edu/%7Egohlke/pythonlibs/6kbpejrn/TA_Lib-0.4.9-cp34-none-win_amd64.whl">TA_Lib-0.4.9-cp34-none-win_amd64.whl</a></li>
-<li><a href="http://www.lfd.uci.edu/%7Egohlke/pythonlibs/6kbpejrn/TA_Lib-0.4.9-cp35-none-win32.whl">TA_Lib-0.4.9-cp35-none-win32.whl</a></li>
-<li><a href="http://www.lfd.uci.edu/%7Egohlke/pythonlibs/6kbpejrn/TA_Lib-0.4.9-cp35-none-win_amd64.whl">TA_Lib-0.4.9-cp35-none-win_amd64.whl</a></li>
-</ul>
-
-<h2>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
-
-<pre><code>Usage: rqalpha [OPTIONS] COMMAND [ARGS]...
-
-Options:
-  -v, --verbose
-  --help         Show this message and exit.
-
-Commands:
-  examples       generate example strategies to target folder
-  plot           draw result DataFrame
-  run            run strategy from file
-  update_bundle  update data bundle, download if not found
-</code></pre>
-
-<h3>
-<a id="下载回测需要的数据bundle" class="anchor" href="#%E4%B8%8B%E8%BD%BD%E5%9B%9E%E6%B5%8B%E9%9C%80%E8%A6%81%E7%9A%84%E6%95%B0%E6%8D%AEbundle" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>下载回测需要的数据bundle</h3>
-
-<p>运行以下命令，将会从Ricequant的服务器下载最新的日级别数据，为回测提供数据支持。</p>
-
-<pre><code>rqalpha update_bundle
-</code></pre>
-
-<h3>
-<a id="生成样例策略" class="anchor" href="#%E7%94%9F%E6%88%90%E6%A0%B7%E4%BE%8B%E7%AD%96%E7%95%A5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>生成样例策略</h3>
-
-<p>运行以下命令，将会在指定目录生成一个examples文件夹，其中包含几个有趣的样例策略。</p>
-
-<pre><code>rqalpha examples -d ./
-</code></pre>
-
-<h3>
-<a id="运行回测" class="anchor" href="#%E8%BF%90%E8%A1%8C%E5%9B%9E%E6%B5%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>运行回测</h3>
-
-<p>回测脚本参数如下：</p>
-
-<pre><code>Usage: rqalpha run [OPTIONS]
-
-  run strategy from file
-
-Options:
-  -f, --strategy-file PATH     [required]
-  -s, --start-date DATE        [required]
-  -e, --end-date DATE          [required]
-  -o, --output-file PATH
-  -i, --init-cash INTEGER
-  --plot / --no-plot           plot result
-  --progress / --no-progress   show progress bar
-  -d, --data-bundle-path PATH
-  --help                       Show this message and exit.
-</code></pre>
-
-<p>运行以下命令，将开始回测</p>
-
-<pre><code>cd examples
-rqalpha run -f multi_rsi.py -s 2014-01-01 -e 2016-01-01 -o result.pkl --plot
-</code></pre>
-
-<p>等待回测结束后，将显示您的收益率和Risk。</p>
-
-<p><img src="https://raw.githubusercontent.com/ricequant/rqalpha/master/docs/multi_rsi.png" alt="backtest"></p>
-
-<h3>
-<a id="绘制回测结果" class="anchor" href="#%E7%BB%98%E5%88%B6%E5%9B%9E%E6%B5%8B%E7%BB%93%E6%9E%9C" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>绘制回测结果</h3>
-
-<p>如果运行完回测后，还需要再次绘制回测结果，可以运行以下命令：</p>
-
-<pre><code>rqalpha plot result.pkl
-</code></pre>
-
-<h3>
-<a id="分析结果" class="anchor" href="#%E5%88%86%E6%9E%90%E7%BB%93%E6%9E%9C" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>分析结果</h3>
-
-<p>RQAlpha可以输出一个DataFrame，其中包含了每天的Portfolio信息、Risk信息、Trades和Positions。</p>
-
-<p>其Index是交易日，columns包括<code>alpha</code>, <code>annualized_returns</code>, <code>benchmark_annualized_returns</code>, <code>benchmark_daily_returns</code>, <code>benchmark_total_returns</code>, <code>beta</code>, <code>cash</code>, <code>daily_returns</code>, <code>downside_risk</code>, <code>information_rate</code>, <code>market_value</code>, <code>max_drawdown</code>, <code>pnl</code>, <code>portfolio_value</code>, <code>positions</code>, <code>sharpe</code>, <code>sortino</code>, <code>total_commission</code>, <code>total_returns</code>, <code>total_tax</code>, <code>tracking_error</code>, <code>trades</code>, <code>volatility</code>。</p>
-
-<p>其中<code>positions</code>是当日的持仓信息，<code>trades</code>是当日的交易信息。</p>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-k">import</span> pandas <span class="pl-k">as</span> pd
-df <span class="pl-k">=</span> pd.read_pickle(<span class="pl-s"><span class="pl-pds">"</span>result.pkl<span class="pl-pds">"</span></span>)
-<span class="pl-c1">print</span>(df.iloc[<span class="pl-k">-</span><span class="pl-c1">1</span>])
-
-<span class="pl-s"><span class="pl-pds">'''</span></span>
-<span class="pl-s">alpha                                                                   0.0180666</span>
-<span class="pl-s">annualized_returns                                                      0.0559331</span>
-<span class="pl-s">benchmark_annualized_returns                                            0.0454542</span>
-<span class="pl-s">benchmark_daily_returns                                               8.87784e-05</span>
-<span class="pl-s">benchmark_total_returns                                                  0.525913</span>
-<span class="pl-s">beta                                                                     0.518371</span>
-<span class="pl-s">cash                                                                      4971.44</span>
-<span class="pl-s">daily_returns                                                          0.00250376</span>
-<span class="pl-s">downside_risk                                                            0.246409</span>
-<span class="pl-s">information_rate                                                        0.0380054</span>
-<span class="pl-s">market_value                                                               162796</span>
-<span class="pl-s">max_drawdown                                                            -0.602535</span>
-<span class="pl-s">pnl                                                                           419</span>
-<span class="pl-s">portfolio_value                                                            167767</span>
-<span class="pl-s">positions                       {'000068.XSHE': Position({{'value_percent': 0....</span>
-<span class="pl-s">sharpe                                                                    2.35011</span>
-<span class="pl-s">sortino                                                                   2.62967</span>
-<span class="pl-s">total_commission                                                          2585.89</span>
-<span class="pl-s">total_returns                                                            0.677674</span>
-<span class="pl-s">total_tax                                                                 1172.01</span>
-<span class="pl-s">tracking_error                                                           0.269138</span>
-<span class="pl-s">trades                                                                         []</span>
-<span class="pl-s">volatility                                                               0.275721</span>
-<span class="pl-s">Name: 2016-07-01 00:00:00, dtype: object</span>
-<span class="pl-s"><span class="pl-pds">'''</span></span></pre></div>
-
-<h2>
-<a id="架构图" class="anchor" href="#%E6%9E%B6%E6%9E%84%E5%9B%BE" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>架构图</h2>
-
-<p><img src="https://raw.githubusercontent.com/ricequant/rqalpha/master/docs/QQ20160713-1.jpeg" alt="Architecture"></p>
-
-<h2>
-<a id="faq" class="anchor" href="#faq" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FAQ</h2>
-
-<h3>
-<a id="在windows运行报error-on-import-matplotlibpyplot" class="anchor" href="#%E5%9C%A8windows%E8%BF%90%E8%A1%8C%E6%8A%A5error-on-import-matplotlibpyplot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>在Windows运行报Error on import matplotlib.pyplot</h3>
-
-<p>请访问 <a href="http://stackoverflow.com/questions/34004063/error-on-import-matplotlib-pyplot-on-anaconda3-for-windows-10-home-64-bit-pc">Error on import matplotlib.pyplot (on Anaconda3 for Windows 10 Home 64-bit PC)</a> 解决。</p>
-
-<h2>
-<a id="python-sdk-简介" class="anchor" href="#python-sdk-%E7%AE%80%E4%BB%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Python SDK 简介</h2>
-
-<h3>
-<a id="python策略hello-world" class="anchor" href="#python%E7%AD%96%E7%95%A5hello-world" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Python策略Hello World</h3>
-
-<p>以下的策略是最简单的一个买入并持有平安银行（buy and hold）的展示，非常简单：</p>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-c"># 可以自己import我们平台支持的第三方python模块，比如pandas、numpy等。</span>
-
-<span class="pl-c"># 在这个方法中编写任何的初始化逻辑。context对象将会在你的算法策略的任何方法之间做传递。</span>
-<span class="pl-k">def</span> <span class="pl-en">init</span>(<span class="pl-smi">context</span>):
-    context.s1 <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>000001.XSHE<span class="pl-pds">"</span></span>
-    <span class="pl-c"># order是否被发送出去</span>
-    context.fired <span class="pl-k">=</span> <span class="pl-c1">False</span>
-
-<span class="pl-c"># 你选择的证券的数据更新将会触发此段逻辑，例如日或分钟历史数据切片或者是实时数据切片更新</span>
-<span class="pl-k">def</span> <span class="pl-en">handle_bar</span>(<span class="pl-smi">context</span>, <span class="pl-smi">bar_dict</span>):
-    <span class="pl-c"># 开始编写你的主要的算法逻辑</span>
-
-    <span class="pl-c"># bar_dict[order_book_id] 可以拿到某个证券的bar信息</span>
-    <span class="pl-c"># context.portfolio 可以拿到现在的投资组合状态信息</span>
-
-    <span class="pl-c"># 使用order_shares(id_or_ins, amount)方法进行落单</span>
-
-    <span class="pl-c"># <span class="pl-k">TODO</span>: 开始编写你的算法吧！</span>
-    <span class="pl-k">if</span> <span class="pl-k">not</span> context.fired:
-        <span class="pl-c"># order_percent并且传入1代表买入该股票并且使其占有投资组合的100%</span>
-        order_percent(context.s1, <span class="pl-c1">1</span>)
-        context.fired <span class="pl-k">=</span> <span class="pl-c1">True</span></pre></div>
-
-<hr>
-
-<h3>
-<a id="需要实现的方法" class="anchor" href="#%E9%9C%80%E8%A6%81%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%96%B9%E6%B3%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>需要实现的方法</h3>
-
-<p>你的算法策略目前必须实现至少两个方法：<code>init</code> 和 <code>handle_bar</code>，而<code>before_trading</code>是可选择实现的方法。</p>
-
-<h4>
-<a id="init" class="anchor" href="#init" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>init</h4>
-
-<div class="highlight highlight-source-python"><pre>init(context)</pre></div>
-
-<p>初始化方法 - 在回测和实时模拟交易只会在启动的时候触发一次。你的算法会使用这个方法来设置你需要的各种初始化配置。
-<code>context</code> 对象将会在你的算法的所有其他的方法之间进行传递以方便你可以拿取到。</p>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>context</td>
-<td>python简单对象</td>
-<td>将会在整个算法中当做一个全局变量来使用。属性通过点标记（"."）来取到。</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>返回</strong>
-None</p>
-
-<p><strong>范例:</strong></p>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">init</span>(<span class="pl-smi">context</span>):
-    <span class="pl-c"># cash_limit的属性是根据用户需求自己定义的，你可以定义无限多种自己随后需要的属性，ricequant的系统默认只是会占用context.portfolio的关键字来调用策略的投资组合信息</span>
-    context.cash_limit <span class="pl-k">=</span> <span class="pl-c1">5000</span></pre></div>
-
-<h4>
-<a id="handle_bar" class="anchor" href="#handle_bar" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>handle_bar</h4>
-
-<div class="highlight highlight-source-python"><pre>handle_bar(context, bar_dict)</pre></div>
-
-<p>切片数据的更新会自动触发调用这个方法，如果是日回测则是每日的切片数据（OHLC）会触发调用，分钟回测则会是每分钟的切片数据会调用，那么在实时模拟交易中则是实时每分钟会调用一次。对于切片数据对象你可以看关于<a href="#bar-object">Bar对象</a>的更详细的信息。</p>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>context</td>
-<td>和init方法中的context对象一样</td>
-<td>存储所有策略的自己定义的变量状态或是初始设置。</td>
-</tr>
-<tr>
-<td>bar_dict</td>
-<td>bar dictionary - 存储了关注的证券的bar的一个dict，order_book_id作为key</td>
-<td>所有已‘关注’的股票的切片数据信息都会更新在这个dict里面。</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>返回</strong>
-None</p>
-
-<p><strong>范例</strong></p>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">handle_bar</span>(<span class="pl-smi">context</span>, <span class="pl-smi">bar_dict</span>):
-    <span class="pl-c"># put all your algorithm main logic here.</span>
-    <span class="pl-c"># ...</span>
-    order_shares(<span class="pl-s"><span class="pl-pds">'</span>000001.XSHE<span class="pl-pds">'</span></span>, <span class="pl-c1">500</span>)
-    <span class="pl-c"># ...</span></pre></div>
-
-<h4>
-<a id="before_trading" class="anchor" href="#before_trading" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>before_trading</h4>
-
-<p>非强制，可选择实现的函数。每天在市场开始前会被调用。<strong>不可以在这个函数中发送订单（即不可以调用<code>order_xxxx</code>函数）。</strong></p>
-
-<div class="highlight highlight-source-python"><pre>before_trading(context, bar_dict)</pre></div>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>context</td>
-<td>和init方法中的context对象一样</td>
-<td>存储所有策略的自己定义的变量状态或是初始设置，也保存了<code>portfolio</code>的信息。</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>返回</strong>
-None</p>
-
-<p><strong>范例</strong></p>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">before_trading</span>(<span class="pl-smi">context</span>, <span class="pl-smi">bar_dict</span>):
-    context.stock_list <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">"</span>000001.XSHE<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>000099.XSHE<span class="pl-pds">"</span></span>]
-
-    <span class="pl-c"># 手动更新股票池</span>
-    update_universe(context.stock_list)</pre></div>
-
-<hr>
-
-<h3>
-<a id="order方法" class="anchor" href="#order%E6%96%B9%E6%B3%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Order方法</h3>
-
-<p>你可以在策略中使用下面的几种丰富的落单方法，他们不同的用法可以让你落单的操作十分便捷。我们在交易系统内部提供好了仓位计算，因此你可以非常便利使用一些基于仓位管理上的落单方法，比如<code>order_percent</code> 可以让你基于目前的仓位价值进行落单。</p>
-
-<h4>
-<a id="order_shares" class="anchor" href="#order_shares" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>order_shares</h4>
-
-<p>落指定<strong>股数</strong>的买/卖单，最常见的落单方式之一。如有需要落单类型当做一个参量传入，如果忽略掉落单类型，那么默认是市价单（market order）。</p>
-
-<div class="highlight highlight-source-python"><pre>order_shares(id_or_ins, amount, <span class="pl-v">style</span><span class="pl-k">=</span>MarketOrder())</pre></div>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id_or_ins</td>
-<td>str或instrument对象-required</td>
-<td>order_book_id或symbol或instrument对象</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>float-required</td>
-<td>需要落单的股数。正数代表买入，负数代表卖出。将会根据一手xx股来向下调整到一手的倍数，比如中国A股就是调整成100股的倍数。</td>
-</tr>
-<tr>
-<td>style</td>
-<td>OrderType-optional</td>
-<td>订单类型，默认是市价单。目前支持的订单类型有：<ul>
-<li>style=MarketOrder()</li>
-<li>style=LimitOrder(limit_price)</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>返回</strong>
-int，唯一的order id</p>
-
-<p><strong>范例</strong></p>
-
-<ul>
-<li>购买Buy 2000 股的平安银行股票，并以市价单发送</li>
-</ul>
-
-<div class="highlight highlight-source-python"><pre>order_shares(<span class="pl-s"><span class="pl-pds">'</span>000001.XSHE<span class="pl-pds">'</span></span>, <span class="pl-c1">2000</span>)</pre></div>
-
-<ul>
-<li>卖出2000股的平安银行股票，并以市价单发送：</li>
-</ul>
-
-<div class="highlight highlight-source-python"><pre>order_shares(<span class="pl-s"><span class="pl-pds">'</span>000001.XSHE<span class="pl-pds">'</span></span>, <span class="pl-k">-</span><span class="pl-c1">2000</span>)</pre></div>
-
-<ul>
-<li>购买1000股的平安银行股票，并以限价单发送，价格为￥10：</li>
-</ul>
-
-<div class="highlight highlight-source-python"><pre>order_shares(<span class="pl-s"><span class="pl-pds">'</span>000001.XSHG<span class="pl-pds">'</span></span>, <span class="pl-c1">1000</span>, <span class="pl-v">style</span><span class="pl-k">=</span>LimitOrder(<span class="pl-c1">10</span>))</pre></div>
-
-<h4>
-<a id="order_lots" class="anchor" href="#order_lots" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>order_lots</h4>
-
-<p>指定手数发送买/卖单。如有需要落单类型当做一个参量传入，如果忽略掉落单类型，那么默认是市价单（market order）。</p>
-
-<div class="highlight highlight-source-python"><pre>order_lots(id_or_ins, amount, <span class="pl-v">style</span><span class="pl-k">=</span>OrderType)</pre></div>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id_or_ins</td>
-<td>str或instrument对象-required</td>
-<td>order_book_id或symbol或instrument对象</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>float-required</td>
-<td>多少手的数目。正数表示买入，负数表示卖出</td>
-</tr>
-<tr>
-<td>style</td>
-<td>OrderType-optional</td>
-<td>订单类型，默认是市价单。目前支持的订单类型有：<ul>
-<li>style=MarketOrder</li>
-<li>style=LimitOrder(limit_price)</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>返回</strong>
-int，唯一的order id</p>
-
-<p><strong>范例</strong></p>
-
-<ul>
-<li>买入20手的平安银行股票，并且发送市价单：</li>
-</ul>
-
-<div class="highlight highlight-source-python"><pre>order_lots(<span class="pl-s"><span class="pl-pds">'</span>000001.XSHE<span class="pl-pds">'</span></span>, <span class="pl-c1">20</span>)</pre></div>
-
-<ul>
-<li>买入10手平安银行股票，并且发送限价单，价格为￥10：</li>
-</ul>
-
-<div class="highlight highlight-source-python"><pre>order_lots(<span class="pl-s"><span class="pl-pds">'</span>000001.XSHE<span class="pl-pds">'</span></span>, <span class="pl-c1">10</span>, <span class="pl-v">style</span><span class="pl-k">=</span>LimitOrder(<span class="pl-c1">10</span>))</pre></div>
-
-<h4>
-<a id="order_value" class="anchor" href="#order_value" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>order_value</h4>
-
-<p>使用想要花费的金钱买入/卖出股票，而不是买入/卖出想要的股数，正数代表买入，负数代表卖出。股票的股数总是会被调整成对应的100的倍数（在A中国A股市场1手是100股）。当您提交一个卖单时，该方法代表的意义是您希望通过卖出该股票套现的金额。如果金额超出了您所持有股票的价值，那么您将卖出所有股票。</p>
-
-<div class="highlight highlight-source-python"><pre>order_value(id_or_ins, cash_amount, <span class="pl-v">style</span><span class="pl-k">=</span>OrderType)</pre></div>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id_or_ins</td>
-<td>str或instrument对象-required</td>
-<td>order_book_id或symbol或instrument对象</td>
-</tr>
-<tr>
-<td>cash_amount</td>
-<td>float-required</td>
-<td>需要花费现金购买/卖出证券的数目。正数代表买入，负数代表卖出。</td>
-</tr>
-<tr>
-<td>style</td>
-<td>OrderType-optional</td>
-<td>订单类型，默认是市价单。目前支持的订单类型有：<ul>
-<li>style=MarketOrder()</li>
-<li>style=LimitOrder(limit_price)</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>返回</strong>
-int，唯一的order id</p>
-
-<p><strong>范例</strong></p>
-
-<ul>
-<li>买入价值￥10000的平安银行股票，并以市价单发送。如果现在平安银行股票的价格是￥7.5，那么下面的代码会买入1300股的平安银行，因为少于100股的数目将会被自动删除掉。</li>
-</ul>
-
-<div class="highlight highlight-source-python"><pre>order_value(<span class="pl-s"><span class="pl-pds">'</span>000001.XSHE<span class="pl-pds">'</span></span>, <span class="pl-c1">10000</span>)</pre></div>
-
-<ul>
-<li>卖出价值￥10000的现在持有的平安银行：</li>
-</ul>
-
-<div class="highlight highlight-source-python"><pre>order_value(<span class="pl-s"><span class="pl-pds">'</span>000001.XSHE<span class="pl-pds">'</span></span>, <span class="pl-k">-</span><span class="pl-c1">10000</span>)</pre></div>
-
-<h4>
-<a id="order_percent" class="anchor" href="#order_percent" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>order_percent</h4>
-
-<p>发送一个等于目前投资组合价值（市场价值和目前现金的总和）一定百分比的买/卖单，正数代表买，负数代表卖。股票的股数总是会被调整成对应的一手的股票数的倍数（1手是100股）。百分比是一个小数，并且小于或等于1（&lt;=100%），0.5表示的是50%</p>
-
-<div class="highlight highlight-source-python"><pre>order_percent(id_or_ins, percent, <span class="pl-v">style</span><span class="pl-k">=</span>OrderType)</pre></div>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id_or_ins</td>
-<td>str或instrument对象 -required</td>
-<td>order_book_id或symbol或instrument object.</td>
-</tr>
-<tr>
-<td>percent</td>
-<td>float-required</td>
-<td>占有现有的投资组合价值的百分比。正数表示买入，负数表示卖出。</td>
-</tr>
-<tr>
-<td>style</td>
-<td>OrderType-optional</td>
-<td>订单类型，默认是市价单。目前支持的订单类型有：<ul>
-<li>style=MarketOrder()</li>
-<li>style=LimitOrder(limit_price)</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>返回</strong>
-int，唯一的order id</p>
-
-<p><strong>范例</strong></p>
-
-<ul>
-<li>买入等于现有投资组合50%价值的平安银行股票。如果现在平安银行的股价是￥10/股并且现在的投资组合总价值是￥2000，那么将会买入200股的平安银行股票。（不包含交易成本和滑点的损失）</li>
-</ul>
-
-<div class="highlight highlight-source-python"><pre>order_percent(<span class="pl-s"><span class="pl-pds">'</span>000001.XSHG<span class="pl-pds">'</span></span>, <span class="pl-c1">0.5</span>)</pre></div>
-
-<h4>
-<a id="order_target_value" class="anchor" href="#order_target_value" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>order_target_value</h4>
-
-<p>买入/卖出并且自动调整该证券的仓位到一个目标价值。如果还没有任何该证券的仓位，那么会买入全部目标价值的证券。如果已经有了该证券的仓位，则会买入/卖出调整该证券的现在仓位和目标仓位的价值差值的数目的证券。</p>
-
-<div class="highlight highlight-source-python"><pre>order_target_value(id_or_ins, cash_amount, <span class="pl-v">style</span><span class="pl-k">=</span>OrderType)</pre></div>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id_or_ins</td>
-<td>str或instrument对象-required</td>
-<td>order_book_id或symbol或instrument对象.</td>
-</tr>
-<tr>
-<td>cash_amount</td>
-<td>float-required</td>
-<td>最终的该证券的仓位目标价值</td>
-</tr>
-<tr>
-<td>style</td>
-<td>OrderType-optional</td>
-<td>订单类型，默认是市价单。目前支持的订单类型有：<ul>
-<li>style=MarketOrder()</li>
-<li>style=LimitOrder(limit_price)</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>返回</strong>
-int，唯一的order id</p>
-
-<p><strong>范例</strong></p>
-
-<ul>
-<li> 如果现在的投资组合中持有价值￥3000的平安银行股票的仓位并且设置其目标价值为￥10000，以下代码范例会发送价值￥7000的平安银行的买单到市场。（向下调整到最接近每手股数即100的倍数的股数）</li>
-</ul>
-
-<div class="highlight highlight-source-python"><pre>order_target_value(<span class="pl-s"><span class="pl-pds">'</span>000001.XSHE<span class="pl-pds">'</span></span>, <span class="pl-c1">10000</span>)</pre></div>
-
-<h4>
-<a id="order_target_percent" class="anchor" href="#order_target_percent" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>order_target_percent</h4>
-
-<p>买入/卖出证券以自动调整该证券的仓位到占有一个指定的投资组合的目标百分比。</p>
-
-<ul>
-<li>如果投资组合中没有任何该证券的仓位，那么会买入等于现在投资组合总价值的目标百分比的数目的证券。</li>
-<li>如果投资组合中已经拥有该证券的仓位，那么会买入/卖出目标百分比和现有百分比的差额数目的证券，最终调整该证券的仓位占据投资组合的比例至目标百分比。</li>
-</ul>
-
-<p>其实我们需要计算一个position_to_adjust (即应该调整的仓位)</p>
-
-<pre><code>position_to_adjust = target_position - current_position
-</code></pre>
-
-<p>投资组合价值等于所有已有仓位的价值和剩余现金的总和。买/卖单会被下舍入一手股数（A股是100的倍数）的倍数。目标百分比应该是一个小数，并且最大值应该&lt;=1，比如0.5表示50%。</p>
-
-<p>如果<code>position_to_adjust</code> 计算之后是正的，那么会买入该证券，否则会卖出该证券。</p>
-
-<div class="highlight highlight-source-python"><pre>order_target_percent(id_or_ins, percent, <span class="pl-v">style</span><span class="pl-k">=</span>OrderType)</pre></div>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id_or_ins</td>
-<td>str或instrument对象-required</td>
-<td>order_book_id或symbol或instrument对象。</td>
-</tr>
-<tr>
-<td>percent</td>
-<td>float-required</td>
-<td>仓位最终所占投资组合总价值的目标百分比。</td>
-</tr>
-<tr>
-<td>style</td>
-<td>OrderType-optional</td>
-<td>订单类型，默认是市价单。目前支持的订单类型有：<ul>
-<li>style=MarketOrder()</li>
-<li>style=LimitOrder(limit_price)</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>返回</strong>
-int，唯一的order id</p>
-
-<p><strong>范例</strong></p>
-
-<ul>
-<li>如果投资组合中已经有了平安银行股票的仓位，并且占据目前投资组合的10%的价值，那么以下代码会买入平安银行股票最终使其占据投资组合价值的15%：</li>
-</ul>
-
-<div class="highlight highlight-source-python"><pre>order_target_percent(<span class="pl-s"><span class="pl-pds">'</span>平安银行<span class="pl-pds">'</span></span>, <span class="pl-c1">0.15</span>)</pre></div>
-
-<h4>
-<a id="cancel_order" class="anchor" href="#cancel_order" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>cancel_order</h4>
-
-<p>取消由order_id代表的限价单。</p>
-
-<div class="highlight highlight-source-python"><pre>cancel_order(order_id)</pre></div>
-
-<h4>
-<a id="get_order" class="anchor" href="#get_order" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>get_order</h4>
-
-<p>通过唯一的order_id拿到对应的订单信息，不过这个订单信息会在<code>handle_bar</code>结尾处丢弃掉。</p>
-
-<div class="highlight highlight-source-python"><pre>get_order(order_id)</pre></div>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>order_id</td>
-<td>int-required</td>
-<td>订单的唯一标示符</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>返回</strong>
-order对象，如：</p>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-k">&lt;</span>Order: filled_shares<span class="pl-k">=</span><span class="pl-c1">100.0</span> quantity<span class="pl-k">=</span><span class="pl-c1">100.0</span> instrument<span class="pl-k">=</span><span class="pl-k">&lt;</span>Instrument: order_book_id<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>000001.XSHE<span class="pl-pds">'</span></span> symbol<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>平安银行<span class="pl-pds">'</span></span> abbrev_symbol<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>PAYH<span class="pl-pds">'</span></span> round_lot<span class="pl-k">=</span><span class="pl-c1">100.0</span> sector_code<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>Financials<span class="pl-pds">'</span></span> sector_name<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>金融<span class="pl-pds">'</span></span><span class="pl-k">&gt;&gt;</span></pre></div>
-
-<h4>
-<a id="get_open_orders" class="anchor" href="#get_open_orders" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>get_open_orders</h4>
-
-<p>获取一个由order_id到order对象映射的dict，凡在此dict中的order都未被完全成交或取消。</p>
-
-<hr>
-
-<h3>
-<a id="更改context中的预设值" class="anchor" href="#%E6%9B%B4%E6%94%B9context%E4%B8%AD%E7%9A%84%E9%A2%84%E8%AE%BE%E5%80%BC" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>更改context中的预设值</h3>
-
-<hr>
-
-<h4>
-<a id="更改默认基准" class="anchor" href="#%E6%9B%B4%E6%94%B9%E9%BB%98%E8%AE%A4%E5%9F%BA%E5%87%86" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>更改默认基准</h4>
-
-<p>可以在<code>init</code>函数中使用：</p>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">init</span>(<span class="pl-smi">context</span>):
-    context.benchmark <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>000001.XSHE<span class="pl-pds">"</span></span></pre></div>
-
-<p>上面的代码片段把你的策略的对比参考基准从默认的<code>csi300</code>修改成了平安银行。</p>
-
-<hr>
-
-<h4>
-<a id="开启允许卖空" class="anchor" href="#%E5%BC%80%E5%90%AF%E5%85%81%E8%AE%B8%E5%8D%96%E7%A9%BA" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>开启允许卖空</h4>
-
-<p>默认卖空是不允许的，不过我们提供了API可以开启卖空，不会让您的卖空单被我们的系统拒掉，可以在<code>init</code>函数中使用：</p>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">init</span>(<span class="pl-smi">context</span>):
-    context.short_selling_allowed <span class="pl-k">=</span> <span class="pl-c1">True</span></pre></div>
-
-<p>如果您在测试一些诸如统计套利（pair trading）需要允许卖空机制的策略的时候可以开启这一项，不过注意到在中国A股市场卖空股票是一件非常难的事情。</p>
-
-<hr>
-
-<h4>
-<a id="更改滑点" class="anchor" href="#%E6%9B%B4%E6%94%B9%E6%BB%91%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>更改滑点</h4>
-
-<p>可以在<code>init</code>函数中使用：</p>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">init</span>(<span class="pl-smi">context</span>):
-    context.slippage <span class="pl-k">=</span> <span class="pl-c1">0.5</span></pre></div>
-
-<p>注意 ： 其中的数值应为x%中的x， 例子中的0.5=0.5%。</p>
-
-<p>上面的代码片段把你的策略的滑点更改为了0.5%。</p>
-
-<hr>
-
-<h4>
-<a id="更改交易费" class="anchor" href="#%E6%9B%B4%E6%94%B9%E4%BA%A4%E6%98%93%E8%B4%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>更改交易费</h4>
-
-<p>可以在<code>init</code>函数中使用：</p>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">init</span>(<span class="pl-smi">context</span>):
-    context.commission <span class="pl-k">=</span> <span class="pl-c1">0.02</span></pre></div>
-
-<p>注意 ： 其中的数值应为x%中的x， 例子中的0.02=0.02%，即万分之2.</p>
-
-<p>上面的代码片段把你的策略使用的交易费更改为了0.02%。</p>
-
-<hr>
-
-<h3>
-<a id="scheduler方法" class="anchor" href="#scheduler%E6%96%B9%E6%B3%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>scheduler方法</h3>
-
-<p>如果需要在某个日期、某个时间点运行一个函数，可以在<code>init</code>函数中使用<code>scheduler</code>, <strong>注意：<code>scheduler</code>必须在<code>init</code>函数中调用。</strong></p>
-
-<div class="highlight highlight-source-python"><pre>scheduler.run_daily(function)
-scheduler.run_weekly(function, <span class="pl-v">weekday</span><span class="pl-k">=</span>x,<span class="pl-v">tradingday</span><span class="pl-k">=</span>t)
-scheduler.run_monthly(function, <span class="pl-v">tradingday</span><span class="pl-k">=</span>t)</pre></div>
-
-<h4>
-<a id="定日期运行" class="anchor" href="#%E5%AE%9A%E6%97%A5%E6%9C%9F%E8%BF%90%E8%A1%8C" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>定日期运行</h4>
-
-<p><strong>每天</strong></p>
-
-<p>每天运行一次传入的<code>function</code></p>
-
-<div class="highlight highlight-source-python"><pre>scheduler.run_daily(function)</pre></div>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>function</td>
-<td>function</td>
-<td>使传入的<code>function</code>每日运行</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>返回</strong>
-None</p>
-
-<p><strong>注意</strong>
-1, schedule一定在其对应时间点的handle_bar之后执行。</p>
-
-<p><strong>范例</strong></p>
-
-<p>以下的范例代码片段是一个非常简单的例子，在每天交易后查询现在<code>portfolio</code>中剩下的cash的情况</p>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">log_cash</span>(<span class="pl-smi">context</span>, <span class="pl-smi">bar_dict</span>):
-    logger.info(<span class="pl-s"><span class="pl-pds">"</span>Remaning cash: <span class="pl-c1">%r</span><span class="pl-pds">"</span></span> <span class="pl-k">%</span> context.portfolio.cash)
-
-<span class="pl-k">def</span> <span class="pl-en">init</span>(<span class="pl-smi">context</span>):
-    <span class="pl-c">#...</span>
-    <span class="pl-c"># 每天运行一次</span>
-    scheduler.run_daily(log_cash)</pre></div>
-
-<hr>
-
-<p><strong>每周某天</strong></p>
-
-<p>每周在固定的某天运行一下传入的<code>function</code></p>
-
-<div class="highlight highlight-source-python"><pre>scheduler.run_weekly(function, <span class="pl-v">weekday</span><span class="pl-k">=</span>x, <span class="pl-v">tradingday</span><span class="pl-k">=</span>t)</pre></div>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>function</td>
-<td>function</td>
-<td>使传入的<code>function</code>每日交易开始前运行</td>
-</tr>
-<tr>
-<td>weekday</td>
-<td>int - required</td>
-<td>1：周一，2：周二, ..., 5: 周五</td>
-</tr>
-<tr>
-<td>tradingday</td>
-<td>int - not required</td>
-<td>范围为[-5,1],[1,5] 例：1（-1）：每周（倒数）第一个交易日，n（-n)：每周（倒数）第n个交易日</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>返回</strong>
-None</p>
-
-<p><strong>注意</strong>
-1, <code>tradingday</code>中的负数表示倒数。</p>
-
-<p>2, <code>tradingday</code>表示交易日。如某周只有四个交易日，则此周的<code>tradingday=4</code>与<code>tradingday=-1</code>表示同一天</p>
-
-<p>3, <code>weekday</code>和<code>tradingday</code>不能同时使用。
-<strong>范例</strong></p>
-
-<p>以下的代码片段非常简单，在每周二固定运行打印一下现在的<code>portfolio</code>剩余的资金：</p>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">log_cash</span>(<span class="pl-smi">context</span>, <span class="pl-smi">bar_dict</span>):
-    logger.info(<span class="pl-s"><span class="pl-pds">"</span>Remaning cash: <span class="pl-c1">%r</span><span class="pl-pds">"</span></span> <span class="pl-k">%</span> context.portfolio.cash)
-
-<span class="pl-k">def</span> <span class="pl-en">init</span>(<span class="pl-smi">context</span>):
-    <span class="pl-c">#...</span>
-    <span class="pl-c"># 每周二打印一下剩余资金：</span>
-    scheduler.run_weekly(log_cash, <span class="pl-v">weekday</span><span class="pl-k">=</span><span class="pl-c1">2</span>)
-
-    <span class="pl-c"># 每周第二个交易日打印剩余资金：</span>
-    <span class="pl-c">#scheduler.run_weekly(log_cash, tradingday=2)</span></pre></div>
-
-<hr>
-
-<p><strong>每月某交易日</strong></p>
-
-<p>在每月的某个<strong>交易日</strong>运行一次传入的<code>function</code>:</p>
-
-<div class="highlight highlight-source-python"><pre>scheduler.run_monthly(function,<span class="pl-v">tradingday</span><span class="pl-k">=</span>t)</pre></div>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>function</td>
-<td>function</td>
-<td>使传入的<code>function</code>每日交易开始前运行</td>
-</tr>
-<tr>
-<td>tradingday</td>
-<td>int - required</td>
-<td>范围为[-23,1], [1,23] ，如: 1（-1）：每月（倒数）第一个交易日，2（-2）：每月（倒数）第二个交易日, ..., 28（-28）：每月（倒数）第28个交易日</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>返回</strong>
-None</p>
-
-<p><strong>注意</strong>
-1， <code>tradingday</code>的负数表示倒数</p>
-
-<p>2， <code>tradingday</code>表示交易日，如某月只有三个交易日，则此月的tradingday=3与tradingday=-1表示同一天</p>
-
-<p><strong>范例</strong>
-以下的代码片段非常简单的展示了每个月第一个交易日的时候我们进行一次计算，这样子会在一些大计算量的运算情况下很有用，加快你的算法运行速度：</p>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">heavy_cal</span>(<span class="pl-smi">context</span>, <span class="pl-smi">bar_dict</span>):
-    i <span class="pl-k">=</span> i <span class="pl-k">+</span> <span class="pl-c1">100</span>
-
-<span class="pl-c"># 在这个方法中编写任何的初始化逻辑。context对象将会在你的算法策略的任何方法之间做传递。</span>
-<span class="pl-k">def</span> <span class="pl-en">init</span>(<span class="pl-smi">context</span>):
-    <span class="pl-c"># 每月的第一个交易日查询以下财务数据，以确保可以拿到最新更新的财务数据信息用来调整仓位</span>
-    scheduler.run_monthly(heavy_cal, <span class="pl-v">tradingday</span><span class="pl-k">=</span><span class="pl-c1">1</span>)</pre></div>
-
-<hr>
-
-<h3>
-<a id="其他方法" class="anchor" href="#%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>其他方法</h3>
-
-<h4>
-<a id="update_universe" class="anchor" href="#update_universe" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>update_universe</h4>
-
-<div class="highlight highlight-source-python"><pre>update_universe(id_or_symbols)</pre></div>
-
-<p>这个方法传入一个或一个列表的<code>id_or_symbol(s)</code>作为参数，用以更新现在关注的证券的集合（e.g
-.：股票池）。PS：会在下一个bar事件触发时候产生（新的关注的股票池更新）效果。并且update_universe会是覆盖（overwrite）的操作而不是在已有的股票池的基础上进行增量添加。比如已有的股票池为<code>['000001
-.XSHE', '000024.XSHE']</code>然后调用了<code>update_universe(['000030.XSHE'])</code>之后，股票池就会变成<code>000030
-.XSHE</code>一个股票了，随后的数据更新也只会跟踪<code>000030.XSHE</code>这一个股票了。</p>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id_or_symbols</td>
-<td>str或iterable of strings</td>
-<td>单个或一个id_or_symbol(s)列表.</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>范例</strong></p>
-
-<p>下面的代码是将股票池变更为只有2个股票<code>000001.XSHE</code>和<code>000024.XSHE</code>:</p>
-
-<div class="highlight highlight-source-python"><pre>update_universe([<span class="pl-s"><span class="pl-pds">'</span>000001.XSHE<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>000024.XSHE<span class="pl-pds">'</span></span>])</pre></div>
-
-<hr>
-
-<h4>
-<a id="instruments" class="anchor" href="#instruments" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>instruments</h4>
-
-<div class="highlight highlight-source-python"><pre>instruments(id_or_symbols)</pre></div>
-
-<p>转换单个string或一个string列表的order_book_id到instrument对象</p>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id_or_symbols</td>
-<td>str或iterable of strings</td>
-<td>单个或一个列表的order_book_id，中国市场的A股的order_book_ids是类似‘000001.XSHE’的写法</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>返回</strong></p>
-
-<p>单个或一个列表的<a href="/api/python/chn#instrument-object">instrument对象</a> - 用id_or_symbol请求的。</p>
-
-<p><strong>范例</strong></p>
-
-<ul>
-<li>只得到单个instrument的对象：</li>
-</ul>
-
-<div class="highlight highlight-source-python"><pre>[In]instruments(<span class="pl-s"><span class="pl-pds">'</span>000001.XSHE<span class="pl-pds">'</span></span>)
-[Out]
-<span class="pl-k">&lt;</span>Instrument: industry_name<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>货币金融服务<span class="pl-pds">'</span></span>, listed_date<span class="pl-k">=</span>datetime.datetime(<span class="pl-c1">1991</span>, <span class="pl-c1">4</span>, <span class="pl-c1">3</span>, <span class="pl-c1">0</span>, <span class="pl-c1">0</span>), round_lot<span class="pl-k">=</span><span class="pl-c1">100.0</span>, listing<span class="pl-k">=</span><span class="pl-c1">False</span>, abbrev_symbol<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>PAYH<span class="pl-pds">'</span></span>, symbol<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>平安银行<span class="pl-pds">'</span></span>, industry_code<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>J66<span class="pl-pds">'</span></span>, <span class="pl-c1">type</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>CS<span class="pl-pds">'</span></span>, sector_code<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>Financials<span class="pl-pds">'</span></span>, sector_name<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>金融<span class="pl-pds">'</span></span>, order_book_id<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>000001.XSHE<span class="pl-pds">'</span></span><span class="pl-k">&gt;</span></pre></div>
-
-<ul>
-<li>得到一个列表的instrument对象 - 中国股票：</li>
-</ul>
-
-<div class="highlight highlight-source-python"><pre>[In]instruments([<span class="pl-s"><span class="pl-pds">'</span>平安银行<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>000024.XSHE<span class="pl-pds">'</span></span>])
-[Out]
-[<span class="pl-k">&lt;</span>Instrument: industry_name=<span class="pl-s"><span class="pl-pds">'</span>货币金融服务<span class="pl-pds">'</span></span>, listed_date=datetime.datetime(<span class="pl-c1">1991</span>, <span class="pl-c1">4</span>, <span class="pl-c1">3</span>, <span class="pl-c1">0</span>, <span class="pl-c1">0</span>), round_lot=<span class="pl-c1">100.0</span>, listing=<span class="pl-c1">False</span>, abbrev_symbol=<span class="pl-s"><span class="pl-pds">'</span>PAYH<span class="pl-pds">'</span></span>, symbol=<span class="pl-s"><span class="pl-pds">'</span>平安银行<span class="pl-pds">'</span></span>, industry_code=<span class="pl-s"><span class="pl-pds">'</span>J66<span class="pl-pds">'</span></span>, <span class="pl-c1">type</span>=<span class="pl-s"><span class="pl-pds">'</span>CS<span class="pl-pds">'</span></span>, sector_code=<span class="pl-s"><span class="pl-pds">'</span>Financials<span class="pl-pds">'</span></span>, sector_name=<span class="pl-s"><span class="pl-pds">'</span>金融<span class="pl-pds">'</span></span>, order_book_id=<span class="pl-s"><span class="pl-pds">'</span>000001.XSHE<span class="pl-pds">'</span></span><span class="pl-k">&gt;</span>,
-<span class="pl-k">&lt;</span>Instrument: industry_name=<span class="pl-s"><span class="pl-pds">'</span>房地产业<span class="pl-pds">'</span></span>, listed_date=datetime.datetime(<span class="pl-c1">1993</span>, <span class="pl-c1">6</span>, <span class="pl-c1">7</span>, <span class="pl-c1">0</span>, <span class="pl-c1">0</span>), round_lot=<span class="pl-c1">100.0</span>, listing=<span class="pl-c1">False</span>, abbrev_symbol=<span class="pl-s"><span class="pl-pds">'</span>ZSDC<span class="pl-pds">'</span></span>, symbol=<span class="pl-s"><span class="pl-pds">'</span>招商地产<span class="pl-pds">'</span></span>, industry_code=<span class="pl-s"><span class="pl-pds">'</span>K70<span class="pl-pds">'</span></span>, <span class="pl-c1">type</span>=<span class="pl-s"><span class="pl-pds">'</span>CS<span class="pl-pds">'</span></span>, sector_code=<span class="pl-s"><span class="pl-pds">'</span>Financials<span class="pl-pds">'</span></span>, sector_name=<span class="pl-s"><span class="pl-pds">'</span>金融<span class="pl-pds">'</span></span>, order_book_id=<span class="pl-s"><span class="pl-pds">'</span>000024.XSHE<span class="pl-pds">'</span></span><span class="pl-k">&gt;</span>]</pre></div>
-
-<hr>
-
-<h4>
-<a id="history" class="anchor" href="#history" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>history</h4>
-
-<div class="highlight highlight-source-python"><pre>history(bar_count, frequency, field)</pre></div>
-
-<p><code>history</code>函数返回所有已关注证券的历史行情，同时支持<strong>日以及分钟</strong>历史数据。以pandas的<a href="http://pandas.pydata.org/pandas-docs/dev/dsintro.html#dataframe">DataFrame</a>对象装载为时间序列。</p>
-
-<p><strong>注意</strong>：在我们最新加入的可以动态处理调整证券池的功能以后，您并不只能使用<code>history</code>函数拿到已经加入证券池的历史数据，您可以拿到所有想要拿的任意的证券的历史数据了。</p>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>bar_count</code></td>
-<td>int-required</td>
-<td>表示回溯的bar的数量</td>
-</tr>
-<tr>
-<td><code>frequency</code></td>
-<td>str-required</td>
-<td>表示回溯时以什么样的频率进行。例如"1d"或"1m"分别表示每日和每分钟</td>
-</tr>
-<tr>
-<td><code>field</code></td>
-<td>str-required</td>
-<td>制定返回的DataFrame中以哪个指标作为数据值，可取“open”，“close”，“high”，“low”，“volume”，“last”, "total_turnover" - 总成交额</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>返回</strong>：</p>
-
-<p>DataFrame</p>
-
-<p><strong>范例：</strong></p>
-
-<ol>
-<li>拿取四天的历史数据：</li>
-</ol>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-c1">print</span> (history(<span class="pl-c1">4</span>, <span class="pl-s"><span class="pl-pds">'</span>1d<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>close<span class="pl-pds">'</span></span>)[<span class="pl-s"><span class="pl-pds">'</span>000001.XSHE<span class="pl-pds">'</span></span>])</pre></div>
-
-<p>当前日期：2013-01-05</p>
-
-<table>
-<thead>
-<tr>
-<th>日期</th>
-<th>收盘价格</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2013-01-02</td>
-<td>12.0</td>
-</tr>
-<tr>
-<td>2013-01-03</td>
-<td>11.0</td>
-</tr>
-<tr>
-<td>2013-01-04</td>
-<td>13.0</td>
-</tr>
-<tr>
-<td>2013-01-05</td>
-<td>11.0</td>
-</tr>
-</tbody>
-</table>
-
-<ol>
-<li>拿取四分钟的历史数据：</li>
-</ol>
-
-<div class="highlight highlight-source-python"><pre><span class="pl-c1">print</span>(history(<span class="pl-c1">4</span>, <span class="pl-s"><span class="pl-pds">'</span>1m<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>close<span class="pl-pds">'</span></span>)[<span class="pl-s"><span class="pl-pds">'</span>000001.XSHE<span class="pl-pds">'</span></span>])</pre></div>
-
-<p>当前时间：2014-01-06  09:34:00</p>
-
-<table>
-<thead>
-<tr>
-<th>日期</th>
-<th>收盘价格</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2014-01-06 09:31</td>
-<td>8.2569</td>
-</tr>
-<tr>
-<td>2014-01-06 09:32</td>
-<td>8.2292</td>
-</tr>
-<tr>
-<td>2014-01-06 09:33</td>
-<td>8.2014</td>
-</tr>
-<tr>
-<td>2014-01-06 09:34</td>
-<td>8.2083</td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<h4>
-<a id="拿到当前时间" class="anchor" href="#%E6%8B%BF%E5%88%B0%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>拿到当前时间</h4>
-
-<div class="highlight highlight-source-python"><pre>context.now</pre></div>
-
-<p>使用以上的方法就可以在<code>handle_bar</code>中拿到当前的bar的时间，比如day bar的话就是那天的时间，minute bar的话就是这一分钟的时间点。</p>
-
-<hr>
-
-<h3>
-<a id="bar对象" class="anchor" href="#bar%E5%AF%B9%E8%B1%A1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bar对象</h3>
-
-<p>Ricequant的后端算法交易系统会处理你的算法中所有关注的证券，我们支持的包括股票、ETF、LOF、分级基金和期货。
-它会发送<code>bar</code>事件并且将来还可以发送其他的事件给你的算法策略（比如：tick数据）。<code>bar_dict</code>是所有的关注的证券的bar数据的一个总集合，你可以在<code>handle_bar</code>中拿取到<code>bar</code>对象，其中包含了该证券的所有的市场数据信息。</p>
-
-<p>例如，如果你想拿到平安银行股票'000001.XSHE'的切片数据信息，那么可以使用这段代码<code>bar_dict['000001.XSHE']</code>。下面会介绍我们已经支持的<code>bar</code>对象的属性：</p>
-
-<p>同时对<code>bar</code>对象我们也支持如下的转换方法：</p>
-
-<div class="highlight highlight-source-python"><pre>mavg(intervals, <span class="pl-v">frequency</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>day<span class="pl-pds">'</span></span>)</pre></div>
-
-<p>可以用来计算某个证券的某段时间的移动平均价格，默认单位是‘天’</p>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>间隔</td>
-<td>int</td>
-<td>一段时间间隔，比如：3</td>
-</tr>
-<tr>
-<td>频率</td>
-<td>str</td>
-<td>间隔的频率，默认是“天”</td>
-</tr>
-</tbody>
-</table>
-
-<div class="highlight highlight-source-python"><pre>vwap(intervals, <span class="pl-v">frequency</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>day<span class="pl-pds">'</span></span>)</pre></div>
-
-<p>可以用来计算某个证券的某段时间的加权平均价格，默认单位是“天”</p>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>间隔</td>
-<td>int</td>
-<td>一段时间间隔，比如：3</td>
-</tr>
-<tr>
-<td>频率</td>
-<td>str</td>
-<td>间隔的频率，默认是“天”</td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<h3>
-<a id="order对象" class="anchor" href="#order%E5%AF%B9%E8%B1%A1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Order对象</h3>
-
-<p>在order对象中的属性：</p>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>instrument</code></td>
-<td>instrument对象</td>
-<td>订单对应的证券的instrument对象</td>
-</tr>
-<tr>
-<td><code>filled_shares</code></td>
-<td>float</td>
-<td>该订单已经成交的股数</td>
-</tr>
-<tr>
-<td><code>quantity</code></td>
-<td>float</td>
-<td>该订单的所有的股数</td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<h3>
-<a id="portfolio对象" class="anchor" href="#portfolio%E5%AF%B9%E8%B1%A1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Portfolio对象</h3>
-
-<p><code>portfolio</code>对象包含算法策略的所有的投资组合的信息。在日级别回测中，这表示的是每日收盘以后的投资组合信息。可以使用<code>context.portfolio</code>去拿取<code>portfolio</code>对象的信息。</p>
-
-<p>并且有以下的属性：</p>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>starting_cash</code></td>
-<td>float</td>
-<td>回测或实盘交易给算法策略设置的初始资金</td>
-</tr>
-<tr>
-<td><code>cash</code></td>
-<td>float</td>
-<td>现在投资组合中剩余的现金</td>
-</tr>
-<tr>
-<td><code>total_returns</code></td>
-<td>float</td>
-<td>算法投资组合至今的累积百分比收益率。计算方法是现在的投资组合价值/投资组合的初始资金。投资组合价值包含剩余现金和其市场价值。</td>
-</tr>
-<tr>
-<td><code>daily_returns</code></td>
-<td>float</td>
-<td>当前最新一天的每日收益。</td>
-</tr>
-<tr>
-<td><code>market_value</code></td>
-<td>float</td>
-<td>投资组合当前的市场价值（未实现/平仓的价值）</td>
-</tr>
-<tr>
-<td><code>portfolio_value</code></td>
-<td>float</td>
-<td>当前投资组合的总共价值，包含市场价值和剩余现金。</td>
-</tr>
-<tr>
-<td><code>pnl</code></td>
-<td>float</td>
-<td>当前投资组合的￥盈亏</td>
-</tr>
-<tr>
-<td><code>start_date</code></td>
-<td>DateTime</td>
-<td>策略投资组合的回测/实时模拟交易的开始日期</td>
-</tr>
-<tr>
-<td><code>annualized_returns</code></td>
-<td>float</td>
-<td>投资组合的年化收益率</td>
-</tr>
-<tr>
-<td><code>positions</code></td>
-<td>Dictionary</td>
-<td>一个包含所有仓位的字典，以id_or_symbol作为键，<code>position</code>对象作为值，关于position的更多的信息可以在下面的部分找到。</td>
-</tr>
-<tr>
-<td><code>dividend_receivable</code></td>
-<td>float</td>
-<td>投资组合在分红现金收到账面之前的应收分红部分。具体细节在<a href="#dividends-splits-header">分红部分</a>
-</td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<h3>
-<a id="position对象" class="anchor" href="#position%E5%AF%B9%E8%B1%A1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Position对象</h3>
-
-<p><code>position</code>对象代表一个证券的仓位信息。可以通过positions字典拿到，例如：如果你的投资组合有平安银行股票（000001.XSHE）的仓位，你可以通过以下代码拿到它的仓位：</p>
-
-<div class="highlight highlight-source-python"><pre>context.portfolio.positions[<span class="pl-s"><span class="pl-pds">'</span>000001.XSHE<span class="pl-pds">'</span></span>]</pre></div>
-
-<p>并且<code>position</code>对象有以下的属性：</p>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>quantity</code></td>
-<td>int</td>
-<td>未平仓部分的总股数。</td>
-</tr>
-<tr>
-<td><code>bought_quantity</code></td>
-<td>int</td>
-<td>该证券的总买入股数，例如：如果你的投资组合并没有任何平安银行的成交，那么平安银行这个股票的仓位就是0.</td>
-</tr>
-<tr>
-<td><code>sold_quantity</code></td>
-<td>int</td>
-<td>该证券的总卖出股数，例如：如果你的投资组合曾经买入过平安银行股票200股并且卖出过100股，那么这个属性会返回100.</td>
-</tr>
-<tr>
-<td><code>bought_value</code></td>
-<td>float</td>
-<td>该证券的总买入的价值，等于每一个该证券的买入成交的价格*买入股数的总和。</td>
-</tr>
-<tr>
-<td><code>sold_value</code></td>
-<td>float</td>
-<td>该证券的总卖出价值，等于每一个该证券的卖出成交的价格*卖出股数的总和。</td>
-</tr>
-<tr>
-<td><code>total_orders</code></td>
-<td>int</td>
-<td>该仓位的总订单的次数。</td>
-</tr>
-<tr>
-<td><code>total_trades</code></td>
-<td>int</td>
-<td>该仓位的总成交的次数。</td>
-</tr>
-<tr>
-<td><code>sellable</code></td>
-<td>int</td>
-<td>该仓位可卖出股数。T＋1的市场中sellable = 所有持仓-今日买入的仓位。</td>
-</tr>
-<tr>
-<td><code>average_cost</code></td>
-<td>float</td>
-<td>获得该持仓的买入均价，计算方法为每次买入的数量做加权平均。</td>
-</tr>
-<tr>
-<td><code>market_value</code></td>
-<td>float</td>
-<td>获得该持仓的实时市场价值。</td>
-</tr>
-<tr>
-<td><code>value_percent</code></td>
-<td>float</td>
-<td>获得该持仓的实时市场价值在总投资组合价值中所占比例，取值范围[0, 1]。</td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<h3>
-<a id="instrument对象" class="anchor" href="#instrument%E5%AF%B9%E8%B1%A1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Instrument对象</h3>
-
-<p><code>Instrument</code>代表所有的金融证券，例如：可以是股票，ETF，指数和期货合同。</p>
-
-<h4>
-<a id="股票etf指数instrument对象" class="anchor" href="#%E8%82%A1%E7%A5%A8etf%E6%8C%87%E6%95%B0instrument%E5%AF%B9%E8%B1%A1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>股票，ETF，指数Instrument对象</h4>
-
-<p>股票，ETF，指数Instrument对象有如下的属性：</p>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>order_book_id</code></td>
-<td>str</td>
-<td>证券的独特的标识符。</td>
-</tr>
-<tr>
-<td><code>symbol</code></td>
-<td>str</td>
-<td>证券的易读的名字。</td>
-</tr>
-<tr>
-<td><code>abbrev_symbol</code></td>
-<td>str</td>
-<td>证券的名称缩写，比如：在中国A股就是股票的拼音缩写，‘PAYH’就是平安银行股票的证券名缩写。</td>
-</tr>
-<tr>
-<td><code>round_lot</code></td>
-<td>int</td>
-<td>一手是多少股，中国A股一手是100股。</td>
-</tr>
-<tr>
-<td><code>sector_code</code></td>
-<td>str</td>
-<td>板块缩写代码，全球通用标准定义。</td>
-</tr>
-<tr>
-<td><code>sector_name</code></td>
-<td>str</td>
-<td>以当地语言为标准的板块代码名。</td>
-</tr>
-<tr>
-<td><code>industry_code</code></td>
-<td>str</td>
-<td>国民经济行业分类代码。</td>
-</tr>
-<tr>
-<td><code>industry_name</code></td>
-<td>str</td>
-<td>国民经济行业分类名称。</td>
-</tr>
-<tr>
-<td><code>listing</code></td>
-<td>bool</td>
-<td>该证券是否还在交易所交易。</td>
-</tr>
-<tr>
-<td><code>listed_date</code></td>
-<td>DateTime</td>
-<td>该证券的上市日期。</td>
-</tr>
-<tr>
-<td><code>type</code></td>
-<td>str</td>
-<td>需要使用种类简称，下面的type列表会解释我们目前支持的证券类型：'CS', 'INDX', 'LOF', 'ETF', 'FenjiMu', 'FenjiA', 'FenjiB', 'Future'</td>
-</tr>
-<tr>
-<td><code>board_type</code></td>
-<td>str</td>
-<td>'MainBoard' - 主板，'GEM' - 创业板</td>
-</tr>
-</tbody>
-</table>
-
-<h2>
-<a id="开发" class="anchor" href="#%E5%BC%80%E5%8F%91" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>开发</h2>
-
-<pre><code>pyvenv venv
-source venv/bin/activate
-pip install -e .
-</code></pre>
-
-<h2>
-<a id="单步调试策略" class="anchor" href="#%E5%8D%95%E6%AD%A5%E8%B0%83%E8%AF%95%E7%AD%96%E7%95%A5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>单步调试策略</h2>
-
-<p>可以参考wiki，<a href="https://github.com/ricequant/rqalpha/wiki/%E4%BD%BF%E7%94%A8PyCharm%E8%BF%9B%E8%A1%8C%E5%8D%95%E6%AD%A5%E8%B0%83%E8%AF%95">使用PyCharm进行单步调试</a>。</p>
-
-<h2>
-<a id="运行单元测试" class="anchor" href="#%E8%BF%90%E8%A1%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>运行单元测试</h2>
-
-<pre><code>py.test
-</code></pre>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Rqalpha maintained by <a href="https://github.com/ricequant">ricequant</a></p>
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>RQAlpha 0.3.x Documentation &mdash; rqalpha 0.3.x documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
     
 
-  </body>
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="rqalpha 0.3.x documentation" href="#"/>
+        <link rel="next" title="RQAlpha 介绍" href="intro/overview.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> rqalpha
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.x
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">快速指引</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro/overview.html">RQAlpha 介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro/install.html">安装指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro/detail_install.html">详细环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro/tutorial.html">10分钟学会 RQAlpha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro/examples.html">策略示例</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/config.html">参数配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/base_api.html">基础 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/extend_api.html">扩展 API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="development/make_contribute.html">如何贡献代码</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/basic_concept.html">基本概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/mod.html">RQAlpha 扩展 - Mod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/event_source.html">扩展事件源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Extra</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">rqalpha</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>RQAlpha 0.3.x Documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rqalpha-version-documentation">
+<h1>RQAlpha 0.3.x Documentation<a class="headerlink" href="#rqalpha-version-documentation" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="https://travis-ci.org/ricequant/rqalpha/branches"><img alt="Build" src="https://img.shields.io/travis/ricequant/rqalpha/master.svg" /></a>
+<a class="reference external image-reference" href="https://coveralls.io/github/ricequant/rqalpha?branch=master"><img alt="https://coveralls.io/repos/github/ricequant/rqalpha/badge.svg?branch=master" src="https://coveralls.io/repos/github/ricequant/rqalpha/badge.svg?branch=master" /></a>
+<a class="reference external image-reference" href="http://rqalpha.readthedocs.io/zh_CN/stable/?badge=stable"><img alt="Documentation Status" src="https://readthedocs.org/projects/rqalpha/badge/?version=stable" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/rqalpha"><img alt="PyPI Version" src="https://img.shields.io/pypi/v/rqalpha.svg" /></a>
+<a class="reference external image-reference" href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/pypi/l/rqalpha.svg" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/rqalpha"><img alt="Python Version Support" src="https://img.shields.io/pypi/pyversions/rqalpha.svg" /></a>
+<p>RQAlpha 从数据获取、算法交易、回测引擎，实盘模拟，实盘交易到数据分析，为程序化交易者提供了全套解决方案。RQAlpha 具有灵活的配置方式，强大的扩展性，用户可以非常容易地定制专属于自己的程序化交易系统。</p>
+<p>RQAlpha 所有的策略都可以直接在 <a class="reference external" href="https://www.ricequant.com/algorithms">Ricequant</a> 上进行回测和实盘模拟，并且可以通过微信和邮件实时推送您的交易信号。</p>
+<p><a class="reference external" href="https://www.ricequant.com/algorithms">Ricequant</a> 是一个开放的量化算法交易社区，为程序化交易者提供免费的回测和实盘模拟环境，并且会不间断举行实盘资金投入的量化比赛。</p>
+<div class="section" id="id1">
+<h2>快速指引<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+</div>
+<dl class="docutils">
+<dt><a class="reference internal" href="intro/overview.html"><span class="doc">RQAlpha 介绍</span></a></dt>
+<dd>了解RQAlpha</dd>
+<dt><a class="reference internal" href="intro/install.html"><span class="doc">安装指南</span></a></dt>
+<dd>安装RQAlpha</dd>
+<dt><a class="reference internal" href="intro/detail_install.html"><span class="doc">详细环境搭建</span></a></dt>
+<dd>如果对Python并不熟悉的话，我们提供了整套开发环境的详细安装教程</dd>
+<dt><a class="reference internal" href="intro/tutorial.html"><span class="doc">10分钟学会 RQAlpha</span></a></dt>
+<dd>使用RQAlpha</dd>
+<dt><a class="reference internal" href="intro/examples.html"><span class="doc">策略示例</span></a></dt>
+<dd>通过RQAlpha运行的策略示例</dd>
+</dl>
+</div>
+<div class="section" id="rqalpha-api">
+<h2>RQAlpha API<a class="headerlink" href="#rqalpha-api" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+</div>
+<dl class="docutils">
+<dt><a class="reference internal" href="api/config.html"><span class="doc">参数配置</span></a></dt>
+<dd>启动 RQAlpha 参数配置</dd>
+<dt><a class="reference internal" href="api/base_api.html"><span class="doc">基础 API</span></a></dt>
+<dd>基础API(期货股票公用API)</dd>
+<dt><a class="reference internal" href="api/extend_api.html"><span class="doc">扩展 API</span></a></dt>
+<dd>扩展API(开源版暂不支持，可以通过Ricequant平台或者商业版使用)</dd>
+</dl>
+</div>
+<div class="section" id="rqalpha">
+<h2>扩展 RQAlpha<a class="headerlink" href="#rqalpha" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+</div>
+<dl class="docutils">
+<dt><a class="reference internal" href="development/make_contribute.html"><span class="doc">如何贡献代码</span></a></dt>
+<dd>如何加入 RQAlpha 的开发</dd>
+<dt><a class="reference internal" href="development/basic_concept.html"><span class="doc">基本概念</span></a></dt>
+<dd>基本概念</dd>
+<dt><a class="reference internal" href="development/mod.html"><span class="doc">RQAlpha 扩展 - Mod</span></a></dt>
+<dd>基于Mod来开发和扩展RQAlpha</dd>
+<dt><a class="reference internal" href="development/event_source.html"><span class="doc">扩展事件源</span></a></dt>
+<dd>扩展事件源</dd>
+</dl>
+</div>
+<div class="section" id="id2">
+<h2>其他<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+</div>
+<dl class="docutils">
+<dt><a class="reference internal" href="faq.html"><span class="doc">FAQ</span></a></dt>
+<dd>FAQ</dd>
+<dt><a class="reference internal" href="history.html"><span class="doc">History</span></a></dt>
+<dd>更新日志</dd>
+<dt><a class="reference internal" href="todo.html"><span class="doc">TODO</span></a></dt>
+<dd>TODO</dd>
+</dl>
+</div>
+<div class="section" id="id3">
+<h2>获取帮助<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>关于RQAlpha的任何问题可以通过以下途径来获取帮助</p>
+<ul class="simple">
+<li>查看 <a class="reference internal" href="faq.html"><span class="doc">FAQ</span></a> 页面找寻常见问题及解答</li>
+<li>可以通过 <a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a> 或者 <a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a> 来查找特定问题</li>
+<li>在 <a class="reference external" href="https://github.com/ricequant/rqalpha/issues">github issue page</a> 中提交issue</li>
+<li>RQAlpha 交流群「487188429」</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intro/overview.html" class="btn btn-neutral float-right" title="RQAlpha 介绍" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, RiceQuant.
+      Last updated on Mar 16, 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.3.x',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script type="text/javascript">
+    console.log("RQAlpha Powered By RiceQuant.");
+</script>
+
+
+</body>
 </html>

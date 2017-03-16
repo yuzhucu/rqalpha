@@ -1,0 +1,416 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>RQAlpha 扩展 - Mod &mdash; rqalpha 0.3.x documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="rqalpha 0.3.x documentation" href="../index.html"/>
+        <link rel="next" title="扩展事件源" href="event_source.html"/>
+        <link rel="prev" title="基本概念" href="basic_concept.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> rqalpha
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.x
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">快速指引</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/overview.html">RQAlpha 介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/install.html">安装指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/detail_install.html">详细环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/tutorial.html">10分钟学会 RQAlpha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/examples.html">策略示例</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/config.html">参数配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/base_api.html">基础 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/extend_api.html">扩展 API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="make_contribute.html">如何贡献代码</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_concept.html">基本概念</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RQAlpha 扩展 - Mod</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hello-world">Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rqalpha-api">扩展 RQAlpha API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pypi-mod">以独立 Pypi 包作为 Mod</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="event_source.html">扩展事件源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Extra</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">rqalpha</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>RQAlpha 扩展 - Mod</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/development/mod.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rqalpha-mod">
+<span id="development-mod"></span><h1>RQAlpha 扩展 - Mod<a class="headerlink" href="#rqalpha-mod" title="Permalink to this headline">¶</a></h1>
+<p>目前内置了几个简单的 mod 示例，在 <code class="code docutils literal"><span class="pre">rqalpha/mod/</span></code> 目录下面。</p>
+<div class="section" id="hello-world">
+<h2>Hello World<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h2>
+<p>我们在 <code class="code docutils literal"><span class="pre">rqalpha/mod/</span></code> 下面创建一个 <code class="code docutils literal"><span class="pre">hello_world</span></code> 文件夹。进入 <code class="code docutils literal"><span class="pre">hello_world</span></code> 文件夹，创建 <code class="code docutils literal"><span class="pre">__init__.py</span></code> ，填入以下代码：</p>
+<div class="highlight-python3"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rqalpha.interface</span> <span class="k">import</span> <span class="n">AbstractMod</span>
+
+
+<span class="k">class</span> <span class="nc">HelloWorldMod</span><span class="p">(</span><span class="n">AbstractMod</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">start_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">mod_config</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&gt;&gt;&gt; HelloWorldMod.start_up&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tear_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">success</span><span class="p">,</span> <span class="n">exception</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&gt;&gt;&gt; HelloWorldMod.tear_down&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">load_mod</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">HelloWorldMod</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>于是我们的第一个 Mod 就写好了，现在我们需要修改配置，以让我们的 mod 生效，我们创建一个新的配置文件，在 mod 下面</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">mod</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">hello_world</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">lib</span><span class="p p-Indicator">:</span> <span class="s">&#39;rqalpha.mod.hello_world&#39;</span>
+    <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">priority</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
+</pre></div>
+</div>
+<p>然后运行命令，就会输出一下内容</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ rqalpha run -f rqalpha/examples/buy_and_hold.py -sc <span class="m">100000</span>
+&gt;&gt;&gt; HelloWorldMod.start_up
+&gt;&gt;&gt; HelloWorldMod.tear_down
+</pre></div>
+</div>
+</div>
+<div class="section" id="rqalpha-api">
+<h2>扩展 RQAlpha API<a class="headerlink" href="#rqalpha-api" title="Permalink to this headline">¶</a></h2>
+<p>如果你想为 RQAlpha 创建自己的 API，你也可以通过 Mod 来注册新的 API。在内建的 mod 中，有一个 FuncatAPIMod ，将通达信、同花顺的公式表达能力移植到 Python 中，扩展了 RQAlpha 的 API。</p>
+<p>其中的关键点，是通过了 <code class="code docutils literal"><span class="pre">register_api</span></code> 来注册 API。</p>
+<p>我们只需要实现一个 Mod，然后在 <code class="code docutils literal"><span class="pre">start_up</span></code> 过程中，使用 <code class="code docutils literal"><span class="pre">register_api</span></code> 来注册 API ，既可以达到扩展 RQAlpha API 的功能。</p>
+<div class="highlight-python3"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FuncatAPIMod</span><span class="p">(</span><span class="n">AbstractMod</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">start_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">mod_config</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">funcat</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&gt;&gt;&gt; Missing funcat. Please run `pip install funcat`&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+            <span class="k">raise</span>
+
+        <span class="c1"># change funcat data backend to rqalpha</span>
+        <span class="kn">from</span> <span class="nn">funcat.data.rqalpha_backend</span> <span class="k">import</span> <span class="n">RQAlphaDataBackend</span>
+        <span class="n">funcat</span><span class="o">.</span><span class="n">set_data_backend</span><span class="p">(</span><span class="n">RQAlphaDataBackend</span><span class="p">())</span>
+
+        <span class="c1"># register funcat api into rqalpha</span>
+        <span class="kn">from</span> <span class="nn">rqalpha.api.api_base</span> <span class="k">import</span> <span class="n">register_api</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">funcat</span><span class="p">):</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">funcat</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s2">&quot;__module__&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;funcat&quot;</span><span class="p">):</span>
+                <span class="n">register_api</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tear_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">exception</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pypi-mod">
+<h2>以独立 Pypi 包作为 Mod<a class="headerlink" href="#pypi-mod" title="Permalink to this headline">¶</a></h2>
+<p>RQAlpha 支持安装、卸载、启用、停止第三方Mod。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># 以名为 &quot;xxx&quot; 的 Mod 为例，介绍RQAlpha 第三方Mod的使用</span>
+
+<span class="c1"># 安装</span>
+$ rqalpha install xxx
+
+<span class="c1"># 卸载</span>
+$ rqalpha uninstall xxx
+
+<span class="c1"># 启用</span>
+$ rqalpha <span class="nb">enable</span> xxx
+
+<span class="c1"># 关闭</span>
+$ rqalpha disable xxx
+</pre></div>
+</div>
+<p>如果您希望发布自己的Mod并被 RQAlpha 的用户使用，只需要遵循简单的约定即可。</p>
+<p>下面为一个 RQAlpha Mod 的模板:</p>
+<div class="highlight-python3"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rqalpha.interface</span> <span class="k">import</span> <span class="n">AbstractMod</span>
+
+
+<span class="k">class</span> <span class="nc">XXXMod</span><span class="p">(</span><span class="n">AbstractMod</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">start_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">mod_config</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">tear_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">exception</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+<span class="k">def</span> <span class="nf">load_mod</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">XXXMod</span><span class="p">()</span>
+
+
+<span class="n">__mod_config__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">  param1: &quot;111&quot;</span>
+<span class="s2">  param2: &quot;222&quot;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>约定如下：</p>
+<ol class="arabic simple">
+<li>需要定义并实现 <code class="code docutils literal"><span class="pre">load_mod</span></code> 函数, 其返回值为对应的继承自 <code class="code docutils literal"><span class="pre">AbstractMod</span></code> 的类，并且 <code class="code docutils literal"><span class="pre">load_mod</span></code> 所在文件必须按照 <code class="code docutils literal"><span class="pre">rqalpha_mod_xxx</span></code> 规则进行命名。</li>
+<li>如果有自定义参数的话，需要实现 <code class="code docutils literal"><span class="pre">__mod_config__</span></code> 变量，其为字符串，配置的具体格式为 <cite>yaml</cite> 格式(支持注释)。RQAlpha 会自动将其扩展到默认配置项中。</li>
+<li>当写好 Mod 以后，需要发布到 Pypi 仓库中，并且包名需要如下格式: <code class="code docutils literal"><span class="pre">rqalpha-mod-xxx</span></code>，一下的 setup.py 文件可作参考。</li>
+</ol>
+<div class="highlight-python3"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pip.req</span> <span class="k">import</span> <span class="n">parse_requirements</span>
+
+<span class="kn">from</span> <span class="nn">setuptools</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">find_packages</span><span class="p">,</span>
+    <span class="n">setup</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;rqalpha-mod-xxx&#39;</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;RQAlpha Mod XXX&#39;</span><span class="p">,</span>
+    <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">[]),</span>
+    <span class="n">author</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">author_email</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">license</span><span class="o">=</span><span class="s1">&#39;Apache License v2&#39;</span><span class="p">,</span>
+    <span class="n">package_data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;*.*&#39;</span><span class="p">]},</span>
+    <span class="n">url</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">install_requires</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">req</span><span class="p">)</span> <span class="k">for</span> <span class="n">ir</span> <span class="ow">in</span> <span class="n">parse_requirements</span><span class="p">(</span><span class="s2">&quot;requirements.txt&quot;</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="kc">False</span><span class="p">)],</span>
+    <span class="n">zip_safe</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span>
+        <span class="s1">&#39;Programming Language :: Python&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Operating System :: Microsoft :: Windows&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Operating System :: Unix&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Programming Language :: Python :: 3.5&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Programming Language :: Python :: 3.6&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>按此编写好 Mod 并发布到 Pypi 上以后，就可以直接使用RQAlpha的命令来安装和启用该Mod了。</p>
+<p>如果您希望更多人使用您的Mod，您也可以联系我们，我们审核通过后，会在 RQAlpha 项目介绍和文档中增加您的Mod的介绍和推荐。</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="event_source.html" class="btn btn-neutral float-right" title="扩展事件源" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="basic_concept.html" class="btn btn-neutral" title="基本概念" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, RiceQuant.
+      Last updated on Mar 16, 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.3.x',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script type="text/javascript">
+    console.log("RQAlpha Powered By RiceQuant.");
+</script>
+
+
+</body>
+</html>

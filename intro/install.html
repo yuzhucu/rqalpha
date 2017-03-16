@@ -1,0 +1,329 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>安装指南 &mdash; rqalpha 0.3.x documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="rqalpha 0.3.x documentation" href="../index.html"/>
+        <link rel="next" title="详细环境搭建" href="detail_install.html"/>
+        <link rel="prev" title="RQAlpha 介绍" href="overview.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> rqalpha
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.x
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">快速指引</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">RQAlpha 介绍</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">安装指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">兼容性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">安装前</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#intro-install-get-data">获取回测数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">获取配置文件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="detail_install.html">详细环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">10分钟学会 RQAlpha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">策略示例</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/config.html">参数配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/base_api.html">基础 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/extend_api.html">扩展 API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development/make_contribute.html">如何贡献代码</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/basic_concept.html">基本概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/mod.html">RQAlpha 扩展 - Mod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/event_source.html">扩展事件源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Extra</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">rqalpha</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>安装指南</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/intro/install.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="intro-install">
+<span id="id1"></span><h1>安装指南<a class="headerlink" href="#intro-install" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>兼容性<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>RQAlpha目前只支持 python 3.4+ &amp;&amp; Python 2.7+</p>
+</div>
+<div class="section" id="id3">
+<h2>安装前<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>我们强烈建议您在安装 RQAlpha 前，首先单独安装 bcolz 库，因为其编译时间较长，并且中间比较容易失败，单独安装好以后再继续安装RQAlpha。</p>
+<p>Windows 环境下编译安装 bcolz 需要使用 <code class="code docutils literal"><span class="pre">Visual</span> <span class="pre">C++</span> <span class="pre">Compiler</span></code>，需要自行下载并安装 visual-cpp-build-tools，</p>
+<p>如果觉得麻烦，也可以直接去 <a class="reference external" href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#bcolz">http://www.lfd.uci.edu/~gohlke/pythonlibs/#bcolz</a> 下载相应版本的 <code class="code docutils literal"><span class="pre">bcolz</span> <span class="pre">wheel</span></code> 包，直接安装编译后的 bcolz 版本。</p>
+</div>
+<div class="section" id="id4">
+<h2>安装<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>为了避免一些安装问题，建议您先升级您的 pip 和 setuptools :</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install -U pip setuptools
+</pre></div>
+</div>
+<p>因为 bcolz 对于一些用户可能会安装困难，可能需要重试多次，所以建议先安装 cython / bcolz 库:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install cython
+$ pip install <span class="nv">bcolz</span><span class="o">==</span><span class="m">1</span>.1.0
+</pre></div>
+</div>
+<p>安装 RQAlpha :</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install rqalpha
+</pre></div>
+</div>
+<p>如果执行 <code class="code docutils literal"><span class="pre">pip</span> <span class="pre">install</span></code> 安装依赖库网络速度比较慢的话，推荐使用国内镜像来进行加速:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple rqalpha
+</pre></div>
+</div>
+<p>查看 RQAlpha 是否安装成功可以通过如下方式:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ rqalpha version
+</pre></div>
+</div>
+</div>
+<div class="section" id="intro-install-get-data">
+<span id="id5"></span><h2>获取回测数据<a class="headerlink" href="#intro-install-get-data" title="Permalink to this headline">¶</a></h2>
+<p>RiceQuant 免费提供日级别的股票和期货数据供回测使用，可以通过以下命令来进行每日数据的增量更新:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ rqalpha update_bundle
+</pre></div>
+</div>
+<p>bundle 默认存放在 <code class="code docutils literal"><span class="pre">~/.rqalpha</span></code> 下，您也可以指定 bundle 的存放位置，</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ rqalpha update_bundle -d target_bundle_path
+</pre></div>
+</div>
+<p>如果您使用了指定路径来存放 bundle，那么执行程序的时候也同样需要指定对应的 bundle 路径。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ rqalpha run -d target_bundle_path .....
+</pre></div>
+</div>
+<p>详细参数配置请查看 <a class="reference internal" href="../api/config.html#api-config"><span class="std std-ref">参数配置</span></a></p>
+</div>
+<div class="section" id="id6">
+<h2>获取配置文件<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>如果运行 RQAlpha 时不指定配置文件，会在 <code class="code docutils literal"><span class="pre">~/.rqalpha/</span></code> 文件夹下创建 <code class="code docutils literal"><span class="pre">config.yml</span></code> 文件作为默认配置文件。</p>
+<p>如果您想要直接获得一份配置文件，也可以通过如下命令来获得。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ rqalpha generate_config
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="detail_install.html" class="btn btn-neutral float-right" title="详细环境搭建" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overview.html" class="btn btn-neutral" title="RQAlpha 介绍" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, RiceQuant.
+      Last updated on Mar 16, 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.3.x',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script type="text/javascript">
+    console.log("RQAlpha Powered By RiceQuant.");
+</script>
+
+
+</body>
+</html>

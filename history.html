@@ -1,0 +1,501 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>History &mdash; rqalpha 0.3.x documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="rqalpha 0.3.x documentation" href="index.html"/>
+        <link rel="next" title="TODO" href="todo.html"/>
+        <link rel="prev" title="FAQ" href="faq.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> rqalpha
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.x
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">快速指引</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro/overview.html">RQAlpha 介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro/install.html">安装指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro/detail_install.html">详细环境搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro/tutorial.html">10分钟学会 RQAlpha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro/examples.html">策略示例</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/config.html">参数配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/base_api.html">基础 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/extend_api.html">扩展 API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="development/make_contribute.html">如何贡献代码</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/basic_concept.html">基本概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/mod.html">RQAlpha 扩展 - Mod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/event_source.html">扩展事件源</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Extra</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">0.3.13</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">0.3.12</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">0.3.11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">0.3.10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">0.3.9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">0.3.8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">0.3.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">0.3.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">0.3.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">0.3.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">0.3.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">0.3.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">0.3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id15">0.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">0.0.53</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id17">0.0.20</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id18">0.0.19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id19">0.0.18</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id20">0.0.16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id21">0.0.15</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">0.0.14</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id23">0.0.12</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id24">0.0.9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id25">0.0.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id26">0.0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rqalpha</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>History</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/history.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="history">
+<span id="id1"></span><h1>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>0.3.13<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>增加股票裸做空的配置参数 <code class="code docutils literal"><span class="pre">--short-stock</span></code></li>
+<li><code class="code docutils literal"><span class="pre">POSITION_EFFECT</span></code> 增加 <code class="code docutils literal"><span class="pre">CLOSE_TODAY</span></code></li>
+<li><code class="code docutils literal"><span class="pre">ExecutionContext</span></code> 增加 <code class="code docutils literal"><span class="pre">get_current_close_price</span></code> <code class="code docutils literal"><span class="pre">get_future_commission_info</span></code>  <code class="code docutils literal"><span class="pre">get_future_margin</span></code> <code class="code docutils literal"><span class="pre">get_future_info</span></code> 函数</li>
+<li>增加 <code class="code docutils literal"><span class="pre">RQInvalidArgument</span></code> 来处理用户策略代码异常的问题</li>
+<li>现在可以正确提示期货主力连续合约和指数连续合约在回测和模拟中的报错信息了</li>
+<li>现在以 <code class="code docutils literal"><span class="pre">handle_tick(context,</span> <span class="pre">tick)</span></code> 的方式支持tick级别的API支持(未来可能会修改)</li>
+<li>现在回测时的 <code class="code docutils literal"><span class="pre">before_trading</span></code> 函数输出的时间提前到开盘前半小时</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>0.3.12<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>优化 <cite>setup.py</cite> 脚本，只有在 python 2 环境下才安装兼容性依赖库</li>
+<li>增加 <code class="code docutils literal"><span class="pre">rqalpha</span> <span class="pre">install/uninstall/list/enable/disable</span></code> 命令</li>
+<li>增加 <code class="code docutils literal"><span class="pre">EVENT.POST_SYSTEM_RESTORED</span></code> 事件</li>
+<li>增加 净值和份额的支持，现在的收益和Analyser的计算都是基于净值了。</li>
+<li>在 AnalyserMod 输出的 Trade 中增加 <code class="code docutils literal"><span class="pre">side</span></code> 和 <code class="code docutils literal"><span class="pre">position_effect</span></code></li>
+<li>修复 <code class="code docutils literal"><span class="pre">total_orders</span></code> 计算错误</li>
+<li>修复 <code class="code docutils literal"><span class="pre">inpsect.signature</span></code> 在 python 2.x 报错的问题。</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>0.3.11<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>更新本地化翻译，修改系统提示，支持多语言</li>
+<li>增加 <code class="code docutils literal"><span class="pre">--locale</span></code> 默认为 <code class="code docutils literal"><span class="pre">cn</span></code> (中文), 支持 <code class="code docutils literal"><span class="pre">cn</span> <span class="pre">|</span> <span class="pre">en</span></code> (中文 | 英文)</li>
+<li>修复 <code class="code docutils literal"><span class="pre">main.run</span></code> 返回值中 <code class="code docutils literal"><span class="pre">stock_position</span></code> 为 <code class="code docutils literal"><span class="pre">None</span></code> 的问题</li>
+<li>修复 Windows Python 2.7 下中文显示乱码的问题</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>0.3.10<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>增加 <code class="code docutils literal"><span class="pre">config.yml</span></code> 的版本号检查及相关流程</li>
+<li>增加 <code class="code docutils literal"><span class="pre">plot</span></code> 关于中文字体的校验，如果系统没有中文字体，则显示英文字段</li>
+<li>修正 <code class="code docutils literal"><span class="pre">Benchmark</span></code> 在不设置时某些情况下会导致运行失败的错误</li>
+<li>修正 <code class="code docutils literal"><span class="pre">inspect.unwrap</span></code> 在 Python 2.7 下不支持的兼容性问题</li>
+<li>修正 <code class="code docutils literal"><span class="pre">numpy</span></code> 在某些平台下没有 <cite>float128</cite> 引起的报错问题</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h2>0.3.9<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>增加 <code class="code docutils literal"><span class="pre">--disable-user-system-log</span></code> 参数，可以独立关闭回测过程中因策略而产生的系统日志</li>
+<li><code class="code docutils literal"><span class="pre">--log-level</span></code> 现在可以正确区分不同类型的日志，同时增加 <code class="code docutils literal"><span class="pre">none</span></code> 类型，用来关闭全部日志信息。</li>
+<li>在不指定配置文件的情况下，默认会调用 <code class="code docutils literal"><span class="pre">~/.rqalpha/config.yml</span></code> 文件</li>
+<li>支持 <code class="code docutils literal"><span class="pre">rqalpha</span> <span class="pre">generate_config</span></code> 命令来获取默认配置文件</li>
+<li>指定策略类型不再使用 <code class="code docutils literal"><span class="pre">--kind</span></code> 参数，替换为 <code class="code docutils literal"><span class="pre">--strategy-type</span></code> 和配置文件呼应</li>
+<li>重构 <code class="code docutils literal"><span class="pre">events.py</span></code>，现在可以更好的支持基于事件的模块编写了</li>
+<li>将风险指标计算独立成 <code class="code docutils literal"><span class="pre">analyser</span></code> Mod</li>
+<li>将事前风控相关内容独立成 <code class="code docutils literal"><span class="pre">risk_manager</span></code> Mod</li>
+<li>将 <cite>回测</cite> 和 <cite>实盘模拟</cite> 相关功能独立成 <code class="code docutils literal"><span class="pre">simulation</span></code> Mod</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2>0.3.8<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>增加几个 technical analysis 的 examples 和自动化测试</li>
+<li>修复一些在 Python 2 下运行的 bug</li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h2>0.3.7<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>增加 <code class="code docutils literal"><span class="pre">-mc</span></code> / <code class="code docutils literal"><span class="pre">--mod-config</span></code> 参数来传递参数到 mod 中</li>
+<li>增加了 simple_stock_realtime_trade, progressive_output_csv，funcat_api 几个 DEMO mod 供开发者参考开发自己的 mod</li>
+<li><code class="code docutils literal"><span class="pre">update_bundle</span></code> 移到 <code class="code docutils literal"><span class="pre">main.py</span></code> 中，方便直接从代码中调用 <code class="code docutils literal"><span class="pre">update_bundle</span></code></li>
+<li>增加了一些自动化的测试用例</li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h2>0.3.6<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>support auto test with Travis [python 2.7 3.4 3.5 3.6]</li>
+<li><code class="code docutils literal"><span class="pre">rqalpha.run</span></code> 现在支持直接传入 <code class="code docutils literal"><span class="pre">source_code</span></code> 了</li>
+<li>支持 <code class="code docutils literal"><span class="pre">rqalpha.update_bundle</span></code> 函数</li>
+</ul>
+</div>
+<div class="section" id="id10">
+<h2>0.3.5<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>增加 <code class="code docutils literal"><span class="pre">from</span> <span class="pre">rqalpha</span> <span class="pre">import</span> <span class="pre">run</span></code> 接口，现在可以很方便的直接在程序中调用RQAlpha 回测了。</li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h2>0.3.4<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>本地化模块更具有扩展性</li>
+<li>修改 <code class="code docutils literal"><span class="pre">rqalpha</span> <span class="pre">update_bundle</span></code> 的目录结构，现在是在指定目录下生成一个 bundle 文件，而不再会直接删除当前文件夹内容了。</li>
+</ul>
+</div>
+<div class="section" id="id12">
+<h2>0.3.3<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>解决 <code class="code docutils literal"><span class="pre">rqalpha</span> <span class="pre">examples</span> <span class="pre">-d</span> <span class="pre">.</span></code> 无样例策略生成的问题</li>
+</ul>
+</div>
+<div class="section" id="id13">
+<h2>0.3.2<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>解决 Windows 10 下 matplotlib 中文字体显示乱码的问题</li>
+<li>解决 Windows 下 set_locale error 的问题</li>
+</ul>
+</div>
+<div class="section" id="id14">
+<h2>0.3.1<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>增加 Python 2 的支持</li>
+</ul>
+</div>
+<div class="section" id="id15">
+<h2>0.3.0<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>支持多周期回测扩展(虽然只有日线数据，但是结构上是支持不同周期的回测和实盘的)</li>
+<li>支持期货策略</li>
+<li>支持混合策略(股票和期货混合)</li>
+<li>支持多种参数配置方式</li>
+<li>抽离接口层，数据源、事件源、撮合引擎、下单模块全部可以替换或扩展。</li>
+<li>完善事件定义，采取 pub/sub 模式，可以非常简答的在 RQAlpha 中添加 hook。</li>
+<li>增加 Mod 机制，极大的增加了 RQAlpha 的扩展性，使其可以轻松完成程序化交易过程中所产生的的特定需求。</li>
+</ul>
+</div>
+<div class="section" id="id16">
+<h2>0.0.53<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>完善了回测结果显示</li>
+<li>修正了 Risk 计算和 Benchmark 计算</li>
+</ul>
+</div>
+<div class="section" id="id17">
+<h2>0.0.20<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>增加会回测进度显示开关</li>
+<li>完善了回测结果显示</li>
+</ul>
+</div>
+<div class="section" id="id18">
+<h2>0.0.19<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>在 <code class="code docutils literal"><span class="pre">handle_bar</span></code> 前用当前的数据更新 portfolio 和 position，因为 ricequant.com 是这样做的。</li>
+</ul>
+</div>
+<div class="section" id="id19">
+<h2>0.0.18<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>修复了分红计算</li>
+</ul>
+</div>
+<div class="section" id="id20">
+<h2>0.0.16<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>用户可以通过 context 设置 slippage/commission/benchmark</li>
+<li>增加了 scheduler</li>
+</ul>
+</div>
+<div class="section" id="id21">
+<h2>0.0.15<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>修复 history 在 before_trading 调用</li>
+<li>增加 api 的 phase 检查</li>
+</ul>
+</div>
+<div class="section" id="id22">
+<h2>0.0.14<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>修改支持 python2</li>
+</ul>
+</div>
+<div class="section" id="id23">
+<h2>0.0.12<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>修正了 Risk 计算，使用合理的年化收益计算方法</li>
+<li>格式化代码符合 pep8</li>
+<li>更新 requirements.txt</li>
+</ul>
+</div>
+<div class="section" id="id24">
+<h2>0.0.9<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>增加了数据下载</li>
+<li>修正了 Risk 计算</li>
+<li>增加了 instrument</li>
+<li>增加了 position 的 <code class="code docutils literal"><span class="pre">market_value</span></code> 和 <code class="code docutils literal"><span class="pre">value_percent</span></code></li>
+</ul>
+</div>
+<div class="section" id="id25">
+<h2>0.0.2<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>增加了日线回测</li>
+<li>去掉了涨跌停检查</li>
+<li>增加了分红处理</li>
+<li>运行参数如下:</li>
+</ul>
+<div class="highlight-python3"><div class="highlight"><pre><span></span><span class="c1"># 生成sample策略</span>
+<span class="n">rqalpha</span> <span class="n">generate_examples</span> <span class="o">-</span><span class="n">d</span> <span class="o">./</span>
+
+<span class="c1"># 运行回测</span>
+<span class="n">rqalpha</span> <span class="n">run</span> <span class="o">-</span><span class="n">f</span> <span class="n">examples</span><span class="o">/</span><span class="n">simple_macd</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">s</span> <span class="mi">2013</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="o">-</span><span class="n">e</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">04</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">a</span><span class="o">.</span><span class="n">pkl</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id26">
+<h2>0.0.1<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>搭建基本的框架，增加基本的 unittest</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="todo.html" class="btn btn-neutral float-right" title="TODO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="faq.html" class="btn btn-neutral" title="FAQ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, RiceQuant.
+      Last updated on Mar 16, 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.3.x',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script type="text/javascript">
+    console.log("RQAlpha Powered By RiceQuant.");
+</script>
+
+
+</body>
+</html>
