@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>RQAlpha 介绍 &mdash; rqalpha 0.3.x documentation</title>
+  <title>RQAlpha 介绍 &mdash; rqalpha 2.0.x documentation</title>
   
 
   
@@ -35,9 +35,9 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="rqalpha 0.3.x documentation" href="../index.html"/>
+    <link rel="top" title="rqalpha 2.0.x documentation" href="../index.html"/>
         <link rel="next" title="安装指南" href="install.html"/>
-        <link rel="prev" title="RQAlpha 0.3.x Documentation" href="../index.html"/> 
+        <link rel="prev" title="RQAlpha 2.0.x Documentation" href="../index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.3.x
+                2.0.x
               </div>
             
           
@@ -107,6 +107,7 @@
 <li class="toctree-l1"><a class="reference internal" href="detail_install.html">详细环境搭建</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">10分钟学会 RQAlpha</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">策略示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="virtual_machine.html">RQAlpha开箱即用虚拟机</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul>
@@ -120,10 +121,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../development/basic_concept.html">基本概念</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development/mod.html">RQAlpha 扩展 - Mod</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development/event_source.html">扩展事件源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/data_source.html">扩展数据源</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Extra</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
 </ul>
@@ -207,7 +208,6 @@
 <div class="section" id="id4">
 <h2>限制<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>RQAlpha 本身支持不同周期的回测和实盘交易，但是目前只开放A股市场日线数据，如果用户需要做分钟回测或者更细级别的回测可以在 <a class="reference external" href="https://www.ricequant.com/algorithms">Ricequant</a> 上进行，也通过实现数据层接口函数来使用自己的数据。财务数据相关的API目前只能通过 <a class="reference external" href="https://www.ricequant.com/algorithms">Ricequant</a> 平台来获取。</p>
-<p>RQAlpha 只是我们的商业版的一部分，如果您是机构希望采用我们包含数据的一体化策略开发、研究、评估系统，请邮件联系我们: <a class="reference external" href="mailto:public&#37;&#52;&#48;ricequant&#46;com">public<span>&#64;</span>ricequant<span>&#46;</span>com</a>，或加QQ：「4848371」 咨询，我们也会提供咨询帮助和系统维护服务等。</p>
 </div>
 <div class="section" id="id5">
 <h2>RQAlpha 安装<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
@@ -375,7 +375,7 @@ $ rqalpha run -f rsi.py -s <span class="m">2014</span>-01-01 -e <span class="m">
         <a href="install.html" class="btn btn-neutral float-right" title="安装指南" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../index.html" class="btn btn-neutral" title="RQAlpha 0.3.x Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral" title="RQAlpha 2.0.x Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -385,7 +385,7 @@ $ rqalpha run -f rsi.py -s <span class="m">2014</span>-01-01 -e <span class="m">
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017, RiceQuant.
-      Last updated on Mar 16, 2017.
+      Last updated on Mar 27, 2017.
 
     </p>
   </div>
@@ -407,7 +407,7 @@ $ rqalpha run -f rsi.py -s <span class="m">2014</span>-01-01 -e <span class="m">
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.x',
+            VERSION:'2.0.x',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

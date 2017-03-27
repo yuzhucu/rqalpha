@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>基本概念 &mdash; rqalpha 0.3.x documentation</title>
+  <title>基本概念 &mdash; rqalpha 2.0.x documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="rqalpha 0.3.x documentation" href="../index.html"/>
+    <link rel="top" title="rqalpha 2.0.x documentation" href="../index.html"/>
         <link rel="next" title="RQAlpha 扩展 - Mod" href="mod.html"/>
         <link rel="prev" title="如何贡献代码" href="make_contribute.html"/> 
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.3.x
+                2.0.x
               </div>
             
           
@@ -97,6 +97,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/detail_install.html">详细环境搭建</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/tutorial.html">10分钟学会 RQAlpha</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/examples.html">策略示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/virtual_machine.html">RQAlpha开箱即用虚拟机</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul>
@@ -113,6 +114,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#eventsource">EventSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#datasource">DataSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#broker">Broker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#priceboarder">PriceBoarder</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mod">Mod</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#persistprovider">PersistProvider</a></li>
 </ul>
@@ -121,10 +123,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mod.html">RQAlpha 扩展 - Mod</a></li>
 <li class="toctree-l1"><a class="reference internal" href="event_source.html">扩展事件源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_source.html">扩展数据源</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Extra</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
 </ul>
@@ -213,7 +215,7 @@
 <dl class="method">
 <dt id="rqalpha.interface.AbstractStrategyLoader.load">
 <code class="descname">load</code><span class="sig-paren">(</span><em>strategy</em>, <em>scope</em><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.interface.AbstractStrategyLoader.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>【Required】</p>
+<dd><p>[Required]</p>
 <p>load 函数负责组装策略代码和策略代码所在的域，并输出最终组装好的可执行域。</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -246,7 +248,7 @@
 <dl class="method">
 <dt id="rqalpha.interface.AbstractEventSource.events">
 <code class="descname">events</code><span class="sig-paren">(</span><em>start_date</em>, <em>end_date</em>, <em>frequency</em><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.interface.AbstractEventSource.events" title="Permalink to this definition">¶</a></dt>
-<dd><p>【Required】</p>
+<dd><p>[Required]</p>
 <p>扩展 EventSource 必须实现 events 函数。</p>
 <p>events 是一个 event generator, 在相应事件的时候需要以如下格式来传递事件</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">yield</span> <span class="n">trading_datetime</span><span class="p">,</span> <span class="n">calendar_datetime</span><span class="p">,</span> <span class="n">EventEnum</span>
@@ -383,14 +385,14 @@
 
 <dl class="method">
 <dt id="rqalpha.interface.AbstractDataSource.get_future_info">
-<code class="descname">get_future_info</code><span class="sig-paren">(</span><em>order_book_id</em>, <em>hedge_type</em><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.interface.AbstractDataSource.get_future_info" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_future_info</code><span class="sig-paren">(</span><em>instrument</em>, <em>hedge_type</em><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.interface.AbstractDataSource.get_future_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>获取期货合约手续费、保证金等数据</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>order_book_id</strong> (<em>str</em>) &#8211; 合约名</li>
+<li><strong>instrument</strong> &#8211; 合约对象</li>
 <li><strong>hedge_type</strong> (<em>HEDGE_TYPE</em>) &#8211; 枚举类型，账户对冲类型</li>
 </ul>
 </td>
@@ -593,44 +595,9 @@
 并通过 <code class="docutils literal"><span class="pre">EVENT.ORDER_*</span></code> 及 <code class="docutils literal"><span class="pre">EVENT.TRADE</span></code> 事件将撮合结果反馈进入 RQAlpha。</p>
 <p>在扩展模块中，可以通过调用 <code class="docutils literal"><span class="pre">env.set_broker</span></code> 来替换默认的 Broker。</p>
 <dl class="method">
-<dt id="rqalpha.interface.AbstractBroker.after_trading">
-<code class="descname">after_trading</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.interface.AbstractBroker.after_trading" title="Permalink to this definition">¶</a></dt>
-<dd><p>【Optional】</p>
-<p>RQAlpha 会在 <cite>EVENT.AFTER_TRADING</cite> 事件被触发前调用此接口。</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="rqalpha.interface.AbstractBroker.bar">
-<code class="descname">bar</code><span class="sig-paren">(</span><em>bar_dict</em><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.interface.AbstractBroker.bar" title="Permalink to this definition">¶</a></dt>
-<dd><p>【Optional】</p>
-<p>RQAlpha 会在 <cite>EVENT.BAR</cite> 事件被出发前调用此接口。</p>
-<p>Broker 根据自己的业务场景来选择是否实现，比如说自带撮合引擎的Broker，会通过 <cite>update</cite> 函数来触发撮合。</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>calendar_dt</strong> &#8211; 实际时间</li>
-<li><strong>trading_dt</strong> &#8211; 交易时间</li>
-<li><strong>bar_dict</strong> &#8211; dict[<code class="xref py py-class docutils literal"><span class="pre">BarObject</span></code>]</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="rqalpha.interface.AbstractBroker.before_trading">
-<code class="descname">before_trading</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.interface.AbstractBroker.before_trading" title="Permalink to this definition">¶</a></dt>
-<dd><p>【Optional】</p>
-<p>RQAlpha 会在 <cite>EVENT.BEFORE_TRADING</cite> 事件被触发前调用此接口。</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="rqalpha.interface.AbstractBroker.cancel_order">
 <code class="descname">cancel_order</code><span class="sig-paren">(</span><em>order</em><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.interface.AbstractBroker.cancel_order" title="Permalink to this definition">¶</a></dt>
-<dd><p>【Required】</p>
+<dd><p>[Required]</p>
 <p>撤单。</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -643,26 +610,9 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="rqalpha.interface.AbstractBroker.get_accounts">
-<code class="descname">get_accounts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.interface.AbstractBroker.get_accounts" title="Permalink to this definition">¶</a></dt>
-<dd><p>[Required]</p>
-<p>获取账号信息。系统初始化时，RQAlpha 会调用此接口，获取账户信息。</p>
-<p>RQAlpha 支持混合策略，因此返回的账户信息为一个字典(dict)，key 为账户类型（<code class="docutils literal"><span class="pre">rqalpha.const.ACCOUNT_TYPE</span></code>)，
-value 为对应的 <code class="xref py py-class docutils literal"><span class="pre">Account</span></code> 对象。</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dict</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
 <dt id="rqalpha.interface.AbstractBroker.get_open_orders">
-<code class="descname">get_open_orders</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.interface.AbstractBroker.get_open_orders" title="Permalink to this definition">¶</a></dt>
-<dd><p>【Required】</p>
+<code class="descname">get_open_orders</code><span class="sig-paren">(</span><em>order_book_id=None</em><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.interface.AbstractBroker.get_open_orders" title="Permalink to this definition">¶</a></dt>
+<dd><p>[Required]</p>
 <p>获得当前未完成的订单。</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -675,11 +625,42 @@ value 为对应的 <code class="xref py py-class docutils literal"><span class="
 </dd></dl>
 
 <dl class="method">
+<dt id="rqalpha.interface.AbstractBroker.get_portfolio">
+<code class="descname">get_portfolio</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.interface.AbstractBroker.get_portfolio" title="Permalink to this definition">¶</a></dt>
+<dd><p>[Required]</p>
+<p>获取投资组合。系统初始化时，会调用此接口，获取包含账户信息、净值、份额等内容的投资组合</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Portfolio</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="rqalpha.interface.AbstractBroker.submit_order">
 <code class="descname">submit_order</code><span class="sig-paren">(</span><em>order</em><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.interface.AbstractBroker.submit_order" title="Permalink to this definition">¶</a></dt>
-<dd><p>【Required】</p>
+<dd><p>[Required]</p>
 <p>提交订单。在当前版本，RQAlpha 会生成 <code class="xref py py-class docutils literal"><span class="pre">Order</span></code> 对象，再通过此接口提交到 Broker。
 TBD: 由 Broker 对象生成 Order 并返回？</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="priceboarder">
+<h3>PriceBoarder<a class="headerlink" href="#priceboarder" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="rqalpha.interface.AbstractPriceBoard">
+<em class="property">class </em><code class="descclassname">rqalpha.interface.</code><code class="descname">AbstractPriceBoard</code><a class="headerlink" href="#rqalpha.interface.AbstractPriceBoard" title="Permalink to this definition">¶</a></dt>
+<dd><p>RQAlpha多个地方需要使用最新价格，不同的数据源其最新价格获取的方式不尽相同</p>
+<p>因此抽离出 <cite>AbstractPriceBoard</cite>, 您可以自行进行扩展并替换默认 PriceBoard</p>
+<dl class="method">
+<dt id="rqalpha.interface.AbstractPriceBoard.get_last_price">
+<code class="descname">get_last_price</code><span class="sig-paren">(</span><em>order_book_id</em><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.interface.AbstractPriceBoard.get_last_price" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取证券的最新价格</p>
 </dd></dl>
 
 </dd></dl>
@@ -801,7 +782,7 @@ TBD: 由 Broker 对象生成 Order 并返回？</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017, RiceQuant.
-      Last updated on Mar 16, 2017.
+      Last updated on Mar 27, 2017.
 
     </p>
   </div>
@@ -823,7 +804,7 @@ TBD: 由 Broker 对象生成 Order 并返回？</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.x',
+            VERSION:'2.0.x',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

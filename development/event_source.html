@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>扩展事件源 &mdash; rqalpha 0.3.x documentation</title>
+  <title>扩展事件源 &mdash; rqalpha 2.0.x documentation</title>
   
 
   
@@ -35,8 +35,8 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="rqalpha 0.3.x documentation" href="../index.html"/>
-        <link rel="next" title="FAQ" href="../faq.html"/>
+    <link rel="top" title="rqalpha 2.0.x documentation" href="../index.html"/>
+        <link rel="next" title="扩展数据源" href="data_source.html"/>
         <link rel="prev" title="RQAlpha 扩展 - Mod" href="mod.html"/> 
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.3.x
+                2.0.x
               </div>
             
           
@@ -97,6 +97,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/detail_install.html">详细环境搭建</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/tutorial.html">10分钟学会 RQAlpha</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/examples.html">策略示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/virtual_machine.html">RQAlpha开箱即用虚拟机</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul>
@@ -115,10 +116,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#id4">事件源的扩展</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="data_source.html">扩展数据源</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Extra</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
 </ul>
@@ -300,10 +301,10 @@
     <span class="k">def</span> <span class="nf">tear_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">success</span><span class="p">,</span> <span class="n">exception</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">pass</span>
 
-    <span class="k">def</span> <span class="nf">_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="k">pass</span>
 
-    <span class="k">def</span> <span class="nf">_tick</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="k">pass</span>
 </pre></div>
 </div>
@@ -314,7 +315,7 @@
 </pre></div>
 </div>
 <p>在 <code class="code docutils literal"><span class="pre">_tick</span></code> 函数中，更新进度条</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">progress_bar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -340,11 +341,11 @@
         <span class="n">env</span><span class="o">.</span><span class="n">event_bus</span><span class="o">.</span><span class="n">add_listener</span><span class="p">(</span><span class="n">EVENT</span><span class="o">.</span><span class="n">POST_AFTER_TRADING</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tick</span><span class="p">)</span>
         <span class="n">env</span><span class="o">.</span><span class="n">event_bus</span><span class="o">.</span><span class="n">add_listener</span><span class="p">(</span><span class="n">EVENT</span><span class="o">.</span><span class="n">POST_SYSTEM_INIT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="n">trading_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_env</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">trading_calendar</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">progress_bar</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">progressbar</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="n">trading_length</span><span class="p">,</span> <span class="n">show_eta</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">progress_bar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">tear_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">success</span><span class="p">,</span> <span class="n">exception</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -368,11 +369,11 @@
         <span class="n">env</span><span class="o">.</span><span class="n">event_bus</span><span class="o">.</span><span class="n">add_listener</span><span class="p">(</span><span class="n">EVENT</span><span class="o">.</span><span class="n">POST_AFTER_TRADING</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tick</span><span class="p">)</span>
         <span class="n">env</span><span class="o">.</span><span class="n">event_bus</span><span class="o">.</span><span class="n">add_listener</span><span class="p">(</span><span class="n">EVENT</span><span class="o">.</span><span class="n">POST_SYSTEM_INIT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="n">trading_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_env</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">trading_calendar</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">progress_bar</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">progressbar</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="n">trading_length</span><span class="p">,</span> <span class="n">show_eta</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">progress_bar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">tear_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">success</span><span class="p">,</span> <span class="n">exception</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -387,7 +388,7 @@
 <div class="section" id="id4">
 <h2>事件源的扩展<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>上一节讲的是如何订阅事件源，那么如何发布事件呢？其实也很简单，只需要通过 <code class="code docutils literal"><span class="pre">publish_event</span></code> 就可以进行事件的发布。</p>
-<p>RQAlpha 整个回测模块是通过 <code class="code docutils literal"><span class="pre">SimulationMod</span></code> 实现的，其中定义了基于Bar回测的 <code class="code docutils literal"><span class="pre">event_source</span></code> 和 <code class="code docutils literal"><span class="pre">simulation_broker</span></code>， 其中包含了 MarketEvent 和 OrderEvent 大部分事件源的定义和发布。</p>
+<p>RQAlpha 整个回测模块是通过 <code class="code docutils literal"><span class="pre">rqalpha_mod_sys_simulation</span></code> 实现的，其中定义了基于Bar回测的 <code class="code docutils literal"><span class="pre">event_source</span></code> 和 <code class="code docutils literal"><span class="pre">simulation_broker</span></code>， 其中包含了 MarketEvent 和 OrderEvent 大部分事件源的定义和发布。</p>
 <p>我们简单来分析一下日线回测 <code class="code docutils literal"><span class="pre">simulation_event_source</span></code> 中 MaketEvent 相关事件的触发流程。</p>
 <div class="highlight-python3"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimulationEventSource</span><span class="p">(</span><span class="n">AbstractEventSource</span><span class="p">):</span>
 
@@ -402,26 +403,25 @@
             <span class="n">dt_after_trading</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">hour</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">minute</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
             <span class="n">dt_settlement</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">hour</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">minute</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-            <span class="k">yield</span> <span class="n">Event</span><span class="p">(</span><span class="n">EVENT</span><span class="o">.</span><span class="n">BEFORE_TRADING</span><span class="p">,</span> <span class="n">dt_before_trading</span><span class="p">,</span> <span class="n">dt_before_trading</span><span class="p">)</span>
-            <span class="k">yield</span> <span class="n">Event</span><span class="p">(</span><span class="n">EVENT</span><span class="o">.</span><span class="n">BAR</span><span class="p">,</span> <span class="n">dt_bar</span><span class="p">,</span> <span class="n">dt_bar</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">Event</span><span class="p">(</span><span class="n">EVENT</span><span class="o">.</span><span class="n">BEFORE_TRADING</span><span class="p">,</span> <span class="n">calendar_dt</span><span class="o">=</span><span class="n">dt_before_trading</span><span class="p">,</span> <span class="n">trading_dt</span><span class="o">=</span><span class="n">dt_before_trading</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">Event</span><span class="p">(</span><span class="n">EVENT</span><span class="o">.</span><span class="n">BAR</span><span class="p">,</span> <span class="n">calendar_dt</span><span class="o">=</span><span class="n">dt_bar</span><span class="p">,</span> <span class="n">trading_dt</span><span class="o">=</span><span class="n">dt_bar</span><span class="p">)</span>
 
-            <span class="k">yield</span> <span class="n">Event</span><span class="p">(</span><span class="n">EVENT</span><span class="o">.</span><span class="n">AFTER_TRADING</span><span class="p">,</span> <span class="n">dt_after_trading</span><span class="p">,</span> <span class="n">dt_after_trading</span><span class="p">)</span>
-            <span class="k">yield</span> <span class="n">Event</span><span class="p">(</span><span class="n">EVENT</span><span class="o">.</span><span class="n">SETTLEMENT</span><span class="p">,</span> <span class="n">dt_settlement</span><span class="p">,</span> <span class="n">dt_settlement</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">Event</span><span class="p">(</span><span class="n">EVENT</span><span class="o">.</span><span class="n">AFTER_TRADING</span><span class="p">,</span> <span class="n">calendar_dt</span><span class="o">=</span><span class="n">dt_after_trading</span><span class="p">,</span> <span class="n">trading_dt</span><span class="o">=</span><span class="n">dt_after_trading</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">Event</span><span class="p">(</span><span class="n">EVENT</span><span class="o">.</span><span class="n">SETTLEMENT</span><span class="p">,</span> <span class="n">calendar_dt</span><span class="o">=</span><span class="n">dt_settlement</span><span class="p">,</span> <span class="n">trading_dt</span><span class="o">=</span><span class="n">dt_settlement</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><code class="code docutils literal"><span class="pre">event</span></code> 函数是一个generator, 在 SimulationMod 中主要返回 <code class="code docutils literal"><span class="pre">BEFORE_TRADING</span></code>, <code class="code docutils literal"><span class="pre">BAR</span></code>, <code class="code docutils literal"><span class="pre">AFTER_TRADING</span></code> 和 <code class="code docutils literal"><span class="pre">SETTLEMENT</span></code> 事件。RQAlpha 在接受到对应的事件后，会自动的进行相应的 <cite>publish_event</cite> 操作，并且会自动 publish 相关的 <cite>PRE_</cite> 和 <cite>POST_</cite> 事件。</p>
+<p><code class="code docutils literal"><span class="pre">event</span></code> 函数是一个generator, 在 rqalpha_mod_sys_simulation 中主要返回 <code class="code docutils literal"><span class="pre">BEFORE_TRADING</span></code>, <code class="code docutils literal"><span class="pre">BAR</span></code>, <code class="code docutils literal"><span class="pre">AFTER_TRADING</span></code> 和 <code class="code docutils literal"><span class="pre">SETTLEMENT</span></code> 事件。RQAlpha 在接受到对应的事件后，会自动的进行相应的 <cite>publish_event</cite> 操作，并且会自动 publish 相关的 <cite>PRE_</cite> 和 <cite>POST_</cite> 事件。</p>
 <p>而在 <code class="code docutils literal"><span class="pre">simulation_broker</span></code> 中可以看到，当被调用 <cite>cancel_order</cite> 时，会模拟撤单的执行流程，分别触发 <code class="code docutils literal"><span class="pre">ORDER_PENDING_CANCEL</span></code> &amp;&amp; <code class="code docutils literal"><span class="pre">ORDER_CANCELLATION_PASS</span></code> 事件，并将 <code class="code docutils literal"><span class="pre">account</span></code> 和 <code class="code docutils literal"><span class="pre">order</span></code> 传递给回调函数，使其可以获取其可能需要到的数据。</p>
 <div class="highlight-python3"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimulationBroker</span><span class="p">(</span><span class="n">AbstractBroker</span><span class="p">,</span> <span class="n">Persistable</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">cancel_order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">order</span><span class="p">):</span>
         <span class="n">account</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_account_for</span><span class="p">(</span><span class="n">order</span><span class="o">.</span><span class="n">order_book_id</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_env</span><span class="o">.</span><span class="n">event_bus</span><span class="o">.</span><span class="n">publish_event</span><span class="p">(</span><span class="n">EVENT</span><span class="o">.</span><span class="n">ORDER_PENDING_CANCEL</span><span class="p">,</span> <span class="n">account</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_env</span><span class="o">.</span><span class="n">event_bus</span><span class="o">.</span><span class="n">publish_event</span><span class="p">(</span><span class="n">Event</span><span class="p">(</span><span class="n">EVENT</span><span class="o">.</span><span class="n">ORDER_PENDING_CANCEL</span><span class="p">,</span> <span class="n">account</span><span class="o">=</span><span class="n">account</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">))</span>
 
-        <span class="c1"># account.on_order_cancelling(order)</span>
         <span class="n">order</span><span class="o">.</span><span class="n">_mark_cancelled</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{order_id}</span><span class="s2"> order has been cancelled by user.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">order_id</span><span class="o">=</span><span class="n">order</span><span class="o">.</span><span class="n">order_id</span><span class="p">))</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_env</span><span class="o">.</span><span class="n">event_bus</span><span class="o">.</span><span class="n">publish_event</span><span class="p">(</span><span class="n">EVENT</span><span class="o">.</span><span class="n">ORDER_CANCELLATION_PASS</span><span class="p">,</span> <span class="n">account</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_env</span><span class="o">.</span><span class="n">event_bus</span><span class="o">.</span><span class="n">publish_event</span><span class="p">(</span><span class="n">Event</span><span class="p">(</span><span class="n">EVENT</span><span class="o">.</span><span class="n">ORDER_CANCELLATION_PASS</span><span class="p">,</span> <span class="n">account</span><span class="o">=</span><span class="n">account</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">))</span>
 
         <span class="c1"># account.on_order_cancellation_pass(order)</span>
         <span class="k">try</span><span class="p">:</span>
@@ -433,8 +433,8 @@
                 <span class="k">pass</span>
 </pre></div>
 </div>
-<p>如果想查看详细的事件源相关的内容，建议直接阅读 <cite>SimulationMod</cite> 源码，您会发现，扩展事件源比想象中要简单。</p>
-<p>您也可以基于 <cite>SimulationMod</cite> 扩展一个自定义的回测引擎，实现您特定的回测需求。</p>
+<p>如果想查看详细的事件源相关的内容，建议直接阅读 <cite>rqalpha_mod_sys_simulation</cite> 源码，您会发现，扩展事件源比想象中要简单。</p>
+<p>您也可以基于 <cite>rqalpha_mod_sys_simulation</cite> 扩展一个自定义的回测引擎，实现您特定的回测需求。</p>
 </div>
 </div>
 
@@ -448,7 +448,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../faq.html" class="btn btn-neutral float-right" title="FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="data_source.html" class="btn btn-neutral float-right" title="扩展数据源" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="mod.html" class="btn btn-neutral" title="RQAlpha 扩展 - Mod" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -461,7 +461,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017, RiceQuant.
-      Last updated on Mar 16, 2017.
+      Last updated on Mar 27, 2017.
 
     </p>
   </div>
@@ -483,7 +483,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.x',
+            VERSION:'2.0.x',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

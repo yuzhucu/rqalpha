@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>基础 API &mdash; rqalpha 0.3.x documentation</title>
+  <title>基础 API &mdash; rqalpha 2.0.x documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="rqalpha 0.3.x documentation" href="../index.html"/>
+    <link rel="top" title="rqalpha 2.0.x documentation" href="../index.html"/>
         <link rel="next" title="扩展 API" href="extend_api.html"/>
         <link rel="prev" title="参数配置" href="config.html"/> 
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.3.x
+                2.0.x
               </div>
             
           
@@ -97,6 +97,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/detail_install.html">详细环境搭建</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/tutorial.html">10分钟学会 RQAlpha</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/examples.html">策略示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/virtual_machine.html">RQAlpha开箱即用虚拟机</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul class="current">
@@ -159,9 +160,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-rqalpha.model.bar">Bar</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-rqalpha.model.snapshot">Snapshot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-rqalpha.model.order">Order</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-rqalpha.model.account.mixed_account">MixedPortfolio</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-rqalpha.model.portfolio.stock_portfolio">StockPortfolio</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-rqalpha.model.portfolio.future_portfolio">FuturePortfolio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-rqalpha.model.portfolio">Portfolio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-rqalpha.model.account.stock_account">StockAccount</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-rqalpha.model.account.future_account">FutureAccount</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-rqalpha.model.position.stock_position">StockPosition</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-rqalpha.model.position.future_position">FuturePosition</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-rqalpha.model">Instrument</a></li>
@@ -186,10 +187,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../development/basic_concept.html">基本概念</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development/mod.html">RQAlpha 扩展 - Mod</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development/event_source.html">扩展事件源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/data_source.html">扩展数据源</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Extra</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
 </ul>
@@ -1586,42 +1587,37 @@
 <tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><ul class="first simple">
 <li>得到一个概念的股票列表:</li>
 </ul>
-<div class="highlight-python3"><div class="highlight"><pre><span></span>
+<div class="highlight-python3"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">concept</span><span class="p">(</span><span class="s1">&#39;民营医院&#39;</span><span class="p">)</span>
+<span class="c1">#[Out]</span>
+<span class="c1">#[&#39;600105.XSHG&#39;,</span>
+<span class="c1">#&#39;002550.XSHE&#39;,</span>
+<span class="c1">#&#39;002004.XSHE&#39;,</span>
+<span class="c1">#&#39;002424.XSHE&#39;,</span>
+<span class="c1">#...]</span>
 </pre></div>
-</div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">linenos:</th><td class="field-body">concept(&#8216;民营医院&#8217;)
-#[Out]
-#[&#8216;600105.XSHG&#8217;,
-#&#8216;002550.XSHE&#8217;,
-#&#8216;002004.XSHE&#8217;,
-#&#8216;002424.XSHE&#8217;,
-#...]</td>
-</tr>
-</tbody>
-</table>
+</td></tr></table></div>
 <ul class="simple">
 <li>得到某几个概念的股票列表:</li>
 </ul>
-<div class="highlight-python3"><div class="highlight"><pre><span></span>
+<div class="last highlight-python3"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">concept</span><span class="p">(</span><span class="s1">&#39;民营医院&#39;</span><span class="p">,</span> <span class="s1">&#39;国企改革&#39;</span><span class="p">)</span>
+<span class="c1">#[Out]</span>
+<span class="c1">#[&#39;601607.XSHG&#39;,</span>
+<span class="c1">#&#39;600748.XSHG&#39;,</span>
+<span class="c1">#&#39;600630.XSHG&#39;,</span>
+<span class="c1">#...]</span>
 </pre></div>
-</div>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">linenos:</th><td class="field-body">concept(&#8216;民营医院&#8217;, &#8216;国企改革&#8217;)
-#[Out]
-#[&#8216;601607.XSHG&#8217;,
-#&#8216;600748.XSHG&#8217;,
-#&#8216;600630.XSHG&#8217;,
-#...]</td>
-</tr>
-</tbody>
-</table>
+</td></tr></table></div>
 </td>
 </tr>
 </tbody>
@@ -2188,20 +2184,6 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.core.strategy_context.RunInfo.run_id">
-<code class="descname">run_id</code><a class="headerlink" href="#rqalpha.core.strategy_context.RunInfo.run_id" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Property getter:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">标识策略每次运行的唯一id</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
 <dt id="rqalpha.core.strategy_context.RunInfo.run_type">
 <code class="descname">run_type</code><a class="headerlink" href="#rqalpha.core.strategy_context.RunInfo.run_type" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
@@ -2263,101 +2245,6 @@
 <dt id="rqalpha.core.strategy_context.StrategyContext">
 <em class="property">class </em><code class="descclassname">rqalpha.core.strategy_context.</code><code class="descname">StrategyContext</code><a class="headerlink" href="#rqalpha.core.strategy_context.StrategyContext" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
-<dt id="rqalpha.core.strategy_context.StrategyContext.future_portfolio">
-<code class="descname">future_portfolio</code><a class="headerlink" href="#rqalpha.core.strategy_context.StrategyContext.future_portfolio" title="Permalink to this definition">¶</a></dt>
-<dd><p>获取期货投资组合信息。</p>
-<p>在单独期货类型策略中，内容与portfolio一致，都代表当前投资组合；在期货+股票混合策略中代表期货子组合；在单独股票策略中，不能被访问。</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="20%" />
-<col width="20%" />
-<col width="61%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">属性</th>
-<th class="head">类型</th>
-<th class="head">注释</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>starting_cash</td>
-<td>float</td>
-<td>初始资金</td>
-</tr>
-<tr class="row-odd"><td>cash</td>
-<td>float</td>
-<td>可用资金</td>
-</tr>
-<tr class="row-even"><td>frozen_cash</td>
-<td>float</td>
-<td>冻结资金</td>
-</tr>
-<tr class="row-odd"><td>total_returns</td>
-<td>float</td>
-<td>投资组合至今的累积收益率，当前总权益/初始资金</td>
-</tr>
-<tr class="row-even"><td>daily_returns</td>
-<td>float</td>
-<td>当日收益率 = 当日收益 / 昨日总权益</td>
-</tr>
-<tr class="row-odd"><td>market_value</td>
-<td>float</td>
-<td>投资组合当前所有期货仓位的名义市值的加总</td>
-</tr>
-<tr class="row-even"><td>pnl</td>
-<td>float</td>
-<td>累计盈亏，当前投资组合总权益-初始资金</td>
-</tr>
-<tr class="row-odd"><td>daily_pnl</td>
-<td>float</td>
-<td>当日盈亏，当日浮动盈亏 + 当日平仓盈亏 - 当日费用</td>
-</tr>
-<tr class="row-even"><td>daily_holding_pnl</td>
-<td>float</td>
-<td>当日浮动盈亏</td>
-</tr>
-<tr class="row-odd"><td>daily_realized_pnl</td>
-<td>float</td>
-<td>当日平仓盈亏</td>
-</tr>
-<tr class="row-even"><td>portfolio_value</td>
-<td>float</td>
-<td>总权益，昨日总权益+当日盈亏</td>
-</tr>
-<tr class="row-odd"><td>transaction_cost</td>
-<td>float</td>
-<td>总费用</td>
-</tr>
-<tr class="row-even"><td>start_date</td>
-<td>date</td>
-<td>回测开始日期</td>
-</tr>
-<tr class="row-odd"><td>annualized_returns</td>
-<td>float</td>
-<td>投资组合的年化收益率</td>
-</tr>
-<tr class="row-even"><td>positions</td>
-<td>dict</td>
-<td>一个包含期货仓位的字典，以order_book_id作为键，position对象作为值</td>
-</tr>
-<tr class="row-odd"><td>margin</td>
-<td>float</td>
-<td>已占用保证金</td>
-</tr>
-</tbody>
-</table>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Property getter:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">FuturePortfolio</span></code></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
 <dt id="rqalpha.core.strategy_context.StrategyContext.now">
 <code class="descname">now</code><a class="headerlink" href="#rqalpha.core.strategy_context.StrategyContext.now" title="Permalink to this definition">¶</a></dt>
 <dd><p>使用以上的方式就可以在handle_bar中拿到当前的bar的时间，比如day bar的话就是那天的时间，minute bar的话就是这一分钟的时间点。</p>
@@ -2366,7 +2253,7 @@
 <dl class="attribute">
 <dt id="rqalpha.core.strategy_context.StrategyContext.portfolio">
 <code class="descname">portfolio</code><a class="headerlink" href="#rqalpha.core.strategy_context.StrategyContext.portfolio" title="Permalink to this definition">¶</a></dt>
-<dd><p>该投资组合在单一股票或期货策略中分别为股票投资组合和期货投资组合。在股票+期货的混合策略中代表汇总之后的总投资组合。</p>
+<dd><p>投资组合</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="20%" />
@@ -2380,49 +2267,53 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>starting_cash</td>
-<td>float</td>
-<td>初始资金，为子组合初始资金的加总</td>
+<tr class="row-even"><td>accounts</td>
+<td>dict</td>
+<td>账户字典</td>
 </tr>
-<tr class="row-odd"><td>cash</td>
-<td>float</td>
-<td>可用资金，为子组合可用资金的加总</td>
+<tr class="row-odd"><td>start_date</td>
+<td>datetime.datetime</td>
+<td>策略投资组合的回测/实时模拟交易的开始日期</td>
 </tr>
-<tr class="row-even"><td>total_returns</td>
+<tr class="row-even"><td>units</td>
 <td>float</td>
-<td>投资组合至今的累积收益率。计算方法是现在的投资组合价值/投资组合的初始资金</td>
+<td>份额</td>
+</tr>
+<tr class="row-odd"><td>unit_net_value</td>
+<td>float</td>
+<td>净值</td>
+</tr>
+<tr class="row-even"><td>daily_pnl</td>
+<td>float</td>
+<td>当日盈亏，当日盈亏的加总</td>
 </tr>
 <tr class="row-odd"><td>daily_returns</td>
 <td>float</td>
 <td>投资组合每日收益率</td>
 </tr>
-<tr class="row-even"><td>daily_pnl</td>
+<tr class="row-even"><td>total_returns</td>
 <td>float</td>
-<td>当日盈亏，子组合当日盈亏的加总</td>
-</tr>
-<tr class="row-odd"><td>market_value</td>
-<td>float</td>
-<td>投资组合当前的市场价值，为子组合市场价值的加总</td>
-</tr>
-<tr class="row-even"><td>portfolio_value</td>
-<td>float</td>
-<td>总权益，为子组合总权益加总</td>
-</tr>
-<tr class="row-odd"><td>pnl</td>
-<td>float</td>
-<td>当前投资组合的累计盈亏</td>
-</tr>
-<tr class="row-even"><td>start_date</td>
-<td>datetime.datetime</td>
-<td>策略投资组合的回测/实时模拟交易的开始日期</td>
+<td>投资组合总收益率</td>
 </tr>
 <tr class="row-odd"><td>annualized_returns</td>
 <td>float</td>
 <td>投资组合的年化收益率</td>
 </tr>
-<tr class="row-even"><td>positions</td>
+<tr class="row-even"><td>total_value</td>
+<td>float</td>
+<td>投资组合总权益</td>
+</tr>
+<tr class="row-odd"><td>positions</td>
 <td>dict</td>
 <td>一个包含所有仓位的字典，以order_book_id作为键，position对象作为值</td>
+</tr>
+<tr class="row-even"><td>cash</td>
+<td>float</td>
+<td>总的可用资金</td>
+</tr>
+<tr class="row-odd"><td>market_value</td>
+<td>float</td>
+<td>投资组合当前的市场价值，为子组合市场价值的加总</td>
 </tr>
 </tbody>
 </table>
@@ -2431,7 +2322,7 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name" colspan="2">Property getter:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">MixedPortfolio</span></code> | <code class="xref py py-class docutils literal"><span class="pre">StockPortfolio</span></code> | <code class="xref py py-class docutils literal"><span class="pre">FuturePortfolio</span></code></td>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">Portfolio</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -2446,85 +2337,6 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name" colspan="2">Property getter:</th></tr>
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><a class="reference internal" href="#rqalpha.core.strategy_context.RunInfo" title="rqalpha.core.strategy_context.RunInfo"><code class="xref py py-class docutils literal"><span class="pre">RunInfo</span></code></a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.core.strategy_context.StrategyContext.stock_portfolio">
-<code class="descname">stock_portfolio</code><a class="headerlink" href="#rqalpha.core.strategy_context.StrategyContext.stock_portfolio" title="Permalink to this definition">¶</a></dt>
-<dd><p>获取股票投资组合信息。</p>
-<p>在单独股票类型策略中，内容与portfolio一致，都代表当前投资组合；在期货+股票混合策略中代表股票子组合；在单独期货策略中，不能被访问。</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="20%" />
-<col width="20%" />
-<col width="61%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">属性</th>
-<th class="head">类型</th>
-<th class="head">注释</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>starting_cash</td>
-<td>float</td>
-<td>回测或实盘交易给算法策略设置的初始资金</td>
-</tr>
-<tr class="row-odd"><td>cash</td>
-<td>float</td>
-<td>可用资金</td>
-</tr>
-<tr class="row-even"><td>total_returns</td>
-<td>float</td>
-<td>投资组合至今的累积收益率。计算方法是现在的投资组合价值/投资组合的初始资金</td>
-</tr>
-<tr class="row-odd"><td>daily_returns</td>
-<td>float</td>
-<td>当前最新一天的每日收益</td>
-</tr>
-<tr class="row-even"><td>daily_pnl</td>
-<td>float</td>
-<td>当日盈亏，当日投资组合总权益-昨日投资组合总权益</td>
-</tr>
-<tr class="row-odd"><td>market_value</td>
-<td>float</td>
-<td>投资组合当前所有证券仓位的市值的加总</td>
-</tr>
-<tr class="row-even"><td>portfolio_value</td>
-<td>float</td>
-<td>总权益，包含市场价值和剩余现金</td>
-</tr>
-<tr class="row-odd"><td>pnl</td>
-<td>float</td>
-<td>当前投资组合的累计盈亏</td>
-</tr>
-<tr class="row-even"><td>start_date</td>
-<td>date</td>
-<td>策略投资组合的回测/实时模拟交易的开始日期</td>
-</tr>
-<tr class="row-odd"><td>annualized_returns</td>
-<td>float</td>
-<td>投资组合的年化收益率</td>
-</tr>
-<tr class="row-even"><td>positions</td>
-<td>dict</td>
-<td>一个包含所有证券仓位的字典，以order_book_id作为键，position对象作为值</td>
-</tr>
-<tr class="row-odd"><td>dividend_receivable</td>
-<td>float</td>
-<td>投资组合在分红现金收到账面之前的应收分红部分</td>
-</tr>
-</tbody>
-</table>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Property getter:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">StockPortfolio</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -2560,73 +2372,73 @@
 <dl class="attribute">
 <dt id="rqalpha.model.bar.BarObject.high">
 <code class="descname">high</code><a class="headerlink" href="#rqalpha.model.bar.BarObject.high" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】截止到当前的最高价</p>
+<dd><p>[float] 截止到当前的最高价</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.bar.BarObject.is_trading">
 <code class="descname">is_trading</code><a class="headerlink" href="#rqalpha.model.bar.BarObject.is_trading" title="Permalink to this definition">¶</a></dt>
-<dd><p>【datetime.datetime】 时间戳</p>
+<dd><p>[datetime.datetime] 时间戳</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.bar.BarObject.last">
 <code class="descname">last</code><a class="headerlink" href="#rqalpha.model.bar.BarObject.last" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】当前最新价</p>
+<dd><p>[float] 当前最新价</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.bar.BarObject.low">
 <code class="descname">low</code><a class="headerlink" href="#rqalpha.model.bar.BarObject.low" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】截止到当前的最低价</p>
+<dd><p>[float] 截止到当前的最低价</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.bar.BarObject.open">
 <code class="descname">open</code><a class="headerlink" href="#rqalpha.model.bar.BarObject.open" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】当日开盘价</p>
+<dd><p>[float] 当日开盘价</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.bar.BarObject.open_interest">
 <code class="descname">open_interest</code><a class="headerlink" href="#rqalpha.model.bar.BarObject.open_interest" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】截止到当前的持仓量（期货专用）</p>
+<dd><p>[float] 截止到当前的持仓量（期货专用）</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.bar.BarObject.order_book_id">
 <code class="descname">order_book_id</code><a class="headerlink" href="#rqalpha.model.bar.BarObject.order_book_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>【str】交易标的代码</p>
+<dd><p>[str] 交易标的代码</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.bar.BarObject.prev_close">
 <code class="descname">prev_close</code><a class="headerlink" href="#rqalpha.model.bar.BarObject.prev_close" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】截止到当前的最低价</p>
+<dd><p>[float] 截止到当前的最低价</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.bar.BarObject.prev_settlement">
 <code class="descname">prev_settlement</code><a class="headerlink" href="#rqalpha.model.bar.BarObject.prev_settlement" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】昨日结算价（期货专用）</p>
+<dd><p>[float] 昨日结算价（期货专用）</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.bar.BarObject.symbol">
 <code class="descname">symbol</code><a class="headerlink" href="#rqalpha.model.bar.BarObject.symbol" title="Permalink to this definition">¶</a></dt>
-<dd><p>【str】合约简称</p>
+<dd><p>[str] 合约简称</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.bar.BarObject.total_turnover">
 <code class="descname">total_turnover</code><a class="headerlink" href="#rqalpha.model.bar.BarObject.total_turnover" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】截止到当前的成交额</p>
+<dd><p>[float] 截止到当前的成交额</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.bar.BarObject.volume">
 <code class="descname">volume</code><a class="headerlink" href="#rqalpha.model.bar.BarObject.volume" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】截止到当前的成交量</p>
+<dd><p>[float] 截止到当前的成交量</p>
 </dd></dl>
 
 </dd></dl>
@@ -2641,67 +2453,67 @@
 <dl class="attribute">
 <dt id="rqalpha.model.snapshot.SnapshotObject.datetime">
 <code class="descname">datetime</code><a class="headerlink" href="#rqalpha.model.snapshot.SnapshotObject.datetime" title="Permalink to this definition">¶</a></dt>
-<dd><p>【datetime.datetime】当前快照数据的时间戳</p>
+<dd><p>[datetime.datetime] 当前快照数据的时间戳</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.snapshot.SnapshotObject.high">
 <code class="descname">high</code><a class="headerlink" href="#rqalpha.model.snapshot.SnapshotObject.high" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】截止到当前的最高价</p>
+<dd><p>[float] 截止到当前的最高价</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.snapshot.SnapshotObject.last">
 <code class="descname">last</code><a class="headerlink" href="#rqalpha.model.snapshot.SnapshotObject.last" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】当前最新价</p>
+<dd><p>[float] 当前最新价</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.snapshot.SnapshotObject.low">
 <code class="descname">low</code><a class="headerlink" href="#rqalpha.model.snapshot.SnapshotObject.low" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】截止到当前的最低价</p>
+<dd><p>[float] 截止到当前的最低价</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.snapshot.SnapshotObject.open">
 <code class="descname">open</code><a class="headerlink" href="#rqalpha.model.snapshot.SnapshotObject.open" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】当日开盘价</p>
+<dd><p>[float] 当日开盘价</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.snapshot.SnapshotObject.open_interest">
 <code class="descname">open_interest</code><a class="headerlink" href="#rqalpha.model.snapshot.SnapshotObject.open_interest" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】截止到当前的持仓量（期货专用）</p>
+<dd><p>[float] 截止到当前的持仓量（期货专用）</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.snapshot.SnapshotObject.order_book_id">
 <code class="descname">order_book_id</code><a class="headerlink" href="#rqalpha.model.snapshot.SnapshotObject.order_book_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>【str】股票代码</p>
+<dd><p>[str] 股票代码</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.snapshot.SnapshotObject.prev_close">
 <code class="descname">prev_close</code><a class="headerlink" href="#rqalpha.model.snapshot.SnapshotObject.prev_close" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】昨日收盘价</p>
+<dd><p>[float] 昨日收盘价</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.snapshot.SnapshotObject.prev_settlement">
 <code class="descname">prev_settlement</code><a class="headerlink" href="#rqalpha.model.snapshot.SnapshotObject.prev_settlement" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】昨日结算价（期货专用）</p>
+<dd><p>[float] 昨日结算价（期货专用）</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.snapshot.SnapshotObject.total_turnover">
 <code class="descname">total_turnover</code><a class="headerlink" href="#rqalpha.model.snapshot.SnapshotObject.total_turnover" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】截止到当前的成交额</p>
+<dd><p>[float] 截止到当前的成交额</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.snapshot.SnapshotObject.volume">
 <code class="descname">volume</code><a class="headerlink" href="#rqalpha.model.snapshot.SnapshotObject.volume" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】截止到当前的成交量</p>
+<dd><p>[float] 截止到当前的成交量</p>
 </dd></dl>
 
 </dd></dl>
@@ -2716,388 +2528,220 @@
 <dl class="attribute">
 <dt id="rqalpha.model.order.Order.avg_price">
 <code class="descname">avg_price</code><a class="headerlink" href="#rqalpha.model.order.Order.avg_price" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】成交均价</p>
+<dd><p>[float] 成交均价</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.order.Order.datetime">
 <code class="descname">datetime</code><a class="headerlink" href="#rqalpha.model.order.Order.datetime" title="Permalink to this definition">¶</a></dt>
-<dd><p>【datetime.datetime】订单创建时间</p>
+<dd><p>[datetime.datetime] 订单创建时间</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.order.Order.filled_quantity">
 <code class="descname">filled_quantity</code><a class="headerlink" href="#rqalpha.model.order.Order.filled_quantity" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】订单已成交数量</p>
+<dd><p>[int] 订单已成交数量</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="rqalpha.model.order.Order.frozen_price">
+<code class="descname">frozen_price</code><a class="headerlink" href="#rqalpha.model.order.Order.frozen_price" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 冻结价格</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.order.Order.message">
 <code class="descname">message</code><a class="headerlink" href="#rqalpha.model.order.Order.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>【str】信息。比如拒单时候此处会提示拒单原因</p>
+<dd><p>[str] 信息。比如拒单时候此处会提示拒单原因</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.order.Order.order_book_id">
 <code class="descname">order_book_id</code><a class="headerlink" href="#rqalpha.model.order.Order.order_book_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>【str】合约代码</p>
+<dd><p>[str] 合约代码</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.order.Order.order_id">
 <code class="descname">order_id</code><a class="headerlink" href="#rqalpha.model.order.Order.order_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】唯一标识订单的id</p>
+<dd><p>[int] 唯一标识订单的id</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.order.Order.position_effect">
 <code class="descname">position_effect</code><a class="headerlink" href="#rqalpha.model.order.Order.position_effect" title="Permalink to this definition">¶</a></dt>
-<dd><p>【POSITION_EFFECT】订单开平（期货专用）</p>
+<dd><p>[POSITION_EFFECT] 订单开平（期货专用）</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.order.Order.price">
 <code class="descname">price</code><a class="headerlink" href="#rqalpha.model.order.Order.price" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】订单价格，只有在订单类型为&#8217;限价单&#8217;的时候才有意义</p>
+<dd><p>[float] 订单价格，只有在订单类型为&#8217;限价单&#8217;的时候才有意义</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.order.Order.quantity">
 <code class="descname">quantity</code><a class="headerlink" href="#rqalpha.model.order.Order.quantity" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】订单数量</p>
+<dd><p>[int] 订单数量</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.order.Order.side">
 <code class="descname">side</code><a class="headerlink" href="#rqalpha.model.order.Order.side" title="Permalink to this definition">¶</a></dt>
-<dd><p>【SIDE】订单方向</p>
+<dd><p>[SIDE] 订单方向</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.order.Order.status">
 <code class="descname">status</code><a class="headerlink" href="#rqalpha.model.order.Order.status" title="Permalink to this definition">¶</a></dt>
-<dd><p>【ORDER_STATUS】订单状态</p>
+<dd><p>[ORDER_STATUS] 订单状态</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.order.Order.trading_datetime">
 <code class="descname">trading_datetime</code><a class="headerlink" href="#rqalpha.model.order.Order.trading_datetime" title="Permalink to this definition">¶</a></dt>
-<dd><p>【datetime.datetime】订单的交易日期（对应期货夜盘）</p>
+<dd><p>[datetime.datetime] 订单的交易日期（对应期货夜盘）</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.order.Order.transaction_cost">
 <code class="descname">transaction_cost</code><a class="headerlink" href="#rqalpha.model.order.Order.transaction_cost" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】费用</p>
+<dd><p>[float] 费用</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.order.Order.type">
 <code class="descname">type</code><a class="headerlink" href="#rqalpha.model.order.Order.type" title="Permalink to this definition">¶</a></dt>
-<dd><p>【ORDER_TYPE】订单类型</p>
+<dd><p>[ORDER_TYPE] 订单类型</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.order.Order.unfilled_quantity">
 <code class="descname">unfilled_quantity</code><a class="headerlink" href="#rqalpha.model.order.Order.unfilled_quantity" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】订单未成交数量</p>
+<dd><p>[int] 订单未成交数量</p>
 </dd></dl>
 
 </dd></dl>
 
 </div>
-<div class="section" id="module-rqalpha.model.account.mixed_account">
-<span id="mixedportfolio"></span><h3>MixedPortfolio<a class="headerlink" href="#module-rqalpha.model.account.mixed_account" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="module-rqalpha.model.portfolio">
+<span id="portfolio"></span><h3>Portfolio<a class="headerlink" href="#module-rqalpha.model.portfolio" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="module-rqalpha.model.account.stock_account">
+<span id="stockaccount"></span><h3>StockAccount<a class="headerlink" href="#module-rqalpha.model.account.stock_account" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
-<dt id="rqalpha.model.account.mixed_account.MixedPortfolio">
-<em class="property">class </em><code class="descclassname">rqalpha.model.account.mixed_account.</code><code class="descname">MixedPortfolio</code><span class="sig-paren">(</span><em>portfolio_list</em><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.model.account.mixed_account.MixedPortfolio" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dt id="rqalpha.model.account.stock_account.StockAccount">
+<em class="property">class </em><code class="descclassname">rqalpha.model.account.stock_account.</code><code class="descname">StockAccount</code><span class="sig-paren">(</span><em>total_cash</em>, <em>positions</em>, <em>backward_trade_set=set([])</em>, <em>dividend_receivable=None</em><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.model.account.stock_account.StockAccount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rqalpha.model.account.base_account.BaseAccount</span></code></p>
 <dl class="attribute">
-<dt id="rqalpha.model.account.mixed_account.MixedPortfolio.annualized_returns">
-<code class="descname">annualized_returns</code><a class="headerlink" href="#rqalpha.model.account.mixed_account.MixedPortfolio.annualized_returns" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】投资组合的年化收益率</p>
+<dt id="rqalpha.model.account.stock_account.StockAccount.cash">
+<code class="descname">cash</code><a class="headerlink" href="#rqalpha.model.account.stock_account.StockAccount.cash" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 可用资金</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.account.mixed_account.MixedPortfolio.cash">
-<code class="descname">cash</code><a class="headerlink" href="#rqalpha.model.account.mixed_account.MixedPortfolio.cash" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】可用资金，为子组合可用资金的加总</p>
+<dt id="rqalpha.model.account.stock_account.StockAccount.dividend_receivable">
+<code class="descname">dividend_receivable</code><a class="headerlink" href="#rqalpha.model.account.stock_account.StockAccount.dividend_receivable" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 投资组合在分红现金收到账面之前的应收分红部分。具体细节在分红部分</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.account.mixed_account.MixedPortfolio.daily_pnl">
-<code class="descname">daily_pnl</code><a class="headerlink" href="#rqalpha.model.account.mixed_account.MixedPortfolio.daily_pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】当日盈亏，子组合当日盈亏的加总</p>
+<dt id="rqalpha.model.account.stock_account.StockAccount.frozen_cash">
+<code class="descname">frozen_cash</code><a class="headerlink" href="#rqalpha.model.account.stock_account.StockAccount.frozen_cash" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 冻结资金</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.account.mixed_account.MixedPortfolio.daily_returns">
-<code class="descname">daily_returns</code><a class="headerlink" href="#rqalpha.model.account.mixed_account.MixedPortfolio.daily_returns" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】投资组合每日收益率</p>
+<dt id="rqalpha.model.account.stock_account.StockAccount.market_value">
+<code class="descname">market_value</code><a class="headerlink" href="#rqalpha.model.account.stock_account.StockAccount.market_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 市值</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.account.mixed_account.MixedPortfolio.frozen_cash">
-<code class="descname">frozen_cash</code><a class="headerlink" href="#rqalpha.model.account.mixed_account.MixedPortfolio.frozen_cash" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】冻结资金</p>
+<dt id="rqalpha.model.account.stock_account.StockAccount.positions">
+<code class="descname">positions</code><a class="headerlink" href="#rqalpha.model.account.stock_account.StockAccount.positions" title="Permalink to this definition">¶</a></dt>
+<dd><p>[dict] 持仓</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.account.mixed_account.MixedPortfolio.market_value">
-<code class="descname">market_value</code><a class="headerlink" href="#rqalpha.model.account.mixed_account.MixedPortfolio.market_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】投资组合当前的市场价值，为子组合市场价值的加总</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.account.mixed_account.MixedPortfolio.pnl">
-<code class="descname">pnl</code><a class="headerlink" href="#rqalpha.model.account.mixed_account.MixedPortfolio.pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】当前投资组合的累计盈亏</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.account.mixed_account.MixedPortfolio.portfolio_value">
-<code class="descname">portfolio_value</code><a class="headerlink" href="#rqalpha.model.account.mixed_account.MixedPortfolio.portfolio_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】总权益，为子组合总权益加总</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.account.mixed_account.MixedPortfolio.positions">
-<code class="descname">positions</code><a class="headerlink" href="#rqalpha.model.account.mixed_account.MixedPortfolio.positions" title="Permalink to this definition">¶</a></dt>
-<dd><p>【dict】一个包含所有仓位的字典，以order_book_id作为键，position对象作为值，关于position的更多的信息可以在下面的部分找到。</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.account.mixed_account.MixedPortfolio.start_date">
-<code class="descname">start_date</code><a class="headerlink" href="#rqalpha.model.account.mixed_account.MixedPortfolio.start_date" title="Permalink to this definition">¶</a></dt>
-<dd><p>【datetime.datetime】策略投资组合的回测/实时模拟交易的开始日期</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.account.mixed_account.MixedPortfolio.starting_cash">
-<code class="descname">starting_cash</code><a class="headerlink" href="#rqalpha.model.account.mixed_account.MixedPortfolio.starting_cash" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】初始资金，为子组合初始资金的加总</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.account.mixed_account.MixedPortfolio.total_returns">
-<code class="descname">total_returns</code><a class="headerlink" href="#rqalpha.model.account.mixed_account.MixedPortfolio.total_returns" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】投资组合至今的累积收益率。计算方法是现在的投资组合价值/投资组合的初始资金</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.account.mixed_account.MixedPortfolio.transaction_cost">
-<code class="descname">transaction_cost</code><a class="headerlink" href="#rqalpha.model.account.mixed_account.MixedPortfolio.transaction_cost" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】总费用</p>
+<dt id="rqalpha.model.account.stock_account.StockAccount.transaction_cost">
+<code class="descname">transaction_cost</code><a class="headerlink" href="#rqalpha.model.account.stock_account.StockAccount.transaction_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 总费用</p>
 </dd></dl>
 
 </dd></dl>
 
 </div>
-<div class="section" id="module-rqalpha.model.portfolio.stock_portfolio">
-<span id="stockportfolio"></span><h3>StockPortfolio<a class="headerlink" href="#module-rqalpha.model.portfolio.stock_portfolio" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="module-rqalpha.model.account.future_account">
+<span id="futureaccount"></span><h3>FutureAccount<a class="headerlink" href="#module-rqalpha.model.account.future_account" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
-<dt id="rqalpha.model.portfolio.stock_portfolio.StockPortfolio">
-<em class="property">class </em><code class="descclassname">rqalpha.model.portfolio.stock_portfolio.</code><code class="descname">StockPortfolio</code><span class="sig-paren">(</span><em>cash</em>, <em>start_date</em>, <em>account_type</em><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.model.portfolio.stock_portfolio.StockPortfolio" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rqalpha.model.portfolio.base_portfolio.BasePortfolio</span></code></p>
+<dt id="rqalpha.model.account.future_account.FutureAccount">
+<em class="property">class </em><code class="descclassname">rqalpha.model.account.future_account.</code><code class="descname">FutureAccount</code><span class="sig-paren">(</span><em>total_cash</em>, <em>positions</em>, <em>backward_trade_set=set([])</em><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.model.account.future_account.FutureAccount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rqalpha.model.account.base_account.BaseAccount</span></code></p>
 <dl class="attribute">
-<dt id="rqalpha.model.portfolio.stock_portfolio.StockPortfolio.annualized_returns">
-<code class="descname">annualized_returns</code><a class="headerlink" href="#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.annualized_returns" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】投资组合的年化收益率</p>
+<dt id="rqalpha.model.account.future_account.FutureAccount.buy_margin">
+<code class="descname">buy_margin</code><a class="headerlink" href="#rqalpha.model.account.future_account.FutureAccount.buy_margin" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 买方向保证金</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.portfolio.stock_portfolio.StockPortfolio.cash">
-<code class="descname">cash</code><a class="headerlink" href="#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.cash" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】可用资金</p>
+<dt id="rqalpha.model.account.future_account.FutureAccount.cash">
+<code class="descname">cash</code><a class="headerlink" href="#rqalpha.model.account.future_account.FutureAccount.cash" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 可用资金</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.portfolio.stock_portfolio.StockPortfolio.daily_pnl">
-<code class="descname">daily_pnl</code><a class="headerlink" href="#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.daily_pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】当日盈亏，当日投资组合总权益-昨日投资组合总权益</p>
+<dt id="rqalpha.model.account.future_account.FutureAccount.daily_pnl">
+<code class="descname">daily_pnl</code><a class="headerlink" href="#rqalpha.model.account.future_account.FutureAccount.daily_pnl" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 当日盈亏</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.portfolio.stock_portfolio.StockPortfolio.daily_returns">
-<code class="descname">daily_returns</code><a class="headerlink" href="#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.daily_returns" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】当前最新一天的每日收益</p>
+<dt id="rqalpha.model.account.future_account.FutureAccount.frozen_cash">
+<code class="descname">frozen_cash</code><a class="headerlink" href="#rqalpha.model.account.future_account.FutureAccount.frozen_cash" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 冻结资金</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.portfolio.stock_portfolio.StockPortfolio.dividend_receivable">
-<code class="descname">dividend_receivable</code><a class="headerlink" href="#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.dividend_receivable" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】投资组合在分红现金收到账面之前的应收分红部分。具体细节在分红部分</p>
+<dt id="rqalpha.model.account.future_account.FutureAccount.holding_pnl">
+<code class="descname">holding_pnl</code><a class="headerlink" href="#rqalpha.model.account.future_account.FutureAccount.holding_pnl" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 浮动盈亏</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.portfolio.stock_portfolio.StockPortfolio.frozen_cash">
-<code class="descname">frozen_cash</code><a class="headerlink" href="#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.frozen_cash" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】冻结资金</p>
+<dt id="rqalpha.model.account.future_account.FutureAccount.margin">
+<code class="descname">margin</code><a class="headerlink" href="#rqalpha.model.account.future_account.FutureAccount.margin" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 总保证金</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.portfolio.stock_portfolio.StockPortfolio.market_value">
-<code class="descname">market_value</code><a class="headerlink" href="#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.market_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】投资组合当前所有证券仓位的市值的加总</p>
+<dt id="rqalpha.model.account.future_account.FutureAccount.market_value">
+<code class="descname">market_value</code><a class="headerlink" href="#rqalpha.model.account.future_account.FutureAccount.market_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 市值</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.portfolio.stock_portfolio.StockPortfolio.pnl">
-<code class="descname">pnl</code><a class="headerlink" href="#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】当前投资组合的累计盈亏</p>
+<dt id="rqalpha.model.account.future_account.FutureAccount.positions">
+<code class="descname">positions</code><a class="headerlink" href="#rqalpha.model.account.future_account.FutureAccount.positions" title="Permalink to this definition">¶</a></dt>
+<dd><p>[dict] 持仓</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.portfolio.stock_portfolio.StockPortfolio.portfolio_value">
-<code class="descname">portfolio_value</code><a class="headerlink" href="#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.portfolio_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】总权益，包含市场价值和剩余现金</p>
+<dt id="rqalpha.model.account.future_account.FutureAccount.realized_pnl">
+<code class="descname">realized_pnl</code><a class="headerlink" href="#rqalpha.model.account.future_account.FutureAccount.realized_pnl" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 平仓盈亏</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.portfolio.stock_portfolio.StockPortfolio.positions">
-<code class="descname">positions</code><a class="headerlink" href="#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.positions" title="Permalink to this definition">¶</a></dt>
-<dd><p>【dict】一个包含股票子组合仓位的字典，以order_book_id作为键，position对象作为值，关于position的更多的信息可以在下面的部分找到。</p>
+<dt id="rqalpha.model.account.future_account.FutureAccount.sell_margin">
+<code class="descname">sell_margin</code><a class="headerlink" href="#rqalpha.model.account.future_account.FutureAccount.sell_margin" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 卖方向保证金</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.portfolio.stock_portfolio.StockPortfolio.start_date">
-<code class="descname">start_date</code><a class="headerlink" href="#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.start_date" title="Permalink to this definition">¶</a></dt>
-<dd><p>【datetime.datetime】策略投资组合的回测/实时模拟交易的开始日期</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.stock_portfolio.StockPortfolio.starting_cash">
-<code class="descname">starting_cash</code><a class="headerlink" href="#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.starting_cash" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】回测或实盘交易给算法策略设置的初始资金</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.stock_portfolio.StockPortfolio.total_returns">
-<code class="descname">total_returns</code><a class="headerlink" href="#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.total_returns" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】投资组合至今的累积收益率。计算方法是现在的投资组合价值/投资组合的初始资金</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.stock_portfolio.StockPortfolio.transaction_cost">
-<code class="descname">transaction_cost</code><a class="headerlink" href="#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.transaction_cost" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】总费用</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-rqalpha.model.portfolio.future_portfolio">
-<span id="futureportfolio"></span><h3>FuturePortfolio<a class="headerlink" href="#module-rqalpha.model.portfolio.future_portfolio" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio">
-<em class="property">class </em><code class="descclassname">rqalpha.model.portfolio.future_portfolio.</code><code class="descname">FuturePortfolio</code><span class="sig-paren">(</span><em>cash</em>, <em>start_date</em>, <em>account_type</em><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rqalpha.model.portfolio.base_portfolio.BasePortfolio</span></code></p>
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.annualized_returns">
-<code class="descname">annualized_returns</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.annualized_returns" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】投资组合的年化收益率</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.buy_margin">
-<code class="descname">buy_margin</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.buy_margin" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】多头保证金</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.cash">
-<code class="descname">cash</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.cash" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】可用资金</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.daily_holding_pnl">
-<code class="descname">daily_holding_pnl</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.daily_holding_pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】当日浮动盈亏</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.daily_pnl">
-<code class="descname">daily_pnl</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.daily_pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】当日盈亏，当日浮动盈亏 + 当日平仓盈亏 - 当日费用</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.daily_realized_pnl">
-<code class="descname">daily_realized_pnl</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.daily_realized_pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】当日平仓盈亏</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.daily_returns">
-<code class="descname">daily_returns</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.daily_returns" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】当前最新一天的每日收益</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.frozen_cash">
-<code class="descname">frozen_cash</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.frozen_cash" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】冻结资金</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.margin">
-<code class="descname">margin</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.margin" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】已占用保证金</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.market_value">
-<code class="descname">market_value</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.market_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】投资组合当前所有证券仓位的市值的加总</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.pnl">
-<code class="descname">pnl</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】当前投资组合的累计盈亏</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.portfolio_value">
-<code class="descname">portfolio_value</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.portfolio_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】总权益，昨日总权益+当日盈亏</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.positions">
-<code class="descname">positions</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.positions" title="Permalink to this definition">¶</a></dt>
-<dd><p>【dict】一个包含期货子组合仓位的字典，以order_book_id作为键，position对象作为值</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.sell_margin">
-<code class="descname">sell_margin</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.sell_margin" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】空头保证金</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.start_date">
-<code class="descname">start_date</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.start_date" title="Permalink to this definition">¶</a></dt>
-<dd><p>【datetime.datetime】策略投资组合的回测/实时模拟交易的开始日期</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.starting_cash">
-<code class="descname">starting_cash</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.starting_cash" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】回测或实盘交易给算法策略设置的初始资金</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.total_returns">
-<code class="descname">total_returns</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.total_returns" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】投资组合至今的累积收益率。计算方法是现在的投资组合价值/投资组合的初始资金</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.portfolio.future_portfolio.FuturePortfolio.transaction_cost">
-<code class="descname">transaction_cost</code><a class="headerlink" href="#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.transaction_cost" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】总费用</p>
+<dt id="rqalpha.model.account.future_account.FutureAccount.transaction_cost">
+<code class="descname">transaction_cost</code><a class="headerlink" href="#rqalpha.model.account.future_account.FutureAccount.transaction_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 总费用</p>
 </dd></dl>
 
 </dd></dl>
@@ -3112,91 +2756,73 @@
 <dl class="attribute">
 <dt id="rqalpha.model.position.stock_position.StockPosition.average_cost">
 <code class="descname">average_cost</code><a class="headerlink" href="#rqalpha.model.position.stock_position.StockPosition.average_cost" title="Permalink to this definition">¶</a></dt>
-<dd><p>【已弃用】请使用 avg_price 获取持仓买入均价</p>
+<dd><p>[已弃用] 请使用 avg_price 获取持仓买入均价</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.stock_position.StockPosition.avg_price">
 <code class="descname">avg_price</code><a class="headerlink" href="#rqalpha.model.position.stock_position.StockPosition.avg_price" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】获得该持仓的买入均价，计算方法为每次买入的数量做加权平均</p>
+<dd><p>[float] 获得该持仓的买入均价，计算方法为每次买入的数量做加权平均</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.stock_position.StockPosition.bought_quantity">
 <code class="descname">bought_quantity</code><a class="headerlink" href="#rqalpha.model.position.stock_position.StockPosition.bought_quantity" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】该证券的总买入股数，例如：如果你的投资组合并没有任何平安银行的成交，那么平安银行这个股票的仓位就是0</p>
+<dd><p>deprecated</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.stock_position.StockPosition.bought_value">
 <code class="descname">bought_value</code><a class="headerlink" href="#rqalpha.model.position.stock_position.StockPosition.bought_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】该证券的总买入的价值，等于每一个该证券的 买入成交价 * 买入股数 总和</p>
+<dd><p>deprecated</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="rqalpha.model.position.stock_position.StockPosition.market_value">
-<code class="descname">market_value</code><a class="headerlink" href="#rqalpha.model.position.stock_position.StockPosition.market_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】投资组合当前所有证券仓位的市值的加总</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.position.stock_position.StockPosition.order_book_id">
-<code class="descname">order_book_id</code><a class="headerlink" href="#rqalpha.model.position.stock_position.StockPosition.order_book_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>【str】合约代码</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.position.stock_position.StockPosition.pnl">
-<code class="descname">pnl</code><a class="headerlink" href="#rqalpha.model.position.stock_position.StockPosition.pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】持仓累计盈亏</p>
+<dl class="method">
+<dt id="rqalpha.model.position.stock_position.StockPosition.is_de_listed">
+<code class="descname">is_de_listed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.model.position.stock_position.StockPosition.is_de_listed" title="Permalink to this definition">¶</a></dt>
+<dd><p>判断合约是否过期</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.stock_position.StockPosition.quantity">
 <code class="descname">quantity</code><a class="headerlink" href="#rqalpha.model.position.stock_position.StockPosition.quantity" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】当前持仓股数</p>
+<dd><p>[int] 当前持仓股数</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.stock_position.StockPosition.sellable">
 <code class="descname">sellable</code><a class="headerlink" href="#rqalpha.model.position.stock_position.StockPosition.sellable" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】该仓位可卖出股数。T＋1的市场中sellable = 所有持仓-今日买入的仓位</p>
+<dd><p>[int] 该仓位可卖出股数。T＋1的市场中sellable = 所有持仓 - 今日买入的仓位 - 已冻结</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.stock_position.StockPosition.sold_quantity">
 <code class="descname">sold_quantity</code><a class="headerlink" href="#rqalpha.model.position.stock_position.StockPosition.sold_quantity" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】该证券的总卖出股数，例如：如果你的投资组合曾经买入过平安银行股票200股并且卖出过100股，那么这个属性会返回100</p>
+<dd><p>deprecated</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.stock_position.StockPosition.sold_value">
 <code class="descname">sold_value</code><a class="headerlink" href="#rqalpha.model.position.stock_position.StockPosition.sold_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】该证券的总卖出价值，等于每一个该证券的 卖出成交价 * 卖出股数 总和</p>
+<dd><p>deprecated</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.stock_position.StockPosition.total_orders">
 <code class="descname">total_orders</code><a class="headerlink" href="#rqalpha.model.position.stock_position.StockPosition.total_orders" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】该仓位的总订单的次数</p>
+<dd><p>deprecated</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.stock_position.StockPosition.total_trades">
 <code class="descname">total_trades</code><a class="headerlink" href="#rqalpha.model.position.stock_position.StockPosition.total_trades" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】该仓位的总成交的次数</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.position.stock_position.StockPosition.transaction_cost">
-<code class="descname">transaction_cost</code><a class="headerlink" href="#rqalpha.model.position.stock_position.StockPosition.transaction_cost" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】总费用</p>
+<dd><p>deprecated</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.stock_position.StockPosition.value_percent">
 <code class="descname">value_percent</code><a class="headerlink" href="#rqalpha.model.position.stock_position.StockPosition.value_percent" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】获得该持仓的实时市场价值在总投资组合价值中所占比例，取值范围[0, 1]</p>
+<dd><p>[float] 获得该持仓的实时市场价值在总投资组合价值中所占比例，取值范围[0, 1]</p>
 </dd></dl>
 
 </dd></dl>
@@ -3211,205 +2837,169 @@
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.buy_avg_holding_price">
 <code class="descname">buy_avg_holding_price</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.buy_avg_holding_price" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】多头持仓均价</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.position.future_position.FuturePosition.buy_avg_open_price">
-<code class="descname">buy_avg_open_price</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.buy_avg_open_price" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】多头持仓均价</p>
+<dd><p>[float] 买方向持仓均价</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.buy_close_order_quantity">
 <code class="descname">buy_close_order_quantity</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.buy_close_order_quantity" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】买平挂单量</p>
+<dd><p>[int] 买方向挂单量</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.position.future_position.FuturePosition.buy_daily_pnl">
-<code class="descname">buy_daily_pnl</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.buy_daily_pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】多头仓位当日盈亏</p>
+<dt id="rqalpha.model.position.future_position.FuturePosition.buy_holding_pnl">
+<code class="descname">buy_holding_pnl</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.buy_holding_pnl" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 买方向当日持仓盈亏</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.buy_margin">
 <code class="descname">buy_margin</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.buy_margin" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】多头持仓占用保证金</p>
+<dd><p>[float] 买方向持仓保证金</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.position.future_position.FuturePosition.buy_market_value">
-<code class="descname">buy_market_value</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.buy_market_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】多头仓位市值加总</p>
+<dt id="rqalpha.model.position.future_position.FuturePosition.buy_old_quantity">
+<code class="descname">buy_old_quantity</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.buy_old_quantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>[int] 买方向昨仓</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.buy_open_order_quantity">
 <code class="descname">buy_open_order_quantity</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.buy_open_order_quantity" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】买开挂单量</p>
+<dd><p>[int] 买方向挂单量</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.buy_pnl">
 <code class="descname">buy_pnl</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.buy_pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】多头仓位累计盈亏</p>
+<dd><p>[float] 买方向累计盈亏</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.buy_quantity">
 <code class="descname">buy_quantity</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.buy_quantity" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】多头持仓</p>
+<dd><p>[int] 买方向持仓</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="rqalpha.model.position.future_position.FuturePosition.buy_realized_pnl">
+<code class="descname">buy_realized_pnl</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.buy_realized_pnl" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 买方向平仓盈亏</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.buy_today_quantity">
 <code class="descname">buy_today_quantity</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.buy_today_quantity" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】多头今仓</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.position.future_position.FuturePosition.buy_transaction_cost">
-<code class="descname">buy_transaction_cost</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.buy_transaction_cost" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】多头费用</p>
+<dd><p>[int] 买方向今仓</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.closable_buy_quantity">
 <code class="descname">closable_buy_quantity</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.closable_buy_quantity" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】可平多头持仓</p>
+<dd><p>[float] 可平买方向持仓</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.closable_sell_quantity">
 <code class="descname">closable_sell_quantity</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.closable_sell_quantity" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】可平空头持仓</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.position.future_position.FuturePosition.daily_holding_pnl">
-<code class="descname">daily_holding_pnl</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.daily_holding_pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】当日持仓盈亏</p>
+<dd><p>[float] 可平卖方向持仓</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.daily_pnl">
 <code class="descname">daily_pnl</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.daily_pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】当日盈亏，当日浮动盈亏+当日平仓盈亏</p>
+<dd><p>[float] 当日盈亏</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.position.future_position.FuturePosition.daily_realized_pnl">
-<code class="descname">daily_realized_pnl</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.daily_realized_pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】当日平仓盈亏</p>
+<dt id="rqalpha.model.position.future_position.FuturePosition.holding_pnl">
+<code class="descname">holding_pnl</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.holding_pnl" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 当日持仓盈亏</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqalpha.model.position.future_position.FuturePosition.is_de_listed">
+<code class="descname">is_de_listed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.is_de_listed" title="Permalink to this definition">¶</a></dt>
+<dd><p>判断合约是否过期</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.margin">
 <code class="descname">margin</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.margin" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】仓位总保证金</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.position.future_position.FuturePosition.market_value">
-<code class="descname">market_value</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.market_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】投资组合当前所有证券仓位的市值的加总</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.position.future_position.FuturePosition.order_book_id">
-<code class="descname">order_book_id</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.order_book_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>【str】合约代码</p>
+<dd><p>[float] 保证金</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.pnl">
 <code class="descname">pnl</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】持仓累计盈亏</p>
+<dd><p>[float] 累计盈亏</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="rqalpha.model.position.future_position.FuturePosition.realized_pnl">
+<code class="descname">realized_pnl</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.realized_pnl" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 当日平仓盈亏</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.sell_avg_holding_price">
 <code class="descname">sell_avg_holding_price</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.sell_avg_holding_price" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】空头持仓均价</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.position.future_position.FuturePosition.sell_avg_open_price">
-<code class="descname">sell_avg_open_price</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.sell_avg_open_price" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】空头开仓均价</p>
+<dd><p>[float] 卖方向持仓均价</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.sell_close_order_quantity">
 <code class="descname">sell_close_order_quantity</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.sell_close_order_quantity" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】卖平挂单量</p>
+<dd><p>[int] 卖方向挂单量</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.position.future_position.FuturePosition.sell_daily_pnl">
-<code class="descname">sell_daily_pnl</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.sell_daily_pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】空头仓位当日盈亏</p>
+<dt id="rqalpha.model.position.future_position.FuturePosition.sell_holding_pnl">
+<code class="descname">sell_holding_pnl</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.sell_holding_pnl" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 卖方向当日持仓盈亏</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.sell_margin">
 <code class="descname">sell_margin</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.sell_margin" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】空头持仓占用保证金</p>
+<dd><p>[float] 卖方向持仓保证金</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="rqalpha.model.position.future_position.FuturePosition.sell_market_value">
-<code class="descname">sell_market_value</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.sell_market_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】空头仓位市值加总</p>
+<dt id="rqalpha.model.position.future_position.FuturePosition.sell_old_quantity">
+<code class="descname">sell_old_quantity</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.sell_old_quantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>[int] 卖方向昨仓</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.sell_open_order_quantity">
 <code class="descname">sell_open_order_quantity</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.sell_open_order_quantity" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】卖开挂单量</p>
+<dd><p>[int] 卖方向挂单量</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.sell_pnl">
 <code class="descname">sell_pnl</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.sell_pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】空头仓位累计盈亏</p>
+<dd><p>[float] 卖方向累计盈亏</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.sell_quantity">
 <code class="descname">sell_quantity</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.sell_quantity" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】空头持仓</p>
+<dd><p>[int] 卖方向持仓</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="rqalpha.model.position.future_position.FuturePosition.sell_realized_pnl">
+<code class="descname">sell_realized_pnl</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.sell_realized_pnl" title="Permalink to this definition">¶</a></dt>
+<dd><p>[float] 卖方向平仓盈亏</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="rqalpha.model.position.future_position.FuturePosition.sell_today_quantity">
 <code class="descname">sell_today_quantity</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.sell_today_quantity" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】空头今仓</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.position.future_position.FuturePosition.sell_transaction_cost">
-<code class="descname">sell_transaction_cost</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.sell_transaction_cost" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】空头费用</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.position.future_position.FuturePosition.total_orders">
-<code class="descname">total_orders</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.total_orders" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】该仓位的总订单的次数</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.position.future_position.FuturePosition.total_trades">
-<code class="descname">total_trades</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.total_trades" title="Permalink to this definition">¶</a></dt>
-<dd><p>【int】该仓位的总成交的次数</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="rqalpha.model.position.future_position.FuturePosition.transaction_cost">
-<code class="descname">transaction_cost</code><a class="headerlink" href="#rqalpha.model.position.future_position.FuturePosition.transaction_cost" title="Permalink to this definition">¶</a></dt>
-<dd><p>【float】仓位交易费用</p>
+<dd><p>[int] 卖方向今仓</p>
 </dd></dl>
 
 </dd></dl>
@@ -3737,7 +3327,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017, RiceQuant.
-      Last updated on Mar 16, 2017.
+      Last updated on Mar 27, 2017.
 
     </p>
   </div>
@@ -3759,7 +3349,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.x',
+            VERSION:'2.0.x',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

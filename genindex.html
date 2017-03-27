@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; rqalpha 0.3.x documentation</title>
+  <title>Index &mdash; rqalpha 2.0.x documentation</title>
   
 
   
@@ -36,7 +36,7 @@
         <link rel="index" title="Index"
               href="#"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="rqalpha 0.3.x documentation" href="index.html"/> 
+    <link rel="top" title="rqalpha 2.0.x documentation" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.3.x
+                2.0.x
               </div>
             
           
@@ -96,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="intro/detail_install.html">详细环境搭建</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro/tutorial.html">10分钟学会 RQAlpha</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro/examples.html">策略示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro/virtual_machine.html">RQAlpha开箱即用虚拟机</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul>
@@ -109,10 +110,10 @@
 <li class="toctree-l1"><a class="reference internal" href="development/basic_concept.html">基本概念</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development/mod.html">RQAlpha 扩展 - Mod</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development/event_source.html">扩展事件源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/data_source.html">扩展数据源</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Extra</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO</a></li>
 </ul>
@@ -218,28 +219,18 @@
 </li>
       <li><a href="development/basic_concept.html#rqalpha.interface.AbstractPersistProvider">AbstractPersistProvider (class in rqalpha.interface)</a>
 </li>
+      <li><a href="development/basic_concept.html#rqalpha.interface.AbstractPriceBoard">AbstractPriceBoard (class in rqalpha.interface)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="development/basic_concept.html#rqalpha.interface.AbstractStrategyLoader">AbstractStrategyLoader (class in rqalpha.interface)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.model.ORDER_STATUS.ACTIVE">ACTIVE (rqalpha.model.ORDER_STATUS attribute)</a>
 </li>
       <li><a href="api/base_api.html#after_trading">after_trading() (built-in function)</a>
-
-      <ul>
-        <li><a href="development/basic_concept.html#rqalpha.interface.AbstractBroker.after_trading">(rqalpha.interface.AbstractBroker method)</a>
 </li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/base_api.html#rqalpha.api.all_instruments">all_instruments() (in module rqalpha.api)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.account.mixed_account.MixedPortfolio.annualized_returns">annualized_returns (rqalpha.model.account.mixed_account.MixedPortfolio attribute)</a>
-
-      <ul>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.annualized_returns">(rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.annualized_returns">(rqalpha.model.portfolio.stock_portfolio.StockPortfolio attribute)</a>
-</li>
-      </ul></li>
       <li><a href="development/basic_concept.html#rqalpha.interface.AbstractDataSource.available_data_range">available_data_range() (rqalpha.interface.AbstractDataSource method)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.model.position.stock_position.StockPosition.average_cost">average_cost (rqalpha.model.position.stock_position.StockPosition attribute)</a>
@@ -258,16 +249,10 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/base_api.html#rqalpha.model.RUN_TYPE.BACKTEST">BACKTEST (rqalpha.model.RUN_TYPE attribute)</a>
 </li>
-      <li><a href="development/basic_concept.html#rqalpha.interface.AbstractBroker.bar">bar() (rqalpha.interface.AbstractBroker method)</a>
-</li>
       <li><a href="api/base_api.html#rqalpha.model.bar.BarObject">BarObject (class in rqalpha.model.bar)</a>
 </li>
       <li><a href="api/base_api.html#before_trading">before_trading() (built-in function)</a>
-
-      <ul>
-        <li><a href="development/basic_concept.html#rqalpha.interface.AbstractBroker.before_trading">(rqalpha.interface.AbstractBroker method)</a>
 </li>
-      </ul></li>
       <li><a href="api/base_api.html#rqalpha.core.strategy_context.RunInfo.benchmark">benchmark (rqalpha.core.strategy_context.RunInfo attribute)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.model.position.stock_position.StockPosition.bought_quantity">bought_quantity (rqalpha.model.position.stock_position.StockPosition attribute)</a>
@@ -278,23 +263,21 @@
 </li>
       <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.buy_avg_holding_price">buy_avg_holding_price (rqalpha.model.position.future_position.FuturePosition attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.buy_avg_open_price">buy_avg_open_price (rqalpha.model.position.future_position.FuturePosition attribute)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/base_api.html#rqalpha.api.buy_close">buy_close() (in module rqalpha.api)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.buy_close_order_quantity">buy_close_order_quantity (rqalpha.model.position.future_position.FuturePosition attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.buy_daily_pnl">buy_daily_pnl (rqalpha.model.position.future_position.FuturePosition attribute)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.buy_holding_pnl">buy_holding_pnl (rqalpha.model.position.future_position.FuturePosition attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.buy_margin">buy_margin (rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
+      <li><a href="api/base_api.html#rqalpha.model.account.future_account.FutureAccount.buy_margin">buy_margin (rqalpha.model.account.future_account.FutureAccount attribute)</a>
 
       <ul>
         <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.buy_margin">(rqalpha.model.position.future_position.FuturePosition attribute)</a>
 </li>
       </ul></li>
-      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.buy_market_value">buy_market_value (rqalpha.model.position.future_position.FuturePosition attribute)</a>
+      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.buy_old_quantity">buy_old_quantity (rqalpha.model.position.future_position.FuturePosition attribute)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.api.buy_open">buy_open() (in module rqalpha.api)</a>
 </li>
@@ -304,9 +287,9 @@
 </li>
       <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.buy_quantity">buy_quantity (rqalpha.model.position.future_position.FuturePosition attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.buy_today_quantity">buy_today_quantity (rqalpha.model.position.future_position.FuturePosition attribute)</a>
+      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.buy_realized_pnl">buy_realized_pnl (rqalpha.model.position.future_position.FuturePosition attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.buy_transaction_cost">buy_transaction_cost (rqalpha.model.position.future_position.FuturePosition attribute)</a>
+      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.buy_today_quantity">buy_today_quantity (rqalpha.model.position.future_position.FuturePosition attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -322,12 +305,10 @@
       </ul></li>
       <li><a href="api/base_api.html#rqalpha.model.ORDER_STATUS.CANCELLED">CANCELLED (rqalpha.model.ORDER_STATUS attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.account.mixed_account.MixedPortfolio.cash">cash (rqalpha.model.account.mixed_account.MixedPortfolio attribute)</a>
+      <li><a href="api/base_api.html#rqalpha.model.account.future_account.FutureAccount.cash">cash (rqalpha.model.account.future_account.FutureAccount attribute)</a>
 
       <ul>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.cash">(rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.cash">(rqalpha.model.portfolio.stock_portfolio.StockPortfolio attribute)</a>
+        <li><a href="api/base_api.html#rqalpha.model.account.stock_account.StockAccount.cash">(rqalpha.model.account.stock_account.StockAccount attribute)</a>
 </li>
       </ul></li>
       <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.closable_buy_quantity">closable_buy_quantity (rqalpha.model.position.future_position.FuturePosition attribute)</a>
@@ -356,36 +337,10 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.daily_holding_pnl">daily_holding_pnl (rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
+      <li><a href="api/base_api.html#rqalpha.model.account.future_account.FutureAccount.daily_pnl">daily_pnl (rqalpha.model.account.future_account.FutureAccount attribute)</a>
 
       <ul>
-        <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.daily_holding_pnl">(rqalpha.model.position.future_position.FuturePosition attribute)</a>
-</li>
-      </ul></li>
-      <li><a href="api/base_api.html#rqalpha.model.account.mixed_account.MixedPortfolio.daily_pnl">daily_pnl (rqalpha.model.account.mixed_account.MixedPortfolio attribute)</a>
-
-      <ul>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.daily_pnl">(rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.daily_pnl">(rqalpha.model.portfolio.stock_portfolio.StockPortfolio attribute)</a>
-</li>
         <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.daily_pnl">(rqalpha.model.position.future_position.FuturePosition attribute)</a>
-</li>
-      </ul></li>
-      <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.daily_realized_pnl">daily_realized_pnl (rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
-
-      <ul>
-        <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.daily_realized_pnl">(rqalpha.model.position.future_position.FuturePosition attribute)</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/base_api.html#rqalpha.model.account.mixed_account.MixedPortfolio.daily_returns">daily_returns (rqalpha.model.account.mixed_account.MixedPortfolio attribute)</a>
-
-      <ul>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.daily_returns">(rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.daily_returns">(rqalpha.model.portfolio.stock_portfolio.StockPortfolio attribute)</a>
 </li>
       </ul></li>
       <li><a href="api/base_api.html#rqalpha.model.order.Order.datetime">datetime (rqalpha.model.order.Order attribute)</a>
@@ -394,9 +349,11 @@
         <li><a href="api/base_api.html#rqalpha.model.snapshot.SnapshotObject.datetime">(rqalpha.model.snapshot.SnapshotObject attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/base_api.html#rqalpha.model.Instrument.de_listed_date">de_listed_date (rqalpha.model.Instrument attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.dividend_receivable">dividend_receivable (rqalpha.model.portfolio.stock_portfolio.StockPortfolio attribute)</a>
+      <li><a href="api/base_api.html#rqalpha.model.account.stock_account.StockAccount.dividend_receivable">dividend_receivable (rqalpha.model.account.stock_account.StockAccount attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -432,19 +389,17 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/base_api.html#rqalpha.model.account.mixed_account.MixedPortfolio.frozen_cash">frozen_cash (rqalpha.model.account.mixed_account.MixedPortfolio attribute)</a>
+      <li><a href="api/base_api.html#rqalpha.model.account.future_account.FutureAccount.frozen_cash">frozen_cash (rqalpha.model.account.future_account.FutureAccount attribute)</a>
 
       <ul>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.frozen_cash">(rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.frozen_cash">(rqalpha.model.portfolio.stock_portfolio.StockPortfolio attribute)</a>
+        <li><a href="api/base_api.html#rqalpha.model.account.stock_account.StockAccount.frozen_cash">(rqalpha.model.account.stock_account.StockAccount attribute)</a>
 </li>
       </ul></li>
-      <li><a href="api/base_api.html#rqalpha.core.strategy_context.StrategyContext.future_portfolio">future_portfolio (rqalpha.core.strategy_context.StrategyContext attribute)</a>
+      <li><a href="api/base_api.html#rqalpha.model.order.Order.frozen_price">frozen_price (rqalpha.model.order.Order attribute)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.core.strategy_context.RunInfo.future_starting_cash">future_starting_cash (rqalpha.core.strategy_context.RunInfo attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio">FuturePortfolio (class in rqalpha.model.portfolio.future_portfolio)</a>
+      <li><a href="api/base_api.html#rqalpha.model.account.future_account.FutureAccount">FutureAccount (class in rqalpha.model.account.future_account)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition">FuturePosition (class in rqalpha.model.position.future_position)</a>
 </li>
@@ -454,8 +409,6 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="development/basic_concept.html#rqalpha.interface.AbstractBroker.get_accounts">get_accounts() (rqalpha.interface.AbstractBroker method)</a>
-</li>
       <li><a href="development/basic_concept.html#rqalpha.interface.AbstractDataSource.get_all_instruments">get_all_instruments() (rqalpha.interface.AbstractDataSource method)</a>
 </li>
       <li><a href="development/basic_concept.html#rqalpha.interface.AbstractDataSource.get_bar">get_bar() (rqalpha.interface.AbstractDataSource method)</a>
@@ -474,6 +427,8 @@
 </li>
       <li><a href="development/basic_concept.html#rqalpha.interface.AbstractDataSource.get_future_info">get_future_info() (rqalpha.interface.AbstractDataSource method)</a>
 </li>
+      <li><a href="development/basic_concept.html#rqalpha.interface.AbstractPriceBoard.get_last_price">get_last_price() (rqalpha.interface.AbstractPriceBoard method)</a>
+</li>
       <li><a href="api/base_api.html#rqalpha.api.get_next_trading_date">get_next_trading_date() (in module rqalpha.api)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.api.get_open_orders">get_open_orders() (in module rqalpha.api)</a>
@@ -482,6 +437,8 @@
         <li><a href="development/basic_concept.html#rqalpha.interface.AbstractBroker.get_open_orders">(rqalpha.interface.AbstractBroker method)</a>
 </li>
       </ul></li>
+      <li><a href="development/basic_concept.html#rqalpha.interface.AbstractBroker.get_portfolio">get_portfolio() (rqalpha.interface.AbstractBroker method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/base_api.html#rqalpha.api.get_previous_trading_date">get_previous_trading_date() (in module rqalpha.api)</a>
@@ -536,6 +493,12 @@
         <li><a href="development/basic_concept.html#rqalpha.interface.AbstractDataSource.history_bars">(rqalpha.interface.AbstractDataSource method)</a>
 </li>
       </ul></li>
+      <li><a href="api/base_api.html#rqalpha.model.account.future_account.FutureAccount.holding_pnl">holding_pnl (rqalpha.model.account.future_account.FutureAccount attribute)</a>
+
+      <ul>
+        <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.holding_pnl">(rqalpha.model.position.future_position.FuturePosition attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -550,10 +513,16 @@
 </li>
       <li><a href="api/base_api.html#rqalpha.model.Instrument">Instrument (class in rqalpha.model)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/base_api.html#rqalpha.api.instruments">instruments() (in module rqalpha.api)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.is_de_listed">is_de_listed() (rqalpha.model.position.future_position.FuturePosition method)</a>
+
+      <ul>
+        <li><a href="api/base_api.html#rqalpha.model.position.stock_position.StockPosition.is_de_listed">(rqalpha.model.position.stock_position.StockPosition method)</a>
+</li>
+      </ul></li>
       <li><a href="api/base_api.html#rqalpha.api.is_st_stock">is_st_stock() (in module rqalpha.api)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.api.is_suspended">is_suspended() (in module rqalpha.api)</a>
@@ -596,7 +565,7 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.margin">margin (rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
+      <li><a href="api/base_api.html#rqalpha.model.account.future_account.FutureAccount.margin">margin (rqalpha.model.account.future_account.FutureAccount attribute)</a>
 
       <ul>
         <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.margin">(rqalpha.model.position.future_position.FuturePosition attribute)</a>
@@ -606,27 +575,19 @@
 </li>
       <li><a href="api/base_api.html#rqalpha.model.ORDER_TYPE.MARKET">MARKET (rqalpha.model.ORDER_TYPE attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.account.mixed_account.MixedPortfolio.market_value">market_value (rqalpha.model.account.mixed_account.MixedPortfolio attribute)</a>
-
-      <ul>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.market_value">(rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.market_value">(rqalpha.model.portfolio.stock_portfolio.StockPortfolio attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.market_value">(rqalpha.model.position.future_position.FuturePosition attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.position.stock_position.StockPosition.market_value">(rqalpha.model.position.stock_position.StockPosition attribute)</a>
-</li>
-      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/base_api.html#rqalpha.model.account.future_account.FutureAccount.market_value">market_value (rqalpha.model.account.future_account.FutureAccount attribute)</a>
+
+      <ul>
+        <li><a href="api/base_api.html#rqalpha.model.account.stock_account.StockAccount.market_value">(rqalpha.model.account.stock_account.StockAccount attribute)</a>
+</li>
+      </ul></li>
       <li><a href="api/base_api.html#rqalpha.model.MATCHING_TYPE">MATCHING_TYPE (class in rqalpha.model)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.core.strategy_context.RunInfo.matching_type">matching_type (rqalpha.core.strategy_context.RunInfo attribute)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.model.order.Order.message">message (rqalpha.model.order.Order attribute)</a>
-</li>
-      <li><a href="api/base_api.html#rqalpha.model.account.mixed_account.MixedPortfolio">MixedPortfolio (class in rqalpha.model.account.mixed_account)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -667,10 +628,6 @@
 </li>
         <li><a href="api/base_api.html#rqalpha.model.order.Order.order_book_id">(rqalpha.model.order.Order attribute)</a>
 </li>
-        <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.order_book_id">(rqalpha.model.position.future_position.FuturePosition attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.position.stock_position.StockPosition.order_book_id">(rqalpha.model.position.stock_position.StockPosition attribute)</a>
-</li>
         <li><a href="api/base_api.html#rqalpha.model.snapshot.SnapshotObject.order_book_id">(rqalpha.model.snapshot.SnapshotObject attribute)</a>
 </li>
       </ul></li>
@@ -704,40 +661,20 @@
 </li>
       <li><a href="api/base_api.html#rqalpha.model.ORDER_STATUS.PENDING_NEW">PENDING_NEW (rqalpha.model.ORDER_STATUS attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.account.mixed_account.MixedPortfolio.pnl">pnl (rqalpha.model.account.mixed_account.MixedPortfolio attribute)</a>
-
-      <ul>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.pnl">(rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
+      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.pnl">pnl (rqalpha.model.position.future_position.FuturePosition attribute)</a>
 </li>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.pnl">(rqalpha.model.portfolio.stock_portfolio.StockPortfolio attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.pnl">(rqalpha.model.position.future_position.FuturePosition attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.position.stock_position.StockPosition.pnl">(rqalpha.model.position.stock_position.StockPosition attribute)</a>
-</li>
-      </ul></li>
       <li><a href="api/base_api.html#rqalpha.core.strategy_context.StrategyContext.portfolio">portfolio (rqalpha.core.strategy_context.StrategyContext attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.account.mixed_account.MixedPortfolio.portfolio_value">portfolio_value (rqalpha.model.account.mixed_account.MixedPortfolio attribute)</a>
-
-      <ul>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.portfolio_value">(rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.portfolio_value">(rqalpha.model.portfolio.stock_portfolio.StockPortfolio attribute)</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/base_api.html#rqalpha.model.POSITION_EFFECT">POSITION_EFFECT (class in rqalpha.model)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.model.order.Order.position_effect">position_effect (rqalpha.model.order.Order attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.account.mixed_account.MixedPortfolio.positions">positions (rqalpha.model.account.mixed_account.MixedPortfolio attribute)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/base_api.html#rqalpha.model.account.future_account.FutureAccount.positions">positions (rqalpha.model.account.future_account.FutureAccount attribute)</a>
 
       <ul>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.positions">(rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.positions">(rqalpha.model.portfolio.stock_portfolio.StockPortfolio attribute)</a>
+        <li><a href="api/base_api.html#rqalpha.model.account.stock_account.StockAccount.positions">(rqalpha.model.account.stock_account.StockAccount attribute)</a>
 </li>
       </ul></li>
       <li><a href="api/base_api.html#rqalpha.model.bar.BarObject.prev_close">prev_close (rqalpha.model.bar.BarObject attribute)</a>
@@ -772,6 +709,12 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/base_api.html#rqalpha.model.account.future_account.FutureAccount.realized_pnl">realized_pnl (rqalpha.model.account.future_account.FutureAccount attribute)</a>
+
+      <ul>
+        <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.realized_pnl">(rqalpha.model.position.future_position.FuturePosition attribute)</a>
+</li>
+      </ul></li>
       <li><a href="api/base_api.html#rqalpha.model.ORDER_STATUS.REJECTED">REJECTED (rqalpha.model.ORDER_STATUS attribute)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.model.Instrument.round_lot">round_lot (rqalpha.model.Instrument attribute)</a>
@@ -784,25 +727,23 @@
 </li>
       <li><a href="api/base_api.html#module-rqalpha.model">rqalpha.model (module)</a>
 </li>
-      <li><a href="api/base_api.html#module-rqalpha.model.account.mixed_account">rqalpha.model.account.mixed_account (module)</a>
+      <li><a href="api/base_api.html#module-rqalpha.model.account.future_account">rqalpha.model.account.future_account (module)</a>
 </li>
+      <li><a href="api/base_api.html#module-rqalpha.model.account.stock_account">rqalpha.model.account.stock_account (module)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/base_api.html#module-rqalpha.model.bar">rqalpha.model.bar (module)</a>
 </li>
       <li><a href="api/base_api.html#module-rqalpha.model.order">rqalpha.model.order (module)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/base_api.html#module-rqalpha.model.portfolio.future_portfolio">rqalpha.model.portfolio.future_portfolio (module)</a>
-</li>
-      <li><a href="api/base_api.html#module-rqalpha.model.portfolio.stock_portfolio">rqalpha.model.portfolio.stock_portfolio (module)</a>
+      <li><a href="api/base_api.html#module-rqalpha.model.portfolio">rqalpha.model.portfolio (module)</a>
 </li>
       <li><a href="api/base_api.html#module-rqalpha.model.position.future_position">rqalpha.model.position.future_position (module)</a>
 </li>
       <li><a href="api/base_api.html#module-rqalpha.model.position.stock_position">rqalpha.model.position.stock_position (module)</a>
 </li>
       <li><a href="api/base_api.html#module-rqalpha.model.snapshot">rqalpha.model.snapshot (module)</a>
-</li>
-      <li><a href="api/base_api.html#rqalpha.core.strategy_context.RunInfo.run_id">run_id (rqalpha.core.strategy_context.RunInfo attribute)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.core.strategy_context.StrategyContext.run_info">run_info (rqalpha.core.strategy_context.StrategyContext attribute)</a>
 </li>
@@ -830,21 +771,19 @@
 </li>
       <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.sell_avg_holding_price">sell_avg_holding_price (rqalpha.model.position.future_position.FuturePosition attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.sell_avg_open_price">sell_avg_open_price (rqalpha.model.position.future_position.FuturePosition attribute)</a>
-</li>
       <li><a href="api/base_api.html#rqalpha.api.sell_close">sell_close() (in module rqalpha.api)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.sell_close_order_quantity">sell_close_order_quantity (rqalpha.model.position.future_position.FuturePosition attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.sell_daily_pnl">sell_daily_pnl (rqalpha.model.position.future_position.FuturePosition attribute)</a>
+      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.sell_holding_pnl">sell_holding_pnl (rqalpha.model.position.future_position.FuturePosition attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.sell_margin">sell_margin (rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
+      <li><a href="api/base_api.html#rqalpha.model.account.future_account.FutureAccount.sell_margin">sell_margin (rqalpha.model.account.future_account.FutureAccount attribute)</a>
 
       <ul>
         <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.sell_margin">(rqalpha.model.position.future_position.FuturePosition attribute)</a>
 </li>
       </ul></li>
-      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.sell_market_value">sell_market_value (rqalpha.model.position.future_position.FuturePosition attribute)</a>
+      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.sell_old_quantity">sell_old_quantity (rqalpha.model.position.future_position.FuturePosition attribute)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.api.sell_open">sell_open() (in module rqalpha.api)</a>
 </li>
@@ -854,18 +793,18 @@
 </li>
       <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.sell_quantity">sell_quantity (rqalpha.model.position.future_position.FuturePosition attribute)</a>
 </li>
+      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.sell_realized_pnl">sell_realized_pnl (rqalpha.model.position.future_position.FuturePosition attribute)</a>
+</li>
       <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.sell_today_quantity">sell_today_quantity (rqalpha.model.position.future_position.FuturePosition attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.sell_transaction_cost">sell_transaction_cost (rqalpha.model.position.future_position.FuturePosition attribute)</a>
-</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/base_api.html#rqalpha.model.position.stock_position.StockPosition.sellable">sellable (rqalpha.model.position.stock_position.StockPosition attribute)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.model.SIDE">SIDE (class in rqalpha.model)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.model.order.Order.side">side (rqalpha.model.order.Order attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/base_api.html#rqalpha.core.strategy_context.RunInfo.slippage">slippage (rqalpha.core.strategy_context.RunInfo attribute)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.model.snapshot.SnapshotObject">SnapshotObject (class in rqalpha.model.snapshot)</a>
@@ -875,32 +814,14 @@
       <li><a href="api/base_api.html#rqalpha.model.position.stock_position.StockPosition.sold_value">sold_value (rqalpha.model.position.stock_position.StockPosition attribute)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.core.strategy_context.RunInfo.start_date">start_date (rqalpha.core.strategy_context.RunInfo attribute)</a>
-
-      <ul>
-        <li><a href="api/base_api.html#rqalpha.model.account.mixed_account.MixedPortfolio.start_date">(rqalpha.model.account.mixed_account.MixedPortfolio attribute)</a>
 </li>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.start_date">(rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.start_date">(rqalpha.model.portfolio.stock_portfolio.StockPortfolio attribute)</a>
-</li>
-      </ul></li>
       <li><a href="development/basic_concept.html#rqalpha.interface.AbstractMod.start_up">start_up() (rqalpha.interface.AbstractMod method)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.account.mixed_account.MixedPortfolio.starting_cash">starting_cash (rqalpha.model.account.mixed_account.MixedPortfolio attribute)</a>
-
-      <ul>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.starting_cash">(rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.starting_cash">(rqalpha.model.portfolio.stock_portfolio.StockPortfolio attribute)</a>
-</li>
-      </ul></li>
       <li><a href="api/base_api.html#rqalpha.model.order.Order.status">status (rqalpha.model.order.Order attribute)</a>
-</li>
-      <li><a href="api/base_api.html#rqalpha.core.strategy_context.StrategyContext.stock_portfolio">stock_portfolio (rqalpha.core.strategy_context.StrategyContext attribute)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.core.strategy_context.RunInfo.stock_starting_cash">stock_starting_cash (rqalpha.core.strategy_context.RunInfo attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.portfolio.stock_portfolio.StockPortfolio">StockPortfolio (class in rqalpha.model.portfolio.stock_portfolio)</a>
+      <li><a href="api/base_api.html#rqalpha.model.account.stock_account.StockAccount">StockAccount (class in rqalpha.model.account.stock_account)</a>
 </li>
       <li><a href="api/base_api.html#rqalpha.model.position.stock_position.StockPosition">StockPosition (class in rqalpha.model.position.stock_position)</a>
 </li>
@@ -926,26 +847,10 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="development/basic_concept.html#rqalpha.interface.AbstractMod.tear_down">tear_down() (rqalpha.interface.AbstractMod method)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.total_orders">total_orders (rqalpha.model.position.future_position.FuturePosition attribute)</a>
-
-      <ul>
-        <li><a href="api/base_api.html#rqalpha.model.position.stock_position.StockPosition.total_orders">(rqalpha.model.position.stock_position.StockPosition attribute)</a>
+      <li><a href="api/base_api.html#rqalpha.model.position.stock_position.StockPosition.total_orders">total_orders (rqalpha.model.position.stock_position.StockPosition attribute)</a>
 </li>
-      </ul></li>
-      <li><a href="api/base_api.html#rqalpha.model.account.mixed_account.MixedPortfolio.total_returns">total_returns (rqalpha.model.account.mixed_account.MixedPortfolio attribute)</a>
-
-      <ul>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.total_returns">(rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
+      <li><a href="api/base_api.html#rqalpha.model.position.stock_position.StockPosition.total_trades">total_trades (rqalpha.model.position.stock_position.StockPosition attribute)</a>
 </li>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.total_returns">(rqalpha.model.portfolio.stock_portfolio.StockPortfolio attribute)</a>
-</li>
-      </ul></li>
-      <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.total_trades">total_trades (rqalpha.model.position.future_position.FuturePosition attribute)</a>
-
-      <ul>
-        <li><a href="api/base_api.html#rqalpha.model.position.stock_position.StockPosition.total_trades">(rqalpha.model.position.stock_position.StockPosition attribute)</a>
-</li>
-      </ul></li>
       <li><a href="api/base_api.html#rqalpha.model.bar.BarObject.total_turnover">total_turnover (rqalpha.model.bar.BarObject attribute)</a>
 
       <ul>
@@ -956,18 +861,12 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/base_api.html#rqalpha.model.order.Order.trading_datetime">trading_datetime (rqalpha.model.order.Order attribute)</a>
 </li>
-      <li><a href="api/base_api.html#rqalpha.model.account.mixed_account.MixedPortfolio.transaction_cost">transaction_cost (rqalpha.model.account.mixed_account.MixedPortfolio attribute)</a>
+      <li><a href="api/base_api.html#rqalpha.model.account.future_account.FutureAccount.transaction_cost">transaction_cost (rqalpha.model.account.future_account.FutureAccount attribute)</a>
 
       <ul>
+        <li><a href="api/base_api.html#rqalpha.model.account.stock_account.StockAccount.transaction_cost">(rqalpha.model.account.stock_account.StockAccount attribute)</a>
+</li>
         <li><a href="api/base_api.html#rqalpha.model.order.Order.transaction_cost">(rqalpha.model.order.Order attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.future_portfolio.FuturePortfolio.transaction_cost">(rqalpha.model.portfolio.future_portfolio.FuturePortfolio attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.portfolio.stock_portfolio.StockPortfolio.transaction_cost">(rqalpha.model.portfolio.stock_portfolio.StockPortfolio attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.position.future_position.FuturePosition.transaction_cost">(rqalpha.model.position.future_position.FuturePosition attribute)</a>
-</li>
-        <li><a href="api/base_api.html#rqalpha.model.position.stock_position.StockPosition.transaction_cost">(rqalpha.model.position.stock_position.StockPosition attribute)</a>
 </li>
       </ul></li>
       <li><a href="api/base_api.html#rqalpha.model.Instrument.type">type (rqalpha.model.Instrument attribute)</a>
@@ -1034,7 +933,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017, RiceQuant.
-      Last updated on Mar 16, 2017.
+      Last updated on Mar 27, 2017.
 
     </p>
   </div>
@@ -1056,7 +955,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.3.x',
+            VERSION:'2.0.x',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

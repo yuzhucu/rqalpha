@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>RQAlpha 0.3.x Documentation &mdash; rqalpha 0.3.x documentation</title>
+  <title>RQAlpha 2.0.x Documentation &mdash; rqalpha 2.0.x documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="rqalpha 0.3.x documentation" href="#"/>
+    <link rel="top" title="rqalpha 2.0.x documentation" href="#"/>
         <link rel="next" title="RQAlpha 介绍" href="intro/overview.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.3.x
+                2.0.x
               </div>
             
           
@@ -96,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="intro/detail_install.html">详细环境搭建</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro/tutorial.html">10分钟学会 RQAlpha</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro/examples.html">策略示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro/virtual_machine.html">RQAlpha开箱即用虚拟机</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul>
@@ -109,10 +110,10 @@
 <li class="toctree-l1"><a class="reference internal" href="development/basic_concept.html">基本概念</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development/mod.html">RQAlpha 扩展 - Mod</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development/event_source.html">扩展事件源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/data_source.html">扩展数据源</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Extra</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO</a></li>
 </ul>
@@ -159,7 +160,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>RQAlpha 0.3.x Documentation</li>
+      <li>RQAlpha 2.0.x Documentation</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -179,7 +180,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="rqalpha-version-documentation">
-<h1>RQAlpha 0.3.x Documentation<a class="headerlink" href="#rqalpha-version-documentation" title="Permalink to this headline">¶</a></h1>
+<h1>RQAlpha 2.0.x Documentation<a class="headerlink" href="#rqalpha-version-documentation" title="Permalink to this headline">¶</a></h1>
 <a class="reference external image-reference" href="https://travis-ci.org/ricequant/rqalpha/branches"><img alt="Build" src="https://img.shields.io/travis/ricequant/rqalpha/master.svg" /></a>
 <a class="reference external image-reference" href="https://coveralls.io/github/ricequant/rqalpha?branch=master"><img alt="https://coveralls.io/repos/github/ricequant/rqalpha/badge.svg?branch=master" src="https://coveralls.io/repos/github/ricequant/rqalpha/badge.svg?branch=master" /></a>
 <a class="reference external image-reference" href="http://rqalpha.readthedocs.io/zh_CN/stable/?badge=stable"><img alt="Documentation Status" src="https://readthedocs.org/projects/rqalpha/badge/?version=stable" /></a>
@@ -204,6 +205,8 @@
 <dd>使用RQAlpha</dd>
 <dt><a class="reference internal" href="intro/examples.html"><span class="doc">策略示例</span></a></dt>
 <dd>通过RQAlpha运行的策略示例</dd>
+<dt><a class="reference internal" href="intro/virtual_machine.html"><span class="doc">RQAlpha开箱即用虚拟机</span></a></dt>
+<dd>RQAlpha开箱即用虚拟机</dd>
 </dl>
 </div>
 <div class="section" id="rqalpha-api">
@@ -232,6 +235,8 @@
 <dd>基于Mod来开发和扩展RQAlpha</dd>
 <dt><a class="reference internal" href="development/event_source.html"><span class="doc">扩展事件源</span></a></dt>
 <dd>扩展事件源</dd>
+<dt><a class="reference internal" href="development/data_source.html"><span class="doc">扩展数据源</span></a></dt>
+<dd>扩展数据源</dd>
 </dl>
 </div>
 <div class="section" id="id2">
@@ -239,8 +244,6 @@
 <div class="toctree-wrapper compound">
 </div>
 <dl class="docutils">
-<dt><a class="reference internal" href="faq.html"><span class="doc">FAQ</span></a></dt>
-<dd>FAQ</dd>
 <dt><a class="reference internal" href="history.html"><span class="doc">History</span></a></dt>
 <dd>更新日志</dd>
 <dt><a class="reference internal" href="todo.html"><span class="doc">TODO</span></a></dt>
@@ -251,7 +254,6 @@
 <h2>获取帮助<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>关于RQAlpha的任何问题可以通过以下途径来获取帮助</p>
 <ul class="simple">
-<li>查看 <a class="reference internal" href="faq.html"><span class="doc">FAQ</span></a> 页面找寻常见问题及解答</li>
 <li>可以通过 <a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a> 或者 <a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a> 来查找特定问题</li>
 <li>在 <a class="reference external" href="https://github.com/ricequant/rqalpha/issues">github issue page</a> 中提交issue</li>
 <li>RQAlpha 交流群「487188429」</li>
@@ -280,7 +282,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017, RiceQuant.
-      Last updated on Mar 16, 2017.
+      Last updated on Mar 27, 2017.
 
     </p>
   </div>
@@ -302,7 +304,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.3.x',
+            VERSION:'2.0.x',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
